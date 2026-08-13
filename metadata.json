@@ -1,0 +1,6 @@
+{
+  "name": "Refah Sanat Pardis",
+  "description": "Refah Sanat Pardis (RSP) - Connecting Global Trade with Global Finance. Facilitating cross-border commodity trading, trade finance, supply chain finance, and global investment partnerships.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
