@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Language } from './types';
+import { Language, DesignConcept } from './types';
+import { ConceptSwitcher } from './components/ConceptSwitcher';
+import { SoftCorporatePage } from './components/concept1/SoftCorporatePage';
+import { EditorialIndustrialPage } from './components/concept2/EditorialIndustrialPage';
+import { EditorialIndustrialMain } from './components/EditorialIndustrialMain';
+
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { CompanySection } from './components/CompanySection';
@@ -16,6 +21,7 @@ import { DetailModal } from './components/DetailModal';
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<Language>('en');
+  const [currentConcept, setCurrentConcept] = useState<DesignConcept>('soft-corporate');
 
   // Modal State for Legal Notices
   const [modalOpen, setModalOpen] = useState(false);
@@ -41,6 +47,24 @@ export default function App() {
     setModalOpen(true);
   };
 
+  const openTermsModal = () => {
+    handleOpenLegal(
+      currentLang === 'fa' ? 'شرایط و ضوابط تجاری' : 'Commercial Terms & Governance',
+      currentLang === 'fa'
+        ? 'کلیه مبادلات کالا، گشایش‌های اعتباری و خدمات بازرگانی گروه رفاه صنعت پردیس بر اساس قوانین اتاق بازرگانی بین‌المللی (ICC) و مقررات اینکوترمز ۲۰۲۰ تنظیم و اجرا می‌گردند.'
+        : 'All commodity transactions, credit facilities, and trade desk services of Refah Sanat Pardis operate under International Chamber of Commerce (ICC) rules and Incoterms 2020 standards.'
+    );
+  };
+
+  const openPrivacyModal = () => {
+    handleOpenLegal(
+      currentLang === 'fa' ? 'پروتکل محرمانگی اطلاعات' : 'Institutional Confidentiality Protocol',
+      currentLang === 'fa'
+        ? 'اسناد مالی، درخواست‌های LC و داده‌های معاملاتی مشتریان طبق پروتکل‌های عدم افشا (NDA) و استانداردهای امنیت داده ISO 28000 با بالاترین سطح محرمانگی محافظت می‌شوند.'
+        : 'Financial documentation, LC applications, and trade counterparty data are governed under strict Non-Disclosure Agreements (NDA) and ISO 28000 security standards.'
+    );
+  };
+
   const scrollToContact = (contextNote?: string) => {
     if (contextNote) {
       setPrefilledNotes(contextNote);
@@ -61,60 +85,35 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#0E1216] text-[#F4F3EF] font-sans selection:bg-[#B8A06A] selection:text-[#0E1216]">
       
-      {/* 1. Navbar Navigation */}
-      <Navbar 
-        currentLang={currentLang} 
-        onLanguageChange={handleLanguageChange} 
+      {/* Design Concept Switcher Top Bar */}
+      <ConceptSwitcher
+        currentConcept={currentConcept}
+        onSelectConcept={setCurrentConcept}
+        currentLang={currentLang}
       />
 
-      {/* Official Landing Page Sections */}
-      <main>
-        {/* Section 1: Hero */}
-        <HeroSection currentLang={currentLang} />
-
-        {/* Section 2: Company Introduction */}
-        <CompanySection currentLang={currentLang} />
-
-        {/* Section 3: Leadership & Management */}
-        <LeadershipSection currentLang={currentLang} />
-
-        {/* Section 4: Our Business (Commodity Trading, Trade Finance, Partnerships) */}
-        <BusinessSection 
-          currentLang={currentLang} 
+      {/* Render selected Design Concept */}
+      {currentConcept === 'soft-corporate' ? (
+        <SoftCorporatePage
+          currentLang={currentLang}
+          onLanguageChange={handleLanguageChange}
           onInquire={(ctx) => scrollToContact(ctx)}
+          openTerms={openTermsModal}
+          openPrivacy={openPrivacyModal}
         />
-
-        {/* Section 4: How We Create Value (5-Step Lifecycle Visualization) */}
-        <ValueCreationSection currentLang={currentLang} />
-
-        {/* Section 5: Our Markets (6 Regions Network Visualization) */}
-        <MarketsSection currentLang={currentLang} />
-
-        {/* Section 6: Why RSP? (5 Core Principles) */}
-        <WhyUsSection currentLang={currentLang} />
-
-        {/* Section 7: Vision & Mission */}
-        <VisionMissionSection currentLang={currentLang} />
-
-        {/* Section 8: Final CTA */}
-        <FinalCtaSection currentLang={currentLang} />
-
-        {/* Section 9: Contact Us */}
-        <ContactSection 
-          currentLang={currentLang} 
-          prefilledNotes={prefilledNotes}
+      ) : (
+        <EditorialIndustrialMain
+          currentLang={currentLang}
+          onLanguageChange={handleLanguageChange}
+          onInquire={(ctx) => scrollToContact(ctx)}
+          openTerms={openTermsModal}
+          openPrivacy={openPrivacyModal}
         />
-      </main>
+      )}
 
-      {/* 10. Footer */}
-      <Footer 
-        currentLang={currentLang} 
-        onOpenLegal={handleOpenLegal}
-      />
-
-      {/* Legal Dialog Modal */}
+      {/* Shared Legal Dialog Modal */}
       <DetailModal
         currentLang={currentLang}
         isOpen={modalOpen}
@@ -128,3 +127,5 @@ export default function App() {
     </div>
   );
 }
+
+

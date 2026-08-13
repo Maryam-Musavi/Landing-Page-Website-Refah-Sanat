@@ -1,5 +1,7 @@
 export type Language = 'en' | 'fa';
 
+export type DesignConcept = 'dark-industrial' | 'soft-corporate' | 'editorial-premium';
+
 export interface TranslationContent {
   brand: string;
   tagline: string;
