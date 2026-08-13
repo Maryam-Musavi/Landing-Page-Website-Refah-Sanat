@@ -245,7 +245,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
               <div className="relative border border-[#D5DFE8] bg-[#FFFFFF] p-2 shadow-sm rounded-[2px]">
                 <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-[#EAF0F6]">
                   <img 
-                    src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80" 
+                    src="/images/hero-port.jpg" 
                     alt="International Maritime Logistics Port"
                     className="w-full h-full object-cover filter brightness-95 contrast-105 saturate-90"
                   />
@@ -405,7 +405,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
                 roleEn: 'Chairman & Managing Director',
                 bioFa: 'بیش از ۲۵ سال سابقه مدیریت ارشد در میزهای تجارت کالایی بین‌المللی و ساختاردهی ابزارهای اعتباری و مالی در خاورمیانه و آسیا.',
                 bioEn: '25+ years directing international commodity trading desks and cross-border trade finance structures in Middle Eastern & Asian markets.',
-                image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-1.jpg',
                 isCeo: true,
               },
               {
@@ -417,7 +417,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
                 roleEn: 'Director of Commercial Operations',
                 bioFa: 'متخصص بازرگانی کالاهای اساسی، زنجیره تامین فولاد و فلزات، و قراردادهای بین‌المللی حمل‌ونقل دریایی.',
                 bioEn: 'Expert in bulk industrial commodities, steel supply chains, and international maritime logistics contracts.',
-                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-2.jpg',
                 isCeo: false,
               },
               {
@@ -429,7 +429,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
                 roleEn: 'Chief Financial Officer & Trade Finance Specialist',
                 bioFa: 'با سابقه مدیریت بانکداری شرکتی و تخصصی در اعتبارات اسنادی (L/C)، SBLC و مکانیزم‌های تسویه ارزی چندگانه.',
                 bioEn: 'Former senior trade banker specializing in L/C, SBLC, structured supply chain credit, and Multi-FX settlement mechanisms.',
-                image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-3.jpg',
                 isCeo: false,
               },
               {
@@ -441,7 +441,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
                 roleEn: 'Head of Global Markets & Investment',
                 bioFa: 'متخصص توسعه کریدورهای راهبردی تجاری، ارزیابی ریسک طرف‌های معامله و مشارکت‌های مؤسساتی بین‌المللی.',
                 bioEn: 'Specialist in strategic corridor expansion, counterparty risk management, and institutional joint ventures.',
-                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-4.jpg',
                 isCeo: false,
               },
             ].map((member) => (
@@ -632,7 +632,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-64 sm:h-80 md:h-[340px] w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80" 
+                  src="/images/concept-finance.jpg" 
                   alt="Iron & Steel Trading"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -676,7 +676,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
               >
                 <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                   <img 
-                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" 
+                    src="/images/commodity-fertilizers.jpg" 
                     alt="Petrochemicals Trading"
                     loading="lazy"
                     className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -740,7 +740,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1618042164219-62c820f10723?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/concept-trade.jpg" 
                   alt="Minerals & Non-Ferrous Metals Trading"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -776,7 +776,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/commodity-steel.jpg" 
                   alt="Energy Trading"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -812,7 +812,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/concept-industry.jpg" 
                   alt="Industrial Products & Equipment"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -850,7 +850,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/commodity-agriculture.jpg" 
                   alt="Raw Materials & Essential Commodities"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"
@@ -886,7 +886,7 @@ export const SoftCorporatePage: React.FC<SoftCorporatePageProps> = ({
             >
               <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-[#EAF0F6] rounded-[2px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/hero-port.jpg" 
                   alt="Supply Chain & Maritime Logistics"
                   loading="lazy"
                   className="w-full h-full object-cover filter brightness-[0.97] contrast-[1.03] group-hover:scale-[1.03] transition-transform duration-500 ease-out"

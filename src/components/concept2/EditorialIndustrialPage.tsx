@@ -139,7 +139,7 @@ export const EditorialIndustrialPage: React.FC<EditorialIndustrialPageProps> = (
         {/* Background Cargo / Port Overlay */}
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <img 
-            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80" 
+            src="/images/hero-port.jpg" 
             alt="Port Terminal"
             className="w-full h-full object-cover filter contrast-125 saturate-0"
           />
@@ -268,7 +268,7 @@ export const EditorialIndustrialPage: React.FC<EditorialIndustrialPageProps> = (
             <div className="lg:col-span-5 border border-[#D1CFC7] bg-white p-2">
               <div className="relative h-80 w-full overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80" 
+                  src="/images/commodity-steel.jpg" 
                   alt="Industrial Logistics"
                   className="w-full h-full object-cover filter contrast-125 saturate-50"
                 />

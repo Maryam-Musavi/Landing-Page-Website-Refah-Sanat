@@ -3,6 +3,10 @@ export type Language = 'en' | 'fa';
 export type DesignConcept = 'dark-industrial' | 'soft-corporate' | 'editorial-premium';
 
 export interface TranslationContent {
+  meta: {
+    title: string;
+    description: string;
+  };
   brand: string;
   tagline: string;
   category: string;

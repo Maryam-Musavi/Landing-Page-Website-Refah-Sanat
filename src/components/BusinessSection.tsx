@@ -23,32 +23,32 @@ export const BusinessSection: React.FC<BusinessSectionProps> = ({ currentLang, o
 
   const commodityPhotos = [
     {
-      url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-petrochemical.jpg',
       altFa: 'تولید فولاد و کویل‌های صنعتی',
       altEn: 'Steel production and industrial coils',
     },
     {
-      url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-fertilizers.jpg',
       altFa: 'پالایشگاه و مجتمع‌های پتروشیمی',
       altEn: 'Refinery and petrochemical processing plants',
     },
     {
-      url: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-agriculture.jpg',
       altFa: 'اوره و کودهای شیمیایی صنعتی',
       altEn: 'Urea and industrial fertilizers',
     },
     {
-      url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-energy.jpg',
       altFa: 'سیلوهای غلات و نهادهای کشاورزی',
       altEn: 'Grain silos and agricultural commodities',
     },
     {
-      url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-steel.jpg',
       altFa: 'کشتی‌های نفتکش و انرژی',
       altEn: 'Energy tanker vessel and petroleum transport',
     },
     {
-      url: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      url: '/images/commodity-logistics.jpg',
       altFa: 'پایانه کانتینری و حمل‌ونقل دریایی',
       altEn: 'Container port terminal and maritime logistics',
     },

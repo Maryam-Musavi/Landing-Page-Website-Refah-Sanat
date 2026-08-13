@@ -32,7 +32,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ currentLang }) => {
       {/* Background Photography with Dark Navy Industrial Gradient Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=2000&q=80" 
+          src="/images/hero-port.jpg" 
           alt={currentLang === 'fa' ? 'پایانه بندرگاه و لوجستیک تجارت بین‌الملل' : 'Port Terminal & Maritime Logistics'}
           className="w-full h-full object-cover object-center filter brightness-[0.25] contrast-125 saturate-50"
         />

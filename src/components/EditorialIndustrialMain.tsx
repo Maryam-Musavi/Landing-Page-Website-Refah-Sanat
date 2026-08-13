@@ -261,7 +261,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               <div className="relative border border-[#222A33] bg-[#171C21] p-2 shadow-2xl">
                 <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-slate-900">
                   <img 
-                    src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80" 
+                    src="/images/hero-port.jpg" 
                     alt="Maritime Container Terminal"
                     className="w-full h-full object-cover filter brightness-75 contrast-125 saturate-50"
                   />
@@ -394,7 +394,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 roleEn: 'Chairman & Managing Director',
                 bioFa: 'بیش از ۲۵ سال سابقه مدیریت ارشد در میزهای تجارت کالایی بین‌المللی و ساختاردهی ابزارهای اعتباری و مالی در خاورمیانه و آسیا.',
                 bioEn: '25+ years directing international commodity trading desks and cross-border trade finance structures in Middle Eastern & Asian markets.',
-                image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-1.jpg',
                 isCeo: true,
               },
               {
@@ -406,7 +406,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 roleEn: 'Director of Commercial Operations',
                 bioFa: 'متخصص بازرگانی کالاهای اساسی، زنجیره تامین فولاد و فلزات، و قراردادهای بین‌المللی حمل‌ونقل دریایی.',
                 bioEn: 'Expert in bulk industrial commodities, steel supply chains, and international maritime logistics contracts.',
-                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-2.jpg',
                 isCeo: false,
               },
               {
@@ -418,7 +418,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 roleEn: 'Chief Financial Officer & Trade Finance Specialist',
                 bioFa: 'با سابقه مدیریت بانکداری شرکتی و تخصصی در اعتبارات اسنادی (L/C)، SBLC و مکانیزم‌های تسویه ارزی چندگانه.',
                 bioEn: 'Former senior trade banker specializing in L/C, SBLC, structured supply chain credit, and Multi-FX settlement mechanisms.',
-                image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-3.jpg',
                 isCeo: false,
               },
               {
@@ -430,7 +430,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 roleEn: 'Head of Global Markets & Investment',
                 bioFa: 'متخصص توسعه کریدورهای راهبردی تجاری، ارزیابی ریسک طرف‌های معامله و مشارکت‌های مؤسساتی بین‌المللی.',
                 bioEn: 'Specialist in strategic corridor expansion, counterparty risk management, and institutional joint ventures.',
-                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                image: '/images/executive-4.jpg',
                 isCeo: false,
               },
             ].map((member) => (
@@ -613,7 +613,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="md:col-span-8 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
               <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-900">
                 <img 
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80" 
+                  src="/images/commodity-steel.jpg" 
                   alt="Energy & Refined Products"
                   className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
                 />
@@ -638,7 +638,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
               <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-900">
                 <img 
-                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/commodity-petrochemical.jpg" 
                   alt="Metals & Steel"
                   className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
                 />
@@ -663,7 +663,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
               <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-900">
                 <img 
-                  src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/commodity-fertilizers.jpg" 
                   alt="Petrochemicals"
                   className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
                 />
@@ -688,7 +688,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
               <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-900">
                 <img 
-                  src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80" 
+                  src="/images/commodity-agriculture.jpg" 
                   alt="Fertilizers"
                   className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
                 />
