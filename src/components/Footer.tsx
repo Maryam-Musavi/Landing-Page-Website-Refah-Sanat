@@ -59,18 +59,18 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, onOpenLegal }) => {
           {/* Company Bio */}
           <div className="lg:col-span-5 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center p-1 shrink-0">
-                <Logo className="w-full h-full text-cyan-400" />
+              <div className="w-8 h-8 bg-white border border-white flex items-center justify-center p-1 shrink-0 shadow-sm">
+                <Logo className="w-full h-full text-[#0B1325]" />
               </div>
               <span className="font-mono font-bold text-white text-base tracking-wider uppercase">
                 {currentLang === 'fa' ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
               </span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed max-w-md">
+            <p className="text-xs text-slate-300 leading-relaxed max-w-md">
               {t.description}
             </p>
-            <div className="flex items-center gap-2 pt-1 text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="flex items-center gap-2 pt-1 text-[11px] font-mono text-[#00C4CC] font-bold uppercase tracking-wider">
+              <Globe className="w-3.5 h-3.5 text-[#00C4CC]" />
               <span>{translations[currentLang].tagline}</span>
             </div>
           </div>
@@ -80,15 +80,16 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, onOpenLegal }) => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               {t.quickLinks}
             </h4>
-            <div className="grid grid-cols-2 gap-2 text-xs text-slate-400">
-              <a href="#home" onClick={(e) => handleAnchorClick(e, '#home')} className="hover:text-cyan-400 transition-colors">// {navT.home}</a>
-              <a href="#company" onClick={(e) => handleAnchorClick(e, '#company')} className="hover:text-cyan-400 transition-colors">// {navT.about}</a>
-              <a href="#our-business" onClick={(e) => handleAnchorClick(e, '#our-business')} className="hover:text-cyan-400 transition-colors">// {navT.business}</a>
-              <a href="#how-we-create-value" onClick={(e) => handleAnchorClick(e, '#how-we-create-value')} className="hover:text-cyan-400 transition-colors">// {navT.value}</a>
-              <a href="#our-markets" onClick={(e) => handleAnchorClick(e, '#our-markets')} className="hover:text-cyan-400 transition-colors">// {navT.markets}</a>
-              <a href="#why-rsp" onClick={(e) => handleAnchorClick(e, '#why-rsp')} className="hover:text-cyan-400 transition-colors">// {navT.whyUs}</a>
-              <a href="#vision-mission" onClick={(e) => handleAnchorClick(e, '#vision-mission')} className="hover:text-cyan-400 transition-colors">// {navT.visionMission}</a>
-              <a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')} className="hover:text-cyan-400 transition-colors">// {navT.contact}</a>
+            <div className="grid grid-cols-2 gap-2 text-xs text-slate-300">
+              <a href="#home" onClick={(e) => handleAnchorClick(e, '#home')} className="hover:text-[#00C4CC] transition-colors">// {navT.home}</a>
+              <a href="#company" onClick={(e) => handleAnchorClick(e, '#company')} className="hover:text-[#00C4CC] transition-colors">// {navT.about}</a>
+              <a href="#leadership" onClick={(e) => handleAnchorClick(e, '#leadership')} className="hover:text-[#00C4CC] transition-colors">// {navT.leadership}</a>
+              <a href="#our-business" onClick={(e) => handleAnchorClick(e, '#our-business')} className="hover:text-[#00C4CC] transition-colors">// {navT.business}</a>
+              <a href="#how-we-create-value" onClick={(e) => handleAnchorClick(e, '#how-we-create-value')} className="hover:text-[#00C4CC] transition-colors">// {navT.value}</a>
+              <a href="#our-markets" onClick={(e) => handleAnchorClick(e, '#our-markets')} className="hover:text-[#00C4CC] transition-colors">// {navT.markets}</a>
+              <a href="#why-rsp" onClick={(e) => handleAnchorClick(e, '#why-rsp')} className="hover:text-[#00C4CC] transition-colors">// {navT.whyUs}</a>
+              <a href="#vision-mission" onClick={(e) => handleAnchorClick(e, '#vision-mission')} className="hover:text-[#00C4CC] transition-colors">// {navT.visionMission}</a>
+              <a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')} className="hover:text-[#00C4CC] transition-colors">// {navT.contact}</a>
             </div>
           </div>
 
@@ -97,14 +98,14 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, onOpenLegal }) => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               {currentLang === 'fa' ? 'حاکمیت و محرمانگی' : 'Governance & Confidentiality'}
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">
+            <p className="text-xs text-slate-300 leading-relaxed font-sans">
               {t.legalNotice}
             </p>
             <div className="flex flex-col gap-1.5 pt-1 text-xs">
-              <button onClick={openTerms} className="text-left rtl:text-right text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer">
+              <button onClick={openTerms} className="text-left rtl:text-right text-[#00C4CC] hover:text-[#00b2b8] transition-colors cursor-pointer">
                 &gt; {t.termsTitle}
               </button>
-              <button onClick={openPrivacy} className="text-left rtl:text-right text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer">
+              <button onClick={openPrivacy} className="text-left rtl:text-right text-[#00C4CC] hover:text-[#00b2b8] transition-colors cursor-pointer">
                 &gt; {t.privacyTitle}
               </button>
             </div>

@@ -3,6 +3,7 @@ import { Language } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { CompanySection } from './components/CompanySection';
+import { LeadershipSection } from './components/LeadershipSection';
 import { BusinessSection } from './components/BusinessSection';
 import { ValueCreationSection } from './components/ValueCreationSection';
 import { MarketsSection } from './components/MarketsSection';
@@ -76,7 +77,10 @@ export default function App() {
         {/* Section 2: Company Introduction */}
         <CompanySection currentLang={currentLang} />
 
-        {/* Section 3: Our Business (Commodity Trading, Trade Finance, Partnerships) */}
+        {/* Section 3: Leadership & Management */}
+        <LeadershipSection currentLang={currentLang} />
+
+        {/* Section 4: Our Business (Commodity Trading, Trade Finance, Partnerships) */}
         <BusinessSection 
           currentLang={currentLang} 
           onInquire={(ctx) => scrollToContact(ctx)}

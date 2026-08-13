@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
   const navLinks = [
     { id: 'home', label: t.home, href: '#home' },
     { id: 'company', label: t.about, href: '#company' },
+    { id: 'leadership', label: t.leadership, href: '#leadership' },
     { id: 'our-business', label: t.business, href: '#our-business' },
     { id: 'how-we-create-value', label: t.value, href: '#how-we-create-value' },
     { id: 'our-markets', label: t.markets, href: '#our-markets' },
@@ -105,14 +106,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
             className="flex items-center gap-3 group focus:outline-none"
             id="nav-logo-link"
           >
-            <div className="w-9 h-9 border border-slate-700 bg-slate-900 p-1 flex items-center justify-center transition-colors group-hover:border-cyan-500/60">
-              <Logo className="w-full h-full text-cyan-400" />
+            <div className="w-9 h-9 border border-white bg-white p-1 flex items-center justify-center transition-transform group-hover:scale-105 shrink-0 shadow-sm">
+              <Logo className="w-full h-full text-[#0B1325]" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-white text-sm sm:text-base tracking-tight leading-none group-hover:text-cyan-400 transition-colors">
+              <span className="font-bold text-white text-sm sm:text-base tracking-tight leading-none group-hover:text-[#00C4CC] transition-colors">
                 {currentLang === 'fa' ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
               </span>
-              <span className="text-[10px] text-slate-400 font-mono tracking-wider uppercase font-medium mt-1">
+              <span className="text-[10px] text-slate-300 font-mono tracking-wider uppercase font-medium mt-1">
                 {currentLang === 'fa' ? 'تجارت • تامین مالی • سرمایه‌گذاری' : 'Trade • Finance • Investment'}
               </span>
             </div>
@@ -130,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
                   id={`nav-link-${link.id}`}
                   className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-150 whitespace-nowrap border ${
                     isActive
-                      ? 'bg-slate-800 text-cyan-400 border-cyan-500/50 shadow-sm'
+                      ? 'bg-slate-800 text-[#00C4CC] border-[#00C4CC]/60 shadow-sm'
                       : 'text-slate-300 border-transparent hover:text-white hover:bg-slate-800/60 hover:border-slate-700'
                   }`}
                 >
@@ -150,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
               className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 transition-colors text-xs font-mono font-semibold focus:outline-none cursor-pointer"
               title="Switch Language / تغییر زبان"
             >
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
+              <Globe className="w-3.5 h-3.5 text-[#00C4CC]" />
               <span>{t.langName}</span>
             </button>
 
@@ -159,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               id="header-cta-btn"
-              className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-1 cursor-pointer border border-cyan-400"
+              className="bg-[#00C4CC] hover:bg-[#00b2b8] text-slate-950 px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-1 cursor-pointer border border-[#00C4CC]"
             >
               <span>{t.ctaBtn}</span>
               <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />

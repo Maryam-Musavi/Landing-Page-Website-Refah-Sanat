@@ -7,6 +7,7 @@ export interface TranslationContent {
   nav: {
     home: string;
     about: string;
+    leadership: string;
     business: string;
     value: string;
     markets: string;
@@ -35,6 +36,18 @@ export interface TranslationContent {
     intersectionItems: {
       title: string;
       desc: string;
+    }[];
+  };
+  leadership: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    members: {
+      id: string;
+      name: string;
+      role: string;
+      bio: string;
+      image: string;
     }[];
   };
   business: {

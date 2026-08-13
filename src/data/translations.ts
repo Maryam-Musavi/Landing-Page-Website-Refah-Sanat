@@ -8,6 +8,7 @@ export const translations: Record<'en' | 'fa', TranslationContent> = {
     nav: {
       home: 'Home',
       about: 'Overview',
+      leadership: 'Leadership',
       business: 'Our Business',
       value: 'Value Creation',
       markets: 'Our Markets',
@@ -56,6 +57,41 @@ export const translations: Record<'en' | 'fa', TranslationContent> = {
         {
           title: 'Investment & Partnerships',
           desc: 'Connecting buyers, sellers, banks, funds, and institutional partners for long-term growth.',
+        },
+      ],
+    },
+    leadership: {
+      badge: 'Corporate Governance',
+      title: 'Executive Leadership & Board of Directors',
+      subtitle: 'Guiding RSP with decades of expertise across international trade execution, structured finance, and global supply chain governance.',
+      members: [
+        {
+          id: 'm1',
+          name: 'Mohammad Reza Pardisi',
+          role: 'Chairman & Managing Director',
+          bio: '25+ years directing international commodity trading desks and cross-border trade finance structures in Middle Eastern & Asian markets.',
+          image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm2',
+          name: 'Ali Akbar Sanati',
+          role: 'Director of Commercial Operations',
+          bio: 'Expert in bulk industrial commodities, steel supply chains, and international maritime logistics contracts.',
+          image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm3',
+          name: 'Maryam Sadat Hosseini',
+          role: 'Chief Financial Officer & Trade Finance Specialist',
+          bio: 'Former senior trade banker specializing in L/C, SBLC, structured supply chain credit, and Multi-FX settlement mechanisms.',
+          image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm4',
+          name: 'Dr. Hamid Reza Karimi',
+          role: 'Head of Global Markets & Investment',
+          bio: 'Specialist in strategic corridor expansion, counterparty risk management, and institutional joint ventures.',
+          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
         },
       ],
     },
@@ -249,6 +285,7 @@ export const translations: Record<'en' | 'fa', TranslationContent> = {
     nav: {
       home: 'صفحه اصلی',
       about: 'درباره شرکت',
+      leadership: 'مدیریت ارشد',
       business: 'حوزه‌های فعالیت',
       value: 'خلق ارزش',
       markets: 'بازارهای ما',
@@ -297,6 +334,41 @@ export const translations: Record<'en' | 'fa', TranslationContent> = {
         {
           title: 'سرمایه‌گذاری و مشارکت‌های جهانی',
           desc: 'پیوند خریداران، فروشندگان، بانک‌ها، صندوق‌ها و نهادهای مالی برای رشد پایدار.',
+        },
+      ],
+    },
+    leadership: {
+      badge: 'حاکمیت شرکتی و مدیریت',
+      title: 'هیئت مدیره و مدیران ارشد',
+      subtitle: 'هدایت راهبردی رفاه صنعت پردیس با تکیه بر دهه‌ها تجربه تخصصی در تجارت بین‌الملل، تامین مالی ساختاریافته و مدیریت زنجیره تامین.',
+      members: [
+        {
+          id: 'm1',
+          name: 'محمدرضا پردیسی',
+          role: 'رئیس هیئت مدیره و مدیرعامل',
+          bio: 'بیش از ۲۵ سال سابقه مدیریت ارشد در میزهای تجارت کالایی بین‌المللی و ساختاردهی ابزارهای اعتباری و مالی در خاورمیانه و آسیا.',
+          image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm2',
+          name: 'علی‌اکبر صنعتی',
+          role: 'مدیر عملیات تجاری و بازرگانی بین‌الملل',
+          bio: 'متخصص بازرگانی کالاهای اساسی، زنجیره تامین فولاد و فلزات، و قراردادهای بین‌المللی حمل‌ونقل دریایی.',
+          image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm3',
+          name: 'مریم‌سادات حسینی',
+          role: 'مدیر ارشد مالی و متخصص تامین مالی تجارت',
+          bio: 'با سابقه مدیریت بانکداری شرکتی و تخصصی در اعتبارات اسنادی (L/C)، SBLC و مکانیزم‌های تسویه ارزی چندگانه.',
+          image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 'm4',
+          name: 'دکتر حمیدرضا کریمی',
+          role: 'مدیر بازارهای بین‌الملل و سرمایه‌گذاری',
+          bio: 'متخصص توسعه کریدورهای راهبردی تجاری، ارزیابی ریسک طرف‌های معامله و مشارکت‌های مؤسساتی بین‌المللی.',
+          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
         },
       ],
     },
