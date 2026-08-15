@@ -166,7 +166,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0E1216] text-[#F4F3EF] font-sans selection:bg-[#B8A06A] selection:text-[#0E1216]">
+    <div className="min-h-screen bg-white text-[#0A1C2E] font-sans selection:bg-[#004C80] selection:text-white">
       {/* Editorial Industrial Production Main Page */}
       <EditorialIndustrialMain
         currentLang={currentLang}

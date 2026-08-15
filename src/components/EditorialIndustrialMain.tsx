@@ -93,49 +93,51 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
   const isFa = currentLang === 'fa';
 
   return (
-    <div className="bg-[#0E1216] text-[#F4F3EF] font-sans selection:bg-[#B8A06A] selection:text-[#0E1216] min-h-screen transition-colors duration-300">
+    <div className="bg-white text-[#0A1C2E] font-sans selection:bg-[#004C80] selection:text-white min-h-screen transition-colors duration-300">
       
       {/* ------------------ REFINED INSTITUTIONAL NAVIGATION ------------------ */}
-      <header className="sticky top-0 z-40 bg-[#0E1216]/95 backdrop-blur-md border-b border-[#222A33] py-3.5 transition-all">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#D5DFE8] transition-all">
         
-        {/* Micro Technical Ticker */}
-        <div className="hidden lg:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 mb-2 border-b border-[#1E2630] justify-between text-[10px] font-mono text-[#8C9BAE] uppercase tracking-widest">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-[#B8A06A]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B8A06A] animate-pulse" />
-              <span>SYS: ONLINE • REF: RSP-INT-2026</span>
-            </span>
-            <span>|</span>
-            <span>TEHRAN HQ • GLOBAL DESK</span>
-            <span>|</span>
-            <span>[29.9511° N, 52.8800° E]</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>REG NO. 493011</span>
-            <span>|</span>
-            <span>ISO 28000 SECURITY GOVERNANCE</span>
+        {/* Micro Technical Ticker in Deep Midnight Navy #0A1C2E */}
+        <div className="bg-[#0A1C2E] text-[#94A3B8] border-b border-[#1E293B] py-2 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[10px] font-mono uppercase tracking-widest gap-2">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5 text-white font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>SYS: ONLINE • REF: RSP-INT-2026</span>
+              </span>
+              <span className="text-slate-600 hidden sm:inline">|</span>
+              <span className="text-slate-300 hidden sm:inline">TEHRAN HQ • GLOBAL DESK</span>
+              <span className="text-slate-600 hidden md:inline">|</span>
+              <span className="text-slate-400 hidden md:inline">[29.9511° N, 52.8800° E]</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-slate-300">REG NO. 493011</span>
+              <span className="text-slate-600">|</span>
+              <span className="text-white font-bold">ISO 28000 SECURITY GOVERNANCE</span>
+            </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           
           {/* LEFT: Wordmark + Logo */}
           <a href="#home" onClick={(e) => handleAnchorClick(e, '#home')} className="flex items-center gap-3.5 group">
-            <div className="w-9 h-9 bg-[#F4F3EF] border border-[#F4F3EF] flex items-center justify-center p-1 shrink-0 transition-transform group-hover:scale-105 rounded-[1px]">
-              <Logo className="w-full h-full text-[#0E1216]" />
+            <div className="w-9 h-9 bg-[#004C80] border border-[#004C80] flex items-center justify-center p-1 shrink-0 transition-transform group-hover:scale-105 rounded-[1px]">
+              <Logo className="w-full h-full text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-[#F4F3EF] text-sm sm:text-base tracking-widest uppercase font-mono group-hover:text-[#B8A06A] transition-colors leading-none">
+              <span className="font-bold text-[#0A1C2E] text-sm sm:text-base tracking-widest uppercase font-mono group-hover:text-[#004C80] transition-colors leading-none">
                 {isFa ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
               </span>
-              <span className="text-[10px] text-[#8C9BAE] font-mono tracking-widest uppercase mt-1">
+              <span className="text-[10px] text-[#5C667A] font-mono tracking-widest uppercase mt-1">
                 {isFa ? 'تجارت • تامین مالی • سرمایه‌گذاری' : 'International Trade & Financial Solutions'}
               </span>
             </div>
           </a>
 
           {/* CENTER / RIGHT: Navigation Links with Active Indicator */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-[#8C9BAE]">
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-[#5C667A]">
             {[
               { id: 'home', label: isFa ? 'صفحه اصلی' : 'HOME' },
               { id: 'company', label: isFa ? 'درباره ما' : 'COMPANY' },
@@ -153,13 +155,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={(e) => handleAnchorClick(e, `#${link.id}`)}
-                  className={`relative py-1 transition-colors hover:text-[#F4F3EF] ${
-                    isActive ? 'text-[#F4F3EF]' : 'text-[#8C9BAE]'
+                  className={`relative py-1 transition-colors hover:text-[#0A1C2E] ${
+                    isActive ? 'text-[#0A1C2E]' : 'text-[#5C667A]'
                   }`}
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B8A06A]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#004C80]" />
                   )}
                 </a>
               );
@@ -170,19 +172,19 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           <div className="flex items-center gap-3">
             <button
               onClick={() => onLanguageChange(isFa ? 'en' : 'fa')}
-              className="flex items-center gap-1.5 px-3 py-1.5 border border-[#222A33] bg-[#171C21] hover:bg-[#1E2630] text-[#F4F3EF] transition-colors text-xs font-mono font-bold cursor-pointer rounded-[1px]"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-[#D5DFE8] bg-[#F4F7FA] hover:bg-[#E2E8F0] text-[#0A1C2E] transition-colors text-xs font-mono font-bold cursor-pointer rounded-[1px]"
             >
-              <Globe className="w-3.5 h-3.5 text-[#B8A06A]" />
+              <Globe className="w-3.5 h-3.5 text-[#004C80]" />
               <span>{isFa ? 'ENGLISH' : 'فارسی'}</span>
             </button>
 
             <a
               href="#contact"
               onClick={(e) => handleAnchorClick(e, '#contact')}
-              className="hidden sm:inline-flex bg-[#B8A06A] hover:bg-[#C9AF78] text-[#0E1216] px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all items-center gap-1.5 cursor-pointer rounded-[1px] border border-[#B8A06A]"
+              className="hidden sm:inline-flex bg-[#004C80] hover:bg-[#003A63] text-white px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all items-center gap-1.5 cursor-pointer rounded-[1px] border border-[#004C80]"
             >
               <span>{isFa ? 'درخواست تجاری' : 'COMMERCIAL INQUIRY'}</span>
-              <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180 text-[#0E1216]" />
+              <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180 text-white" />
             </a>
           </div>
 
@@ -190,7 +192,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </header>
 
       {/* ------------------ HERO SECTION (EDITORIAL INDUSTRIAL) ------------------ */}
-      <section id="home" className="relative py-20 lg:py-28 border-b border-[#222A33] bg-[#0E1216]">
+      <section id="home" className="relative py-20 lg:py-28 border-b border-[#D5DFE8] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -198,20 +200,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             {/* LEFT COLUMN */}
             <div className="lg:col-span-7 space-y-6">
               
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#171C21] border border-[#222A33] text-[#B8A06A] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
-                <span className="w-1.5 h-1.5 bg-[#B8A06A]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
+                <span className="w-1.5 h-1.5 bg-[#004C80]" />
                 <span>RSP / INTERNATIONAL TRADE & FINANCIAL SOLUTIONS</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#F4F3EF] leading-[1.1] tracking-tight uppercase font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0A1C2E] leading-[1.1] tracking-tight uppercase font-sans">
                 {isFa ? (
-                  <>اتصال تجارت جهانی<br /><span className="text-[#B8A06A]">با تامین مالی بین‌المللی</span></>
+                  <>اتصال تجارت جهانی<br /><span className="text-[#004C80]">با تامین مالی بین‌المللی</span></>
                 ) : (
-                  <>Connecting Global Trade<br /><span className="text-[#B8A06A]">with Global Finance</span></>
+                  <>Connecting Global Trade<br /><span className="text-[#004C80]">with Global Finance</span></>
                 )}
               </h1>
 
-              <p className="text-sm sm:text-base text-[#8C9BAE] leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed max-w-2xl">
                 {isFa 
                   ? 'شرکت رفاه صنعت پردیس به عنوان یک گروه بازرگانی و تامین مالی بین‌المللی، زمینه‌ساز تسهیل تبادلات تجاری، گشایش اعتبارات اسنادی و تامین پایدار کالاهای اساسی و صنعتی در کریدورهای جهانی است.'
                   : 'Refah Sanat Pardis operates as a premier international trading and financial solutions holding, facilitating cross-border physical commodity streams, trade credit facilities, and industrial supply chain stability.'
@@ -223,34 +225,34 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 <a
                   href="#capabilities"
                   onClick={(e) => handleAnchorClick(e, '#capabilities')}
-                  className="bg-[#B8A06A] hover:bg-[#C9AF78] text-[#0E1216] px-7 py-3.5 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#B8A06A]"
+                  className="bg-[#004C80] hover:bg-[#003A63] text-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#004C80]"
                 >
                   <span>{isFa ? 'بررسی قابلیت‌ها' : 'EXPLORE CAPABILITIES'}</span>
-                  <ArrowRight className="w-4 h-4 rtl:rotate-180 text-[#0E1216]" />
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180 text-white" />
                 </a>
 
                 <a
                   href="#contact"
                   onClick={(e) => handleAnchorClick(e, '#contact')}
-                  className="bg-[#171C21] hover:bg-[#1E2630] text-[#F4F3EF] px-7 py-3.5 text-xs font-bold uppercase tracking-widest border border-[#222A33] transition-all inline-flex items-center rounded-[1px]"
+                  className="bg-[#F4F7FA] hover:bg-[#E2E8F0] text-[#0A1C2E] px-7 py-3.5 text-xs font-bold uppercase tracking-widest border border-[#D5DFE8] transition-all inline-flex items-center rounded-[1px]"
                 >
                   <span>{isFa ? 'درخواست تجاری' : 'COMMERCIAL INQUIRY'}</span>
                 </a>
               </div>
 
-              {/* Key Technical Metric Strip */}
-              <div className="pt-8 border-t border-[#1E2630] grid grid-cols-3 gap-4 font-mono text-xs">
+              {/* Key Technical Metric Strip in Deep Midnight Navy #0A1C2E */}
+              <div className="mt-8 p-5 bg-[#0A1C2E] text-white border border-[#1E293B] grid grid-cols-3 gap-4 font-mono text-xs rounded-[1px] shadow-sm">
                 <div>
-                  <div className="text-[10px] text-[#8C9BAE] uppercase mb-1">GLOBAL TURNOVER</div>
-                  <div className="text-lg font-bold text-[#F4F3EF]">$350M+ USD</div>
+                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">GLOBAL TURNOVER</div>
+                  <div className="text-lg font-bold text-white tracking-wide">$350M+ USD</div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-[#8C9BAE] uppercase mb-1">TRADE DESKS</div>
-                  <div className="text-lg font-bold text-[#B8A06A]">6 CORRIDORS</div>
+                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">TRADE DESKS</div>
+                  <div className="text-lg font-bold text-sky-400 tracking-wide">6 CORRIDORS</div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-[#8C9BAE] uppercase mb-1">GOVERNANCE</div>
-                  <div className="text-lg font-bold text-[#F4F3EF]">ISO 28000</div>
+                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">GOVERNANCE</div>
+                  <div className="text-lg font-bold text-white tracking-wide">ISO 28000</div>
                 </div>
               </div>
 
@@ -258,26 +260,26 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
             {/* RIGHT COLUMN: Large Editorial Photography */}
             <div className="lg:col-span-5">
-              <div className="relative border border-[#222A33] bg-[#171C21] p-2 shadow-2xl">
-                <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-slate-900">
+              <div className="relative border border-[#D5DFE8] bg-[#F4F7FA] p-2 shadow-lg">
+                <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-slate-100">
                   <img 
                     src="/images/hero-port.jpg" 
                     alt="Maritime Container Terminal"
-                    className="w-full h-full object-cover filter brightness-75 contrast-125 saturate-50"
+                    className="w-full h-full object-cover filter brightness-90 contrast-110 saturate-75"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1216] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
                   {/* Micro Metadata Overlay */}
-                  <div className="absolute top-4 left-4 bg-[#0E1216]/90 border border-[#222A33] px-3 py-1.5 text-[10px] font-mono text-[#F4F3EF]">
-                    <span className="text-[#B8A06A] font-bold">RSP / TRD-01</span> • MARITIME LOGISTICS
+                  <div className="absolute top-4 left-4 bg-white/95 border border-[#D5DFE8] px-3 py-1.5 text-[10px] font-mono text-[#0A1C2E]">
+                    <span className="text-[#004C80] font-bold">RSP / TRD-01</span> • MARITIME LOGISTICS
                   </div>
 
-                  <div className="absolute bottom-4 left-4 right-4 bg-[#171C21]/95 border border-[#222A33] p-4 text-xs font-mono">
-                    <div className="flex items-center justify-between text-[#F4F3EF] font-bold mb-1">
-                      <span className="text-[#B8A06A]">GLOBAL MARKETS</span>
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-[#D5DFE8] p-4 text-xs font-mono">
+                    <div className="flex items-center justify-between text-[#0A1C2E] font-bold mb-1">
+                      <span className="text-[#004C80]">GLOBAL MARKETS</span>
                       <span>TRADE / FINANCE</span>
                     </div>
-                    <p className="text-[11px] text-[#8C9BAE] font-sans">
+                    <p className="text-[11px] text-[#5C667A] font-sans">
                       {isFa 
                         ? 'تامین مستقیم نهاده‌های انرژی، فلزات و محصولات پتروشیمی با اعتبارات اسنادی' 
                         : 'Structured physical commodity trade backed by LC issuance & multilateral clearing.'}
@@ -293,19 +295,19 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </section>
 
       {/* ------------------ 01 COMPANY SECTION (EDITORIAL TWO-COLUMN) ------------------ */}
-      <section id="company" className="py-24 bg-[#E9E7E1] text-[#1A1D21] border-b border-[#D8D6D0]">
+      <section id="company" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
             {/* LEFT COLUMN: Large Editorial Number & Headline */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#1A1D21] uppercase tracking-widest">
-                <span className="text-3xl sm:text-5xl font-extrabold text-[#B8A06A]">01</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest">
+                <span className="text-3xl sm:text-5xl font-extrabold text-[#004C80]">01</span>
                 <span>/ {isFa ? 'درباره رفاه صنعت پردیس' : 'WHO WE ARE'}</span>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1A1D21] leading-tight font-sans">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
                 {isFa 
                   ? 'ایجاد ارتباطات تجاری پایدار میان بازارها، صنایع و اکوسیستم‌های مالی بین‌المللی.'
                   : 'Building commercial connections across markets, industries, and financial ecosystems.'
@@ -315,8 +317,8 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
             {/* RIGHT COLUMN: Detailed Description & Capabilities Divider List */}
             <div className="lg:col-span-7 space-y-8">
-              <div className="space-y-4 text-sm sm:text-base text-[#2C3138] leading-relaxed">
-                <p className="font-semibold text-[#1A1D21]">
+              <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
+                <p className="font-semibold text-[#0A1C2E]">
                   {isFa 
                     ? 'گروه بازرگانی رفاه صنعت پردیس با تکیه بر بیش از یک دهه تجربه مستمر در بازارهای بین‌المللی، به عنوان بازوی اجرایی و تجاری شرکت‌های تولیدی و صنعتی فعالیت می‌نماید.'
                     : 'Refah Sanat Pardis serves as an integrated commercial desk and trade finance partner for major industrial enterprises, international buyers, and global commodity producers.'
@@ -331,25 +333,25 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               </div>
 
               {/* Horizontal Capabilities Row with Thin Vertical Dividers */}
-              <div className="pt-6 border-t border-[#C2C0B8] grid grid-cols-2 sm:grid-cols-5 gap-4 font-mono text-xs text-[#1A1D21] font-bold uppercase tracking-wider">
-                <div className="pr-2 border-r border-[#C2C0B8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#B8A06A] mb-1">01.01</div>
+              <div className="pt-6 border-t border-[#D5DFE8] grid grid-cols-2 sm:grid-cols-5 gap-4 font-mono text-xs text-[#0A1C2E] font-bold uppercase tracking-wider">
+                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
+                  <div className="text-[10px] text-[#004C80] mb-1">01.01</div>
                   <span>TRADE</span>
                 </div>
-                <div className="pr-2 border-r border-[#C2C0B8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#B8A06A] mb-1">01.02</div>
+                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
+                  <div className="text-[10px] text-[#004C80] mb-1">01.02</div>
                   <span>FINANCE</span>
                 </div>
-                <div className="pr-2 border-r border-[#C2C0B8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#B8A06A] mb-1">01.03</div>
+                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
+                  <div className="text-[10px] text-[#004C80] mb-1">01.03</div>
                   <span>COMMODITIES</span>
                 </div>
-                <div className="pr-2 border-r border-[#C2C0B8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#B8A06A] mb-1">01.04</div>
+                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
+                  <div className="text-[10px] text-[#004C80] mb-1">01.04</div>
                   <span>SUPPLY CHAIN</span>
                 </div>
                 <div>
-                  <div className="text-[10px] text-[#B8A06A] mb-1">01.05</div>
+                  <div className="text-[10px] text-[#004C80] mb-1">01.05</div>
                   <span>INVESTMENT</span>
                 </div>
               </div>
@@ -362,20 +364,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </section>
 
       {/* ------------------ 02 LEADERSHIP & GOVERNANCE SECTION ------------------ */}
-      <section id="leadership" className="py-24 bg-[#0E1216] text-[#F4F3EF] border-b border-[#222A33]">
+      <section id="leadership" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#222A33] gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#B8A06A] uppercase tracking-widest mb-2">
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold">02</span>
                 <span>/ {isFa ? 'مدیریت ارشد و هیأت مدیره' : 'LEADERSHIP & GOVERNANCE'}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F4F3EF] uppercase font-sans">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
                 {isFa ? 'معرفی مدیرعامل و هیأت مدیره' : 'Executive Leadership & Board of Directors'}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-[#8C9BAE] max-w-md leading-relaxed">
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
               {isFa 
                 ? 'هدایت راهبردی گروه رفاه صنعت پردیس با تکیه بر دهه‌ها تجربه تخصصی در مدیریت تجارت بین‌الملل، تامین مالی ساختاریافته و حاکمیت نهادی.' 
                 : 'Guiding RSP with decades of expertise across international trade execution, structured finance, and institutional governance.'}
@@ -383,15 +385,15 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           </div>
 
           {/* Leadership Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
               {
                 id: 'm1',
                 badgeNum: '01',
-                nameFa: 'محمدرضا پردیسی',
-                nameEn: 'Mohammad Reza Pardisi',
-                roleFa: 'رئیس هیأت مدیره و مدیرعامل',
-                roleEn: 'Chairman & Managing Director',
+                nameFa: 'سید فضل الدین جمالیان زاده',
+                nameEn: 'Seyyed Fazloddin Jamalianzadeh',
+                roleFa: 'مدیرعامل و نائب رئیس هیأت مدیره',
+                roleEn: 'Managing Director & Vice Chairman of the Board',
                 bioFa: 'بیش از ۲۵ سال سابقه مدیریت ارشد در میزهای تجارت کالایی بین‌المللی و ساختاردهی ابزارهای اعتباری و مالی در خاورمیانه و آسیا.',
                 bioEn: '25+ years directing international commodity trading desks and cross-border trade finance structures in Middle Eastern & Asian markets.',
                 image: '/images/executive-1.jpg',
@@ -400,10 +402,10 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               {
                 id: 'm2',
                 badgeNum: '02',
-                nameFa: 'علی‌اکبر صنعتی',
-                nameEn: 'Ali Akbar Sanati',
-                roleFa: 'مدیر عملیات تجاری و بازرگانی بین‌الملل',
-                roleEn: 'Director of Commercial Operations',
+                nameFa: 'حسین تک روستا',
+                nameEn: 'Hossein Takroosta',
+                roleFa: 'عضو هیأت مدیره',
+                roleEn: 'Member of the Board of Directors',
                 bioFa: 'متخصص بازرگانی کالاهای اساسی، زنجیره تامین فولاد و فلزات، و قراردادهای بین‌المللی حمل‌ونقل دریایی.',
                 bioEn: 'Expert in bulk industrial commodities, steel supply chains, and international maritime logistics contracts.',
                 image: '/images/executive-2.jpg',
@@ -421,77 +423,65 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 image: '/images/executive-3.jpg',
                 isCeo: false,
               },
-              {
-                id: 'm4',
-                badgeNum: '04',
-                nameFa: 'دکتر حمیدرضا کریمی',
-                nameEn: 'Dr. Hamid Reza Karimi',
-                roleFa: 'مدیر بازارهای بین‌الملل و سرمایه‌گذاری',
-                roleEn: 'Head of Global Markets & Investment',
-                bioFa: 'متخصص توسعه کریدورهای راهبردی تجاری، ارزیابی ریسک طرف‌های معامله و مشارکت‌های مؤسساتی بین‌المللی.',
-                bioEn: 'Specialist in strategic corridor expansion, counterparty risk management, and institutional joint ventures.',
-                image: '/images/executive-4.jpg',
-                isCeo: false,
-              },
             ].map((member) => (
               <div 
                 key={member.id}
-                className={`bg-[#171C21] border transition-all duration-300 flex flex-col justify-between group rounded-[1px] overflow-hidden ${
-                  member.isCeo ? 'border-[#B8A06A]' : 'border-[#222A33] hover:border-[#B8A06A]'
+                className={`bg-[#F4F7FA] border transition-all duration-300 flex flex-col justify-between group rounded-[1px] overflow-hidden ${
+                  member.isCeo ? 'border-[#004C80]' : 'border-[#D5DFE8] hover:border-[#004C80]'
                 }`}
               >
                 <div>
                   {/* Executive Photo Container */}
-                  <div className="relative h-64 w-full bg-[#0E1216] overflow-hidden border-b border-[#222A33]">
+                  <div className="relative h-64 w-full bg-slate-100 overflow-hidden border-b border-[#D5DFE8]">
                     <img 
                       src={member.image} 
                       alt={isFa ? member.nameFa : member.nameEn}
-                      className="w-full h-full object-cover filter brightness-90 contrast-110 saturate-75 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500 ease-out"
+                      className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-all duration-500 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-[#0E1216]/90 border border-[#222A33] text-[#B8A06A] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-md">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#B8A06A]" />
+                    <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#004C80]" />
                       <span>{member.isCeo ? 'MANAGING DIRECTOR' : `MEMBER ${member.badgeNum}`}</span>
                     </div>
                   </div>
 
                   {/* Member Details */}
                   <div className="p-5 space-y-2">
-                    <div className="text-[11px] font-mono font-bold text-[#B8A06A] uppercase tracking-wider">
+                    <div className="text-[11px] font-mono font-bold text-[#004C80] uppercase tracking-wider">
                       {isFa ? member.roleFa : member.roleEn}
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#F4F3EF] font-sans group-hover:text-[#B8A06A] transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
                       {isFa ? member.nameFa : member.nameEn}
                     </h3>
-                    <p className="text-xs text-[#8C9BAE] leading-relaxed font-sans pt-2 border-t border-[#222A33]">
+                    <p className="text-xs text-[#5C667A] leading-relaxed font-sans pt-2 border-t border-[#D5DFE8]">
                       {isFa ? member.bioFa : member.bioEn}
                     </p>
                   </div>
                 </div>
 
                 {/* Card Footer */}
-                <div className="px-5 py-3 bg-[#0E1216] border-t border-[#222A33] flex items-center justify-between text-[10px] font-mono text-[#8C9BAE]">
-                  <span className="flex items-center gap-1 font-bold text-[#B8A06A]">
+                <div className="px-5 py-3 bg-[#E2E8F0] border-t border-[#D5DFE8] flex items-center justify-between text-[10px] font-mono text-[#5C667A]">
+                  <span className="flex items-center gap-1 font-bold text-[#004C80]">
                     <Award className="w-3.5 h-3.5" />
                     <span>RSP EXECUTIVE BOARD</span>
                   </span>
-                  <span className="text-[#F4F3EF] font-bold">VERIFIED</span>
+                  <span className="text-[#0A1C2E] font-bold">VERIFIED</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Corporate Governance Bar */}
-          <div className="p-5 bg-[#171C21] border border-[#222A33] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
-            <div className="flex items-center gap-2 text-[#8C9BAE]">
-              <span className="w-2 h-2 rounded-full bg-[#B8A06A] shrink-0" />
-              <span className="font-sans text-[#F4F3EF]">
+          {/* Corporate Governance Bar in Deep Midnight Navy #0A1C2E */}
+          <div className="p-5 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
+              <span className="font-sans text-slate-200">
                 {isFa 
                   ? 'راهبری شرکتی و هیأت مدیره رفاه صنعت پردیس متعهد به انضباط مالی، شفافیت معامله‌ها و ارتقای حاکمیت نهادی است.' 
                   : 'Refah Sanat Pardis corporate governance adheres strictly to transactional transparency, counterparty rigor, and institutional discipline.'}
               </span>
             </div>
-            <span className="text-[#B8A06A] font-bold shrink-0 font-mono">
+            <span className="text-white font-bold shrink-0 font-mono bg-[#132A42] px-3 py-1 border border-[#1E293B] rounded-[1px]">
               ISO 9001 / ISO 28000 GOVERNANCE COMPLIANT
             </span>
           </div>
@@ -499,27 +489,27 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 03 CAPABILITIES (STRUCTURED HORIZONTAL ROWS) ------------------ */}
-      <section id="capabilities" className="py-24 bg-[#0E1216] text-[#F4F3EF] border-b border-[#222A33]">
+      {/* ------------------ 03 CAPABILITIES (STRUCTURED HORIZONTAL ROWS IN DEEP NAVY #0A1C2E) ------------------ */}
+      <section id="capabilities" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#222A33] gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1E293B] gap-4">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#B8A06A] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold">02</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold text-white">03</span>
                 <span>/ {isFa ? 'قابلیت‌های بازرگانی و مالی' : 'CAPABILITIES'}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F4F3EF] uppercase">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white uppercase font-sans">
                 {isFa ? 'خدمات ساختاریافته تجارت و تامین مالی' : 'Structured Trading & Financial Services'}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-[#8C9BAE] max-w-md">
+            <p className="text-xs sm:text-sm font-mono text-[#94A3B8] max-w-md">
               {isFa ? 'راهکارهای تجاری یکپارچه برای زنجیره‌های تامین بین‌المللی' : 'Integrated solution sets powering cross-border commercial execution'}
             </p>
           </div>
 
           {/* Horizontal Rows Capabilities List */}
-          <div className="divide-y divide-[#222A33] border-t border-b border-[#222A33]">
+          <div className="divide-y divide-[#1E293B] border-t border-b border-[#1E293B]">
             {[
               {
                 num: '01',
@@ -560,25 +550,25 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               <div 
                 key={cap.num}
                 onClick={() => onInquire(`Inquiry: ${cap.titleEn}`)}
-                className="group py-8 px-4 sm:px-6 transition-all duration-300 hover:bg-[#171C21] cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-2 border-transparent hover:border-[#B8A06A]"
+                className="group py-8 px-4 sm:px-6 transition-all duration-300 hover:bg-[#132A42] cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-2 border-transparent hover:border-sky-400"
               >
                 <div className="flex items-start md:items-center gap-6">
-                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-[#B8A06A] shrink-0">
+                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-sky-400 shrink-0">
                     {cap.num}
                   </span>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#F4F3EF] group-hover:text-[#B8A06A] transition-colors font-sans mb-1">
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors font-sans mb-1">
                       {isFa ? cap.titleFa : cap.titleEn}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#8C9BAE] max-w-2xl leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#94A3B8] max-w-2xl leading-relaxed">
                       {isFa ? cap.descFa : cap.descEn}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#8C9BAE] group-hover:text-[#F4F3EF] shrink-0">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#94A3B8] group-hover:text-white shrink-0">
                   <span>{isFa ? 'مشاهده شرایط' : 'SPECIFICATIONS'}</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#B8A06A] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="w-4 h-4 text-sky-400 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
               </div>
             ))}
@@ -587,17 +577,17 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 03 INDUSTRIES (ASYMMETRICAL VISUAL COMPOSITIONS) ------------------ */}
-      <section id="industries" className="py-24 bg-[#E9E7E1] text-[#1A1D21] border-b border-[#D8D6D0]">
+      {/* ------------------ 04 INDUSTRIES (ASYMMETRICAL VISUAL COMPOSITIONS) ------------------ */}
+      <section id="industries" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#C2C0B8] gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#1A1D21] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-[#B8A06A]">03</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold text-[#004C80]">04</span>
                 <span>/ {isFa ? 'صنایع و بخش‌های تجاری' : 'INDUSTRIES'}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1A1D21] uppercase">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
                 {isFa ? 'سبد کالاهای کلیدی و پوشش صنایع' : 'Key Industry Verticals'}
               </h2>
             </div>
@@ -610,20 +600,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             {/* Card 1: Energy & Hydrocarbons (Large Featured) */}
-            <div className="md:col-span-8 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
-              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-900">
+            <div className="md:col-span-8 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
+              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
                 <img 
                   src="/images/commodity-steel.jpg" 
                   alt="Energy & Refined Products"
-                  className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#0E1216] text-[#F4F3EF] font-mono text-[10px] font-bold px-2 py-1">
+                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
                   SEC 01 // ENERGY
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#B8A06A] uppercase mb-1">HS-2709 / HS-2710</div>
-                <h3 className="text-xl font-bold text-[#1A1D21] mb-2">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-2709 / HS-2710</div>
+                <h3 className="text-xl font-bold text-[#0A1C2E] mb-2">
                   {isFa ? 'انرژی و فرآورده‌های هیدروکربوری' : 'ENERGY & HYDROCARBONS'}
                 </h3>
                 <p className="text-xs text-[#5C667A] leading-relaxed max-w-xl">
@@ -635,20 +625,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Card 2: Metals & Minerals */}
-            <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
-              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-900">
+            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
+              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
                 <img 
                   src="/images/commodity-petrochemical.jpg" 
                   alt="Metals & Steel"
-                  className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#0E1216] text-[#F4F3EF] font-mono text-[10px] font-bold px-2 py-1">
+                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
                   SEC 02 // METALS
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#B8A06A] uppercase mb-1">HS-7208 / STEEL</div>
-                <h3 className="text-lg font-bold text-[#1A1D21] mb-2">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-7208 / STEEL</div>
+                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
                   {isFa ? 'فلزات و سنگ‌های معدنی' : 'METALS & MINERALS'}
                 </h3>
                 <p className="text-xs text-[#5C667A] leading-relaxed">
@@ -660,20 +650,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Card 3: Petrochemicals */}
-            <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-900">
+            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
+              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
                 <img 
                   src="/images/commodity-fertilizers.jpg" 
                   alt="Petrochemicals"
-                  className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#0E1216] text-[#F4F3EF] font-mono text-[10px] font-bold px-2 py-1">
+                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
                   SEC 03 // PETROCHEM
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#B8A06A] uppercase mb-1">HS-3901 / POLYMERS</div>
-                <h3 className="text-lg font-bold text-[#1A1D21] mb-2">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-3901 / POLYMERS</div>
+                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
                   {isFa ? 'محصولات پتروشیمی' : 'PETROCHEMICALS'}
                 </h3>
                 <p className="text-xs text-[#5C667A] leading-relaxed">
@@ -685,20 +675,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Card 4: Urea & Fertilizers */}
-            <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-900">
+            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
+              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
                 <img 
                   src="/images/commodity-agriculture.jpg" 
                   alt="Fertilizers"
-                  className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#0E1216] text-[#F4F3EF] font-mono text-[10px] font-bold px-2 py-1">
+                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
                   SEC 04 // FERTILIZERS
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#B8A06A] uppercase mb-1">HS-3102 / UREA 46%</div>
-                <h3 className="text-lg font-bold text-[#1A1D21] mb-2">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-3102 / UREA 46%</div>
+                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
                   {isFa ? 'کودهای شیمیایی و اوره' : 'UREA & FERTILIZERS'}
                 </h3>
                 <p className="text-xs text-[#5C667A] leading-relaxed">
@@ -710,20 +700,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Card 5: Agriculture & Food */}
-            <div className="md:col-span-4 bg-white border border-[#C2C0B8] p-3 flex flex-col justify-between group">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-900">
+            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
+              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
                 <img 
                   src={agriGrainImg} 
                   alt="Food & Agricultural Commodity Trading"
-                  className="w-full h-full object-cover filter contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#0E1216] text-[#F4F3EF] font-mono text-[10px] font-bold px-2 py-1">
+                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
                   SEC 05 // FOOD & AGRI
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#B8A06A] uppercase mb-1">HS-1001 / GRAIN & SEEDS</div>
-                <h3 className="text-lg font-bold text-[#1A1D21] mb-2 font-sans">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-1001 / GRAIN & SEEDS</div>
+                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2 font-sans">
                   {isFa ? 'بازرگانی در حوزه صنایع غذایی' : 'FOOD & AGRICULTURAL PRODUCTS'}
                 </h3>
                 <p className="text-xs text-[#5C667A] leading-relaxed">
@@ -739,21 +729,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 04 GLOBAL MARKETS (SOPHISTICATED MAP & ROUTE NETWORK) ------------------ */}
-      <section id="markets" className="py-24 bg-[#0E1216] text-[#F4F3EF] border-b border-[#222A33]">
+      {/* ------------------ 05 GLOBAL MARKETS (SOPHISTICATED MAP & ROUTE NETWORK) ------------------ */}
+      <section id="markets" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#222A33] gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#B8A06A] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold">04</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">05</span>
                 <span>/ {isFa ? 'شبکه کریدورهای بین‌المللی' : 'GLOBAL MARKETS'}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F4F3EF] uppercase">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
                 {isFa ? 'حضور راهبردی در بازارهای هدف' : 'Global Reach & Trade Networks'}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-[#8C9BAE] max-w-md">
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md">
               {isFa ? 'اتصال خریداران، فروشندگان و نهادهای مالی در ۶ منطقه جغرافیایی' : 'Connecting buyers, suppliers, and financial institutions across regions'}
             </p>
           </div>
@@ -768,43 +758,46 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   onClick={() => setActiveRegion(reg.id)}
                   className={`w-full p-4 text-left rtl:text-right transition-all flex items-center justify-between border cursor-pointer rounded-[1px] ${
                     activeRegion === reg.id
-                      ? 'bg-[#171C21] text-[#F4F3EF] border-[#B8A06A]'
-                      : 'bg-[#0E1216] text-[#8C9BAE] border-[#222A33] hover:bg-[#171C21]'
+                      ? 'bg-white text-[#0A1C2E] border-[#004C80] shadow-sm font-bold'
+                      : 'bg-[#F4F7FA] text-[#5C667A] border-[#D5DFE8] hover:bg-white'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-[#B8A06A]">[{reg.code}]</span>
-                    <span className="text-sm font-bold font-sans">{reg.name}</span>
+                    <span className="text-xs font-bold text-[#004C80]">[{reg.code}]</span>
+                    <span className="text-sm font-sans">{reg.name}</span>
                   </div>
-                  <ChevronRight className={`w-4 h-4 rtl:rotate-180 ${activeRegion === reg.id ? 'text-[#B8A06A]' : 'text-[#8C9BAE]'}`} />
+                  <ChevronRight className={`w-4 h-4 rtl:rotate-180 ${activeRegion === reg.id ? 'text-[#004C80]' : 'text-[#5C667A]'}`} />
                 </button>
               ))}
             </div>
 
-            {/* World Network Information Card */}
-            <div className="lg:col-span-7 bg-[#171C21] border border-[#222A33] p-8 space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-[#222A33] font-mono text-xs">
-                <span className="text-[#B8A06A] font-bold">CORRIDOR SPECIFICATIONS // {selectedRegionObj.code}</span>
-                <span className="text-[#8C9BAE]">STATUS: ACTIVE</span>
+            {/* World Network Information Card in Deep Midnight Navy #0A1C2E */}
+            <div className="lg:col-span-7 bg-[#0A1C2E] text-white border border-[#1E293B] p-8 space-y-6 rounded-[1px] shadow-sm">
+              <div className="flex items-center justify-between pb-4 border-b border-[#1E293B] font-mono text-xs">
+                <span className="text-sky-400 font-bold">CORRIDOR SPECIFICATIONS // {selectedRegionObj.code}</span>
+                <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>STATUS: ACTIVE</span>
+                </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-[#F4F3EF]">
+              <h3 className="text-2xl font-bold text-white font-sans">
                 {selectedRegionObj.name}
               </h3>
 
-              <p className="text-sm text-[#8C9BAE] leading-relaxed">
+              <p className="text-sm text-[#94A3B8] leading-relaxed">
                 {selectedRegionObj.desc}
               </p>
 
-              <div className="pt-4 border-t border-[#222A33] grid grid-cols-2 gap-4 font-mono text-xs">
-                <div className="p-3 bg-[#0E1216] border border-[#222A33]">
-                  <div className="text-[10px] text-[#8C9BAE] uppercase mb-1">SETTLEMENT INSTRUMENTS</div>
-                  <div className="text-[#F4F3EF] font-bold">LC / CAD / SBLC</div>
+              <div className="pt-4 border-t border-[#1E293B] grid grid-cols-2 gap-4 font-mono text-xs">
+                <div className="p-3 bg-[#132A42] border border-[#1E293B] rounded-[1px]">
+                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">SETTLEMENT INSTRUMENTS</div>
+                  <div className="text-white font-bold">LC / CAD / SBLC</div>
                 </div>
 
-                <div className="p-3 bg-[#0E1216] border border-[#222A33]">
-                  <div className="text-[10px] text-[#8C9BAE] uppercase mb-1">CLEARING CURRENCIES</div>
-                  <div className="text-[#B8A06A] font-bold">USD / EUR / AED / CNY</div>
+                <div className="p-3 bg-[#132A42] border border-[#1E293B] rounded-[1px]">
+                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">CLEARING CURRENCIES</div>
+                  <div className="text-sky-400 font-bold">USD / EUR / AED / CNY</div>
                 </div>
               </div>
             </div>
@@ -814,20 +807,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 05 WHY RSP (STRUCTURED NUMBERED LIST) ------------------ */}
-      <section id="why-rsp" className="py-24 bg-[#E9E7E1] text-[#1A1D21] border-b border-[#D8D6D0]">
+      {/* ------------------ 06 WHY RSP (STRUCTURED NUMBERED LIST) ------------------ */}
+      <section id="why-rsp" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
             <div className="lg:col-span-4 space-y-4">
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#1A1D21] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-[#B8A06A]">05</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold text-[#004C80]">06</span>
                 <span>/ {isFa ? 'مزیت‌های رقابتی' : 'WHY RSP'}</span>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1A1D21] uppercase leading-none font-sans">
-                WHY<br />REFAH<br />SANAT<br /><span className="text-[#B8A06A]">PARDIS</span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] uppercase leading-none font-sans">
+                WHY<br />REFAH<br />SANAT<br /><span className="text-[#004C80]">PARDIS</span>
               </h2>
 
               <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed pt-4 font-mono">
@@ -837,7 +830,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               </p>
             </div>
 
-            <div className="lg:col-span-8 divide-y divide-[#C2C0B8] border-t border-b border-[#C2C0B8]">
+            <div className="lg:col-span-8 divide-y divide-[#D5DFE8] border-t border-b border-[#D5DFE8]">
               {[
                 {
                   num: '01',
@@ -876,11 +869,11 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 },
               ].map((item) => (
                 <div key={item.num} className="py-6 flex items-start gap-6">
-                  <span className="font-mono text-2xl font-extrabold text-[#B8A06A] shrink-0">
+                  <span className="font-mono text-2xl font-extrabold text-[#004C80] shrink-0">
                     {item.num}
                   </span>
                   <div>
-                    <h3 className="text-base font-bold text-[#1A1D21] mb-1 font-sans">
+                    <h3 className="text-base font-bold text-[#0A1C2E] mb-1 font-sans">
                       {isFa ? item.titleFa : item.titleEn}
                     </h3>
                     <p className="text-xs text-[#5C667A] leading-relaxed">
@@ -896,21 +889,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 06 PARTNERSHIP CTA (FULL-WIDTH STATEMENT) ------------------ */}
-      <section id="partnership" className="py-24 bg-[#171C21] text-[#F4F3EF] border-b border-[#222A33]">
+      {/* ------------------ 07 PARTNERSHIP CTA (FULL-WIDTH STATEMENT IN DEEP NAVY #0A1C2E) ------------------ */}
+      <section id="partnership" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0E1216] border border-[#222A33] text-[#B8A06A] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
-            <span>06 / PARTNERSHIP</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#132A42] text-sky-400 text-xs font-mono font-bold uppercase tracking-widest rounded-[1px] border border-[#1E293B]">
+            <span>07 / PARTNERSHIP</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#F4F3EF] tracking-tight uppercase max-w-4xl mx-auto font-sans">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase max-w-4xl mx-auto font-sans">
             {isFa 
               ? 'توسعه ارتباطات پایدار تجاری و تعاملات ساختاریافته' 
               : 'BUILDING LONG-TERM COMMERCIAL RELATIONSHIPS'}
           </h2>
 
-          <p className="text-sm sm:text-base text-[#8C9BAE] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             {isFa 
               ? 'گروه رفاه صنعت پردیس پذیرای توسعه تعاملات تجاری با خریداران، تامین‌کنندگان، نهادهای مالی و شرکای راهبردی در سراسر بازارهای جهانی است.' 
               : 'We welcome collaboration with trusted buyers, sellers, suppliers, financial institutions, and strategic partners across global markets.'}
@@ -920,74 +913,74 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <a
               href="#contact"
               onClick={(e) => handleAnchorClick(e, '#contact')}
-              className="bg-[#B8A06A] hover:bg-[#C9AF78] text-[#0E1216] px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#B8A06A]"
+              className="bg-white hover:bg-slate-100 text-[#0A1C2E] px-8 py-4 text-xs font-extrabold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] shadow-md border border-white hover:border-slate-200"
             >
               <span>{isFa ? 'شروع گفتگو و ارسال درخواست' : 'START A CONVERSATION'}</span>
-              <ArrowRight className="w-4 h-4 rtl:rotate-180 text-[#0E1216]" />
+              <ArrowRight className="w-4 h-4 rtl:rotate-180 text-[#004C80]" />
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ 07 CONTACT (INSTITUTIONAL INQUIRY PORTAL) ------------------ */}
-      <section id="contact" className="py-20 bg-[#0E1216] text-[#F4F3EF] border-t border-[#222A33]">
+      {/* ------------------ 08 CONTACT (INSTITUTIONAL INQUIRY PORTAL) ------------------ */}
+      <section id="contact" className="py-20 bg-[#F4F7FA] text-[#0A1C2E] border-t border-[#D5DFE8]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="space-y-8">
-            <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#B8A06A] uppercase tracking-widest">
-              <span className="text-3xl font-extrabold">07</span>
+            <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
+              <span className="text-3xl font-extrabold">08</span>
               <span>/ {isFa ? 'درگاه ارتباط تجاری' : 'CONTACT'}</span>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#222A33]">
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#F4F3EF] leading-tight font-sans">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#D5DFE8]">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
                 {isFa ? (
-                  <>برقراری تعامل <span className="text-[#B8A06A]">تجاری</span></>
+                  <>برقراری تعامل <span className="text-[#004C80]">تجاری</span></>
                 ) : (
-                  <>Let's Build the <span className="text-[#B8A06A]">Next Commercial Connection</span></>
+                  <>Let's Build the <span className="text-[#004C80]">Next Commercial Connection</span></>
                 )}
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#8C9BAE] leading-relaxed max-w-md">
+              <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed max-w-md">
                 {isFa 
                   ? 'جهت ارتباط با مدیریت بازرگانی، استعلام شرایط گشایش اعتبار یا پیشنهاد شراکت راهبردی از طریق راه‌های ارتباطی زیر با ما در تماس باشید.'
                   : 'Get in touch with our commercial desk for physical commodity procurement, LC facilities, or strategic joint ventures.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs text-[#8C9BAE]">
-              <div className="p-6 bg-[#171C21] border border-[#222A33] rounded-[1px] space-y-2.5">
-                <div className="flex items-center gap-2 text-[#B8A06A] font-bold">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs text-[#5C667A]">
+              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
+                <div className="flex items-center gap-2 text-[#004C80] font-bold">
                   <MapPin className="w-4 h-4 shrink-0" />
                   <span>{isFa ? 'نشانی مرکزی' : 'HEADQUARTERS'}</span>
                 </div>
-                <p className="text-[#F4F3EF] text-xs font-sans leading-relaxed">{t.contact.address}</p>
+                <p className="text-[#0A1C2E] text-xs font-sans leading-relaxed">{t.contact.address}</p>
               </div>
 
-              <div className="p-6 bg-[#171C21] border border-[#222A33] rounded-[1px] space-y-2.5">
-                <div className="flex items-center gap-2 text-[#B8A06A] font-bold">
+              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
+                <div className="flex items-center gap-2 text-[#004C80] font-bold">
                   <Mail className="w-4 h-4 shrink-0" />
                   <span>{isFa ? 'پست الکترونیک' : 'EMAIL DESK'}</span>
                 </div>
-                <p className="text-[#F4F3EF] text-xs font-mono">{t.contact.email}</p>
+                <p className="text-[#0A1C2E] text-xs font-mono font-bold">{t.contact.email}</p>
               </div>
 
-              <div className="p-6 bg-[#171C21] border border-[#222A33] rounded-[1px] space-y-2.5">
-                <div className="flex items-center gap-2 text-[#B8A06A] font-bold">
+              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
+                <div className="flex items-center gap-2 text-[#004C80] font-bold">
                   <Phone className="w-4 h-4 shrink-0" />
                   <span>{isFa ? 'تلفن تماس' : 'DIRECT LINE'}</span>
                 </div>
-                <p className="text-[#F4F3EF] text-xs font-mono">{t.contact.phone}</p>
+                <p className="text-[#0A1C2E] text-xs font-mono font-bold">{t.contact.phone}</p>
               </div>
             </div>
 
-            <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-[#8C9BAE] border-t border-[#222A33]">
+            <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono shadow-sm">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#B8A06A] shrink-0" />
-                <span>ISO 28000 SECURITY & GOVERNANCE COMPLIANT</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="text-white font-bold">ISO 28000 SECURITY & GOVERNANCE COMPLIANT</span>
               </div>
-              <span className="text-[10px] text-[#B8A06A] font-bold">REFAH SANAT PARDIS TRADING DESK</span>
+              <span className="text-[10px] text-sky-400 font-bold tracking-wider">REFAH SANAT PARDIS TRADING DESK</span>
             </div>
           </div>
 
@@ -995,35 +988,35 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </section>
 
       {/* ------------------ INSTITUTIONAL FOOTER ------------------ */}
-      <footer className="bg-[#0A0D10] text-[#8C9BAE] py-12 border-t border-[#222A33] font-mono text-xs">
+      <footer className="bg-[#0A1C2E] text-[#94A3B8] py-12 border-t border-[#1E293B] font-mono text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[#222A33]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[#1E293B]">
             <div className="md:col-span-6 space-y-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 bg-[#F4F3EF] border border-[#F4F3EF] flex items-center justify-center p-1 shrink-0 rounded-[1px]">
-                  <Logo className="w-full h-full text-[#0E1216]" />
+                <div className="w-7 h-7 bg-white border border-white flex items-center justify-center p-1 shrink-0 rounded-[1px]">
+                  <Logo className="w-full h-full text-[#004C80]" />
                 </div>
-                <span className="font-bold text-[#F4F3EF] text-sm tracking-widest uppercase">
+                <span className="font-bold text-white text-sm tracking-widest uppercase">
                   {isFa ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
                 </span>
               </div>
-              <p className="text-xs text-[#8C9BAE] leading-relaxed max-w-md font-sans">
+              <p className="text-xs text-[#94A3B8] leading-relaxed max-w-md font-sans">
                 {t.footer.description}
               </p>
             </div>
 
             <div className="md:col-span-6 flex flex-col md:items-end justify-between space-y-3">
               <div className="flex items-center gap-6">
-                <button onClick={openTerms} className="hover:text-[#B8A06A] transition-colors cursor-pointer">
+                <button onClick={openTerms} className="hover:text-white transition-colors cursor-pointer">
                   &gt; {t.footer.termsTitle}
                 </button>
-                <button onClick={openPrivacy} className="hover:text-[#B8A06A] transition-colors cursor-pointer">
+                <button onClick={openPrivacy} className="hover:text-white transition-colors cursor-pointer">
                   &gt; {t.footer.privacyTitle}
                 </button>
               </div>
-              <div className="text-[11px] text-[#8C9BAE]">
-                © {new Date().getFullYear()} REFAH SANAT PARDIS TRADING CO. // EDITORIAL INDUSTRIAL EDITION
+              <div className="text-[11px] text-[#94A3B8]">
+                © {new Date().getFullYear()} REFAH SANAT PARDIS TRADING CO. // INSTITUTIONAL EDITION
               </div>
             </div>
           </div>
