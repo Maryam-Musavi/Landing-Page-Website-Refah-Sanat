@@ -39,96 +39,98 @@ interface RegionMeta {
 }
 
 // Center of SVG canvas (500x280) is (250, 140) where TEHRAN is positioned as the central nexus
-const TEHRAN_CENTER = { x: 250, y: 140, name: 'TEHRAN (HQ)', nameFa: 'تهران (مرکز فرماندهی)' };
+const TEHRAN_CENTER = { 
+  x: 250, 
+  y: 140, 
+  name: 'TEHRAN (HQ)', 
+  nameFa: 'تهران (مرکز فرماندهی)' 
+};
 
 const REGION_METADATA: Record<string, RegionMeta> = {
-  me: {
-    hubs: ['Dubai (UAE)', 'Bandar Abbas', 'Salalah Port', 'Jeddah', 'Doha Hub'],
-    cx: 235,
-    cy: 185,
+  mideast: {
+    hubs: ['Bandar Abbas Port', 'Dubai Hub (UAE)', 'Salalah Maritime', 'Jeddah Terminal', 'Doha Hub'],
+    cx: 250,
+    cy: 215,
     routes: [
       { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 105, y: 75, label: 'EUR' },
-      { x: 365, y: 195, label: 'SA' },
-      { x: 435, y: 125, label: 'EA' },
-      { x: 130, y: 215, label: 'AF' },
+      { x: 355, y: 185, label: 'SOUTH ASIA' },
+      { x: 170, y: 100, label: 'TURKEY' },
+      { x: 430, y: 120, label: 'EAST ASIA' },
     ],
-    flows: ['Crude & Hydrocarbons', 'Petrochemical Polymers', 'Granular Urea 46%', 'Base Metals'],
+    flows: ['Petrochemical Polymers', 'Granular Urea 46%', 'Base Oils & Bitumen', 'Refined Fuel & Hydrocarbons'],
     transit: '2-4 Days',
     clearanceRate: '99.4%',
     liquidityTier: 'Tier-1 Multicurrency (USD/EUR/AED)',
   },
-  ca: {
-    hubs: ['Almaty Hub', 'Tashkent', 'Baku Port', 'Aktau Maritime', 'Ashgabat'],
-    cx: 310,
-    cy: 75,
+  caspian: {
+    hubs: ['Bandar Anzali / Amirabad', 'Aktau Port', 'Baku Maritime', 'Turkmenbashi', 'Tashkent Rail Hub'],
+    cx: 275,
+    cy: 65,
     routes: [
       { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 235, y: 185, label: 'ME' },
-      { x: 105, y: 75, label: 'EUR' },
-      { x: 435, y: 125, label: 'EA' },
+      { x: 170, y: 100, label: 'TURKEY' },
+      { x: 430, y: 120, label: 'EAST ASIA' },
+      { x: 95, y: 65, label: 'EUROPE' },
     ],
-    flows: ['Sulfur & Fertilizers', 'Industrial Minerals', 'Metals & Billets', 'Grain Corridors'],
-    transit: '3-6 Days',
-    clearanceRate: '98.8%',
-    liquidityTier: 'Regional Multi-clearing (USD/CNY)',
+    flows: ['Agricultural Grain & Wheat', 'Industrial Fertilizers & Sulfur', 'Steel Billets & Coils', 'Bulk Minerals'],
+    transit: '3-5 Days',
+    clearanceRate: '98.9%',
+    liquidityTier: 'Regional Multi-clearing (USD/CNY/EUR)',
   },
-  sa: {
-    hubs: ['Nhava Sheva (Mumbai)', 'Mundra Port', 'Karachi', 'Chittagong', 'Colombo Hub'],
-    cx: 365,
-    cy: 195,
+  turkey: {
+    hubs: ['Istanbul Gateway', 'Mersin Mediterranean Port', 'Izmir Terminal', 'Ankara Logistics Hub', 'Trabzon Port'],
+    cx: 165,
+    cy: 105,
     routes: [
       { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 235, y: 185, label: 'ME' },
-      { x: 435, y: 125, label: 'EA' },
-      { x: 130, y: 215, label: 'AF' },
+      { x: 95, y: 65, label: 'EUROPE' },
+      { x: 250, y: 215, label: 'MID-EAST' },
+      { x: 275, y: 65, label: 'CASPIAN' },
     ],
-    flows: ['Bitumen & Petrochemicals', 'Agricultural Grain', 'Chemical Feedstocks', 'Steel Coils'],
+    flows: ['Polymer Feedstocks', 'Industrial Metals & Ingots', 'Chemical Raw Materials', 'Multimodal Transit Cargo'],
+    transit: '3-6 Days',
+    clearanceRate: '99.2%',
+    liquidityTier: 'Eurasia Gateway Clearing (EUR/USD/TRY)',
+  },
+  southasia: {
+    hubs: ['Chabahar Port Corridor', 'Nhava Sheva (Mumbai)', 'Mundra Terminal', 'Karachi Seaport', 'Colombo Transshipment'],
+    cx: 355,
+    cy: 190,
+    routes: [
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 250, y: 215, label: 'MID-EAST' },
+      { x: 430, y: 120, label: 'EAST ASIA' },
+    ],
+    flows: ['Bitumen & Petrochemicals', 'Agricultural Rice & Grains', 'Granular Urea', 'Industrial Construction Steel'],
     transit: '4-7 Days',
     clearanceRate: '99.1%',
     liquidityTier: 'Direct Trade Credit (USD/AED/INR)',
   },
-  ea: {
-    hubs: ['Shanghai Maritime', 'Ningbo-Zhoushan', 'Singapore Hub', 'Qingdao', 'Busan'],
-    cx: 435,
-    cy: 125,
+  eastasia: {
+    hubs: ['Shanghai Maritime Gateway', 'Singapore Strategic Hub', 'Ningbo-Zhoushan Port', 'Qingdao Terminal', 'Busan Hub'],
+    cx: 430,
+    cy: 120,
     routes: [
       { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 235, y: 185, label: 'ME' },
-      { x: 365, y: 195, label: 'SA' },
-      { x: 105, y: 75, label: 'EUR' },
+      { x: 355, y: 190, label: 'SOUTH ASIA' },
+      { x: 250, y: 215, label: 'MID-EAST' },
+      { x: 275, y: 65, label: 'CASPIAN' },
     ],
-    flows: ['High-Grade Polymers', 'Methanol & Aromatics', 'Bulk Petrochemicals', 'Industrial Feedstocks'],
+    flows: ['Bulk Methanol & Aromatics', 'High-Grade Polyethylene & Polypropylene', 'Specialized Chemical Feedstocks', 'Containerized Freight'],
     transit: '7-12 Days',
     clearanceRate: '99.7%',
-    liquidityTier: 'Deep Liquidity Settlement (USD/CNY)',
+    liquidityTier: 'Deep Liquidity Settlement (USD/CNY/AED)',
   },
-  af: {
-    hubs: ['Mombasa Port', 'Durban Hub', 'Alexandria', 'Dar es Salaam', 'Djibouti Terminal'],
-    cx: 130,
-    cy: 215,
+  europe: {
+    hubs: ['Rotterdam Gateway', 'Antwerp Port', 'Genoa Mediterranean', 'Hamburg Hub', 'Geneva Trade Desk'],
+    cx: 95,
+    cy: 65,
     routes: [
       { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 235, y: 185, label: 'ME' },
-      { x: 365, y: 195, label: 'SA' },
-      { x: 105, y: 75, label: 'EUR' },
+      { x: 165, y: 105, label: 'TURKEY' },
+      { x: 275, y: 65, label: 'CASPIAN' },
     ],
-    flows: ['Granular Urea & Fertilizer', 'Food & Agriculture Rice', 'Rebar & Steel', 'Refined Fuels'],
-    transit: '6-10 Days',
-    clearanceRate: '98.5%',
-    liquidityTier: 'Structured Trade Finance & LC (USD/EUR)',
-  },
-  eu: {
-    hubs: ['Rotterdam Gateway', 'Antwerp Port', 'Genoa', 'Istanbul Port', 'Hamburg Hub'],
-    cx: 105,
-    cy: 75,
-    routes: [
-      { x: 250, y: 140, label: 'TEHRAN HQ' },
-      { x: 235, y: 185, label: 'ME' },
-      { x: 310, y: 75, label: 'CA' },
-      { x: 435, y: 125, label: 'EA' },
-    ],
-    flows: ['Trade Credit Facilities', 'Multilateral SBLC Clearing', 'Specialized Chemistry', 'Industrial Equipment'],
+    flows: ['Trade Credit Facilities', 'Multilateral SBLC Clearing', 'Specialized Chemistry & Catalysts', 'High-Tech Industrial Equipment'],
     transit: '5-9 Days',
     clearanceRate: '99.9%',
     liquidityTier: 'Institutional Banking LC / SBLC (EUR/USD)',
@@ -296,135 +298,137 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
             />
           </motion.g>
 
-          {/* Dynamic Animated Trade Corridors to Other Hubs */}
-          {meta.routes.map((rt, idx) => {
-            // Cubic bezier curved trade paths
-            const midX = (meta.cx + rt.x) / 2;
-            const midY = Math.min(meta.cy, rt.y) - 20;
-            const pathD = `M ${meta.cx} ${meta.cy} Q ${midX} ${midY} ${rt.x} ${rt.y}`;
+          {/* Background Permanent Radial Corridors Radiating from Tehran to All Hubs */}
+          {Object.entries(REGION_METADATA).map(([key, rMeta]) => {
+            const isSelected = key === selectedRegion.id;
+            const midX = (250 + rMeta.cx) / 2;
+            const midY = (140 + rMeta.cy) / 2 - 12;
+            const pathD = `M 250 140 Q ${midX} ${midY} ${rMeta.cx} ${rMeta.cy}`;
 
             return (
-              <g key={idx}>
-                {/* Path line */}
+              <g key={`corridor-${key}`}>
+                {/* Base corridor line */}
                 <path
                   d={pathD}
                   fill="none"
-                  stroke="url(#routeGlow)"
-                  strokeWidth="1.3"
-                  strokeDasharray="4 4"
-                  className="opacity-75"
+                  stroke={isSelected ? '#38bdf8' : '#334155'}
+                  strokeWidth={isSelected ? 1.8 : 0.9}
+                  strokeDasharray={isSelected ? '4 3' : '2 4'}
+                  opacity={isSelected ? 0.95 : 0.45}
                 />
 
-                {/* Animated Glowing Packet Traveling Along the Path */}
+                {/* Animated glowing energy particle flowing between Tehran and Hub */}
                 <motion.circle
-                  r="3"
-                  fill="#38bdf8"
-                  filter="url(#glowEffect)"
+                  r={isSelected ? 3.5 : 2}
+                  fill={isSelected ? '#38bdf8' : '#f59e0b'}
+                  filter={isSelected ? 'url(#glowEffect)' : undefined}
                   animate={{
                     offsetDistance: ['0%', '100%'],
                   }}
                   transition={{
-                    duration: 3.2 + idx * 0.7,
+                    duration: isSelected ? 2.4 : 4.5,
                     repeat: Infinity,
                     ease: 'linear',
-                    delay: idx * 0.4,
                   }}
                   style={{
                     offsetPath: `path('${pathD}')`,
                   }}
                 />
-
-                {/* Terminal Node */}
-                <circle
-                  cx={rt.x}
-                  cy={rt.y}
-                  r="3.5"
-                  fill="#10b981"
-                  opacity="0.8"
-                />
-                <text
-                  x={rt.x}
-                  y={rt.y + (rt.y > 140 ? 12 : -8)}
-                  fill="#94a3b8"
-                  fontSize="7.5"
-                  fontFamily="monospace"
-                  textAnchor="middle"
-                >
-                  {rt.label}
-                </text>
               </g>
             );
           })}
 
-          {/* Global World Reference Hubs */}
+          {/* Regional Hub Markers & Labels */}
           {Object.entries(REGION_METADATA).map(([key, rMeta]) => {
             const isSelected = key === selectedRegion.id;
+            const hubMainName = rMeta.hubs[0].split('/')[0].split('(')[0].trim();
+            const isRightSide = rMeta.cx >= 250;
+            const isBottomSide = rMeta.cy >= 140;
+
             return (
-              <g key={key} className="cursor-pointer">
-                {/* Secondary Hub Circles */}
+              <g key={`hub-${key}`} className="cursor-pointer">
+                {/* Outer halo when selected */}
+                {isSelected && (
+                  <motion.circle
+                    cx={rMeta.cx}
+                    cy={rMeta.cy}
+                    r="14"
+                    fill="none"
+                    stroke="#38bdf8"
+                    strokeWidth="1.5"
+                    animate={{
+                      r: [8, 22],
+                      opacity: [1, 0],
+                    }}
+                    transition={{
+                      duration: 1.8,
+                      repeat: Infinity,
+                      ease: 'easeOut',
+                    }}
+                  />
+                )}
+
+                {/* Hub Node Dot */}
                 <circle
                   cx={rMeta.cx}
                   cy={rMeta.cy}
-                  r={isSelected ? 6 : 3.5}
-                  fill={isSelected ? '#38bdf8' : '#475569'}
+                  r={isSelected ? 6 : 4}
+                  fill={isSelected ? '#38bdf8' : '#64748b'}
+                  stroke={isSelected ? '#ffffff' : '#0A1C2E'}
+                  strokeWidth={1.5}
                   filter={isSelected ? 'url(#glowEffect)' : undefined}
                 />
                 
-                {/* Text Label */}
-                <text
-                  x={rMeta.cx + (rMeta.cx > 250 ? 10 : -10)}
-                  y={rMeta.cy + (rMeta.cy > 140 ? 12 : -6)}
-                  fill={isSelected ? '#ffffff' : '#64748b'}
-                  fontSize={isSelected ? '9.5' : '8'}
-                  fontFamily="monospace"
-                  fontWeight={isSelected ? 'bold' : 'normal'}
-                  textAnchor={rMeta.cx > 250 ? 'start' : 'end'}
-                >
-                  {rMeta.hubs[0].split(' ')[0]}
-                </text>
+                {/* Node inner pip */}
+                <circle
+                  cx={rMeta.cx}
+                  cy={rMeta.cy}
+                  r={isSelected ? 2 : 1.5}
+                  fill="#ffffff"
+                />
+
+                {/* Text Label Badge */}
+                <g transform={`translate(${rMeta.cx + (isRightSide ? 10 : -10)}, ${rMeta.cy + (isBottomSide ? 14 : -10)})`}>
+                  <rect
+                    x={isRightSide ? 0 : -95}
+                    y={-10}
+                    width={95}
+                    height={16}
+                    fill={isSelected ? 'rgba(14, 116, 144, 0.85)' : 'rgba(15, 23, 42, 0.75)'}
+                    stroke={isSelected ? '#38bdf8' : '#334155'}
+                    strokeWidth={0.8}
+                    rx="1"
+                  />
+                  <text
+                    x={isRightSide ? 6 : -48}
+                    y={1}
+                    fill={isSelected ? '#ffffff' : '#94a3b8'}
+                    fontSize={isSelected ? '8' : '7.5'}
+                    fontFamily="monospace"
+                    fontWeight={isSelected ? 'bold' : 'normal'}
+                    textAnchor={isRightSide ? 'start' : 'middle'}
+                  >
+                    {hubMainName}
+                  </text>
+                </g>
               </g>
             );
           })}
-
-          {/* Active Selected Node Pulse Rings */}
-          <motion.circle
-            cx={meta.cx}
-            cy={meta.cy}
-            r="12"
-            fill="none"
-            stroke="#38bdf8"
-            strokeWidth="1.5"
-            animate={{
-              r: [6, 22],
-              opacity: [1, 0],
-            }}
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: 'easeOut',
-            }}
-          />
-          <motion.circle
-            cx={meta.cx}
-            cy={meta.cy}
-            r="4.5"
-            fill="#38bdf8"
-          />
 
           {/* ======================================================== */}
           {/* TEHRAN (HQ) - PROMINENT CENTRAL EPICENTER AT (250, 140) */}
           {/* ======================================================== */}
           <g>
-            {/* Glowing Amber Pulse Ring for Tehran Center */}
+            {/* Ambient Multi-layer Pulse Rings for Tehran Center */}
             <motion.circle
               cx="250"
               cy="140"
-              r="14"
+              r="16"
               fill="none"
               stroke="#f59e0b"
-              strokeWidth="1.8"
+              strokeWidth="2"
               animate={{
-                r: [7, 28],
+                r: [8, 32],
                 opacity: [1, 0],
               }}
               transition={{
@@ -433,13 +437,31 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
                 ease: 'easeOut',
               }}
             />
+            <motion.circle
+              cx="250"
+              cy="140"
+              r="24"
+              fill="none"
+              stroke="#fbbf24"
+              strokeWidth="1"
+              strokeDasharray="2 2"
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              style={{ transformOrigin: '250px 140px' }}
+            />
 
             {/* Central Diamond / Star Reticle for Tehran */}
             <rect
-              x="244"
-              y="134"
-              width="12"
-              height="12"
+              x="243"
+              y="133"
+              width="14"
+              height="14"
               fill="#f59e0b"
               filter="url(#goldGlow)"
               transform="rotate(45 250 140)"
@@ -447,21 +469,28 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
             <circle
               cx="250"
               cy="140"
-              r="3.5"
+              r="4"
               fill="#ffffff"
+            />
+            <circle
+              cx="250"
+              cy="140"
+              r="1.8"
+              fill="#0A1C2E"
             />
 
             {/* Tehran Central Label Badge */}
-            <g transform="translate(250, 162)">
+            <g transform="translate(250, 168)">
               <rect
-                x="-52"
-                y="-9"
-                width="104"
-                height="17"
+                x="-64"
+                y="-10"
+                width="128"
+                height="19"
                 fill="#0A1C2E"
                 stroke="#f59e0b"
-                strokeWidth="1"
+                strokeWidth="1.2"
                 rx="1"
+                filter="url(#goldGlow)"
               />
               <text
                 x="0"
@@ -471,9 +500,9 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
                 fontFamily="monospace"
                 fontWeight="bold"
                 textAnchor="middle"
-                letterSpacing="0.5"
+                letterSpacing="0.6"
               >
-                ★ TEHRAN (HQ DESK)
+                {isFa ? '★ تهران (مرکز فرماندهی HQ)' : '★ TEHRAN (HQ CENTRAL DESK)'}
               </text>
             </g>
           </g>
