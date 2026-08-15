@@ -117,7 +117,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           {/* CENTER / RIGHT: Streamlined Essential Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-[#5C667A]">
             {[
-              { id: 'company', label: isFa ? 'درباره ما' : 'COMPANY' },
+              { id: 'home', label: isFa ? 'معرفی شرکت' : 'ABOUT' },
               { id: 'leadership', label: isFa ? 'هیأت مدیره' : 'LEADERSHIP' },
               { id: 'business', label: isFa ? 'حوزه‌های کسب‌وکار' : 'OUR BUSINESS' },
               { id: 'value', label: isFa ? 'خلق ارزش' : 'VALUE CREATION' },
@@ -230,22 +230,6 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </a>
               </div>
 
-              {/* Key Technical Metric Strip in Deep Midnight Navy #0A1C2E */}
-              <div className="mt-8 p-5 bg-[#0A1C2E] text-white border border-[#1E293B] grid grid-cols-3 gap-4 font-mono text-xs rounded-[1px] shadow-sm">
-                <div>
-                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">GLOBAL TURNOVER</div>
-                  <div className="text-lg font-bold text-white tracking-wide">$350M+ USD</div>
-                </div>
-                <div>
-                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">TRADE DESKS</div>
-                  <div className="text-lg font-bold text-sky-400 tracking-wide">6 CORRIDORS</div>
-                </div>
-                <div>
-                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">GOVERNANCE</div>
-                  <div className="text-lg font-bold text-white tracking-wide">ISO 28000</div>
-                </div>
-              </div>
-
             </div>
 
             {/* RIGHT COLUMN: Large Editorial Photography */}
@@ -284,68 +268,14 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 01 COMPANY SECTION (EDITORIAL TWO-COLUMN) ------------------ */}
-      <section id="company" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            {/* LEFT COLUMN: Large Editorial Number & Headline */}
-            <div className="lg:col-span-5 space-y-4">
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest">
-                <span className="text-3xl sm:text-5xl font-extrabold text-[#004C80]">01</span>
-                <span>/ {t.company.badge}</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
-                {t.company.title}
-              </h2>
-
-              <p className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-wider">
-                {t.company.subtitle}
-              </p>
-            </div>
-
-            {/* RIGHT COLUMN: Detailed Description & Capabilities Divider List */}
-            <div className="lg:col-span-7 space-y-8">
-              <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
-                <p className="font-semibold text-[#0A1C2E]">
-                  {t.company.aboutText1}
-                </p>
-                <p>
-                  {t.company.aboutText2}
-                </p>
-              </div>
-
-              {/* 4 Intersection Pillars */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#D5DFE8]">
-                {t.company.intersectionItems.map((item, idx) => (
-                  <div key={idx} className="p-4 bg-white border border-[#D5DFE8] rounded-[1px] space-y-1.5 shadow-sm">
-                    <div className="text-xs font-bold text-[#004C80] font-mono uppercase">
-                      01.0{idx + 1} // {item.title}
-                    </div>
-                    <p className="text-xs text-[#5C667A] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ------------------ 02 LEADERSHIP & GOVERNANCE SECTION ------------------ */}
+      {/* ------------------ 01 LEADERSHIP & GOVERNANCE SECTION ------------------ */}
       <section id="leadership" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold">02</span>
+                <span className="text-3xl font-extrabold">01</span>
                 <span>/ {isFa ? 'مدیریت ارشد و هیأت مدیره' : 'LEADERSHIP & GOVERNANCE'}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
@@ -464,14 +394,14 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 03 OUR BUSINESS ------------------ */}
+      {/* ------------------ 02 OUR BUSINESS ------------------ */}
       <section id="business" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1E293B] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-white">03</span>
+                <span className="text-3xl font-extrabold text-white">02</span>
                 <span>/ {t.business.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-white uppercase font-sans">
@@ -490,7 +420,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
                 <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>03.01</span>
+                  <span>02.01</span>
                   <span>// COMMODITY DESK</span>
                 </div>
                 <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
@@ -529,7 +459,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
                 <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>03.02</span>
+                  <span>02.02</span>
                   <span>// LIQUIDITY & STRUCTURING</span>
                 </div>
                 <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
@@ -568,7 +498,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
                 <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>03.03</span>
+                  <span>02.03</span>
                   <span>// INSTITUTIONAL ECOSYSTEM</span>
                 </div>
                 <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
@@ -611,13 +541,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 04 HOW WE CREATE VALUE ------------------ */}
+      {/* ------------------ 03 HOW WE CREATE VALUE ------------------ */}
       <section id="value" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-16 space-y-4">
             <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
-              <span className="text-3xl sm:text-5xl font-extrabold">04</span>
+              <span className="text-3xl sm:text-5xl font-extrabold">03</span>
               <span>/ {t.valueCreation.badge}</span>
             </div>
 
@@ -666,14 +596,14 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 05 OUR MARKETS ------------------ */}
+      {/* ------------------ 04 OUR MARKETS ------------------ */}
       <section id="markets" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold">05</span>
+                <span className="text-3xl font-extrabold">04</span>
                 <span>/ {t.markets.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
@@ -793,7 +723,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 06 WHY RSP (5 INSTITUTIONAL PRINCIPLES) ------------------ */}
+      {/* ------------------ 05 WHY RSP (5 INSTITUTIONAL PRINCIPLES) ------------------ */}
       <section id="why-rsp" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -801,7 +731,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             
             <div className="lg:col-span-4 space-y-4">
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-[#004C80]">06</span>
+                <span className="text-3xl font-extrabold text-[#004C80]">05</span>
                 <span>/ {t.whyUs.badge}</span>
               </div>
 
@@ -842,13 +772,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 07 OUR VISION & MISSION ------------------ */}
+      {/* ------------------ 06 OUR VISION & MISSION ------------------ */}
       <section id="vision-mission" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
-              <span>07 / {t.visionMission.badge}</span>
+              <span>06 / {t.visionMission.badge}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
               {isFa ? 'چشم‌انداز و ماموریت راهبردی' : 'Vision & Mission'}
@@ -898,7 +828,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 08 CLOSING PARTNERSHIP STATEMENT & CTA ------------------ */}
+      {/* ------------------ CLOSING PARTNERSHIP STATEMENT & CTA ------------------ */}
       <section id="partnership" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           
@@ -936,13 +866,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 09 CONTACT (COMMERCIAL INQUIRY PORTAL) ------------------ */}
+      {/* ------------------ 07 CONTACT (COMMERCIAL INQUIRY PORTAL) ------------------ */}
       <section id="contact" className="py-20 bg-[#F4F7FA] text-[#0A1C2E] border-t border-[#D5DFE8]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="space-y-8">
             <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
-              <span className="text-3xl font-extrabold">09</span>
+              <span className="text-3xl font-extrabold">07</span>
               <span>/ {t.contact.badge}</span>
             </div>
 
