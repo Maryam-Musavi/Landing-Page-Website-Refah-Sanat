@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.jpg';
-import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.jpg';
-import containerNightImg from '../assets/images/container_terminal_night_1786809233281.jpg';
-import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.jpg';
-import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.jpg';
-import multimodalImg from '../assets/images/multimodal_transport_1786809273515.jpg';
-import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.jpg';
-import railLogisticsImg from '../assets/images/rail_logistics_infra_1786809312499.jpg';
+import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.webp';
+import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.webp';
+import containerNightImg from '../assets/images/container_terminal_night_1786809233281.webp';
+import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.webp';
+import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.webp';
+import multimodalImg from '../assets/images/multimodal_transport_1786809273515.webp';
+import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.webp';
+import railLogisticsImg from '../assets/images/rail_logistics_infra_1786809312499.webp';
+import agriGrainImg from '../assets/images/agri_grain_trading_1786647224734.webp';
+
 import { 
   Globe, 
   ArrowRight, 
   ShieldCheck, 
   CheckCircle2, 
   ChevronRight, 
+  ChevronDown,
   Building2,
   Users,
   Layers,
@@ -21,14 +24,19 @@ import {
   TrendingUp,
   MapPin,
   Award,
-  Send,
   Check,
   Mail,
   Phone,
   Clock,
   Activity,
   ArrowUpRight,
-  Maximize2
+  Maximize2,
+  FileText,
+  HelpCircle,
+  BarChart3,
+  Anchor,
+  Compass,
+  Briefcase
 } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
@@ -41,6 +49,7 @@ interface EditorialIndustrialMainProps {
   onInquire: (contextNote?: string) => void;
   openTerms: () => void;
   openPrivacy: () => void;
+  openInsightModal?: (insight: { date: string; category: string; title: string; summary: string; readTime: string }) => void;
 }
 
 export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = ({
@@ -49,11 +58,12 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
   onInquire,
   openTerms,
   openPrivacy,
+  openInsightModal,
 }) => {
   const t = translations[currentLang];
   const [activeTab, setActiveTab] = useState<'commodity' | 'finance' | 'partnerships'>('commodity');
   const [activeRegion, setActiveRegion] = useState<string>('mideast');
-  const [activeSection, setActiveSection] = useState<string>('home');
+  const [activeFaqId, setActiveFaqId] = useState<string | null>('faq-1');
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -70,13 +80,15 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         top: offsetPosition,
         behavior: 'smooth'
       });
-      setActiveSection(targetId);
     }
   };
 
   const selectedRegionObj = t.markets.regions.find((r) => r.id === activeRegion) || t.markets.regions[0];
-
   const isFa = currentLang === 'fa';
+
+  const toggleFaq = (id: string) => {
+    setActiveFaqId(activeFaqId === id ? null : id);
+  };
 
   return (
     <div className="bg-white text-[#0A1C2E] font-sans selection:bg-[#004C80] selection:text-white min-h-screen transition-colors duration-300">
@@ -84,8 +96,8 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       {/* ------------------ REFINED INSTITUTIONAL NAVIGATION ------------------ */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#D5DFE8] transition-all">
         
-        {/* Micro Technical Ticker in Deep Midnight Navy #0A1C2E */}
-        <div className="bg-[#0A1C2E] text-[#94A3B8] border-b border-[#1E293B] py-2 px-4 sm:px-6 lg:px-8">
+        {/* Micro Technical Ticker */}
+        <div className="bg-[#0A1C2E] text-[#94A3B8] border-b border-[#1E293B] py-1.5 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[10px] font-mono uppercase tracking-widest gap-2">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 text-white font-bold">
@@ -93,180 +105,189 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 <span>SYS: ONLINE • REF: RSP-INT-2026</span>
               </span>
               <span className="text-slate-600 hidden sm:inline">|</span>
-              <span className="text-slate-300 hidden sm:inline">TEHRAN HQ • GLOBAL DESK</span>
+              <span className="text-slate-300 hidden sm:inline">TEHRAN HQ • GLOBAL TRADE DESK</span>
               <span className="text-slate-600 hidden md:inline">|</span>
-              <span className="text-slate-400 hidden md:inline">[29.9511° N, 52.8800° E]</span>
+              <span className="text-slate-400 hidden md:inline">[35.6892° N, 51.3890° E]</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-slate-300">REG NO. 493011</span>
+              <span className="text-slate-300">ICC UCP 600 • ISO 9001 • ISO 28000</span>
               <span className="text-slate-600">|</span>
-              <span className="text-white font-bold">ISO 28000 SECURITY GOVERNANCE</span>
+              <span className="text-emerald-400 font-bold">CLEARING: ACTIVE</span>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
-          
-          {/* LEFT: Wordmark + Logo */}
-          <a href="#home" onClick={(e) => handleAnchorClick(e, '#home')} className="flex items-center gap-3.5 group">
-            <div className="w-9 h-9 bg-[#004C80] border border-[#004C80] flex items-center justify-center p-1 shrink-0 transition-transform group-hover:scale-105 rounded-[1px]">
-              <Logo className="w-full h-full text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-[#0A1C2E] text-sm sm:text-base tracking-widest uppercase font-mono group-hover:text-[#004C80] transition-colors leading-none">
-                {isFa ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
-              </span>
-              <span className="text-[10px] text-[#5C667A] font-mono tracking-widest uppercase mt-1">
-                {isFa ? 'تجارت • تامین مالی • سرمایه‌گذاری' : 'International Trade & Financial Solutions'}
-              </span>
-            </div>
-          </a>
-
-          {/* CENTER / RIGHT: Streamlined Essential Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-[#5C667A]">
-            {[
-              { id: 'home', label: isFa ? 'معرفی شرکت' : 'ABOUT' },
-              { id: 'leadership', label: isFa ? 'هیأت مدیره' : 'LEADERSHIP' },
-              { id: 'business', label: isFa ? 'حوزه‌های کسب‌وکار' : 'OUR BUSINESS' },
-              { id: 'value', label: isFa ? 'خلق ارزش' : 'VALUE CREATION' },
-              { id: 'markets', label: isFa ? 'بازارها' : 'MARKETS' },
-              { id: 'why-rsp', label: isFa ? 'چرا RSP' : 'WHY RSP' },
-              { id: 'contact', label: isFa ? 'ارتباط با ما' : 'CONTACT' },
-            ].map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => handleAnchorClick(e, `#${link.id}`)}
-                  className={`relative py-1 transition-colors hover:text-[#0A1C2E] ${
-                    isActive ? 'text-[#004C80] font-extrabold' : 'text-[#5C667A]'
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#004C80]" />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Header Action & Lang Switcher */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => onLanguageChange(isFa ? 'en' : 'fa')}
-              className="flex items-center gap-1.5 px-3 py-1.5 border border-[#D5DFE8] bg-[#F4F7FA] hover:bg-[#E2E8F0] text-[#0A1C2E] transition-colors text-xs font-mono font-bold cursor-pointer rounded-[1px]"
+        {/* Main Nav Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Brand Logo & Positioning */}
+            <a 
+              href="#home" 
+              onClick={(e) => handleAnchorClick(e, '#home')}
+              className="flex items-center gap-3.5 group cursor-pointer"
             >
-              <Globe className="w-3.5 h-3.5 text-[#004C80]" />
-              <span>{isFa ? 'ENGLISH' : 'فارسی'}</span>
-            </button>
-
-            <a
-              href="#contact"
-              onClick={(e) => handleAnchorClick(e, '#contact')}
-              className="hidden sm:inline-flex bg-[#004C80] hover:bg-[#003A63] text-white px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all items-center gap-1.5 cursor-pointer rounded-[1px] border border-[#004C80]"
-            >
-              <span>{isFa ? 'درخواست تجاری' : 'COMMERCIAL INQUIRY'}</span>
-              <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180 text-white" />
+              <Logo size="md" />
+              <div className="flex flex-col">
+                <span className="font-extrabold text-base sm:text-lg tracking-tight text-[#0A1C2E] group-hover:text-[#004C80] transition-colors uppercase font-sans">
+                  {t.brand}
+                </span>
+                <span className="text-[10px] font-mono tracking-widest text-[#004C80] uppercase font-bold">
+                  {t.category}
+                </span>
+              </div>
             </a>
-          </div>
 
+            {/* Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center gap-6 text-xs font-mono font-medium text-[#5C667A]">
+              {[
+                { href: '#about', label: t.nav.about },
+                { href: '#leadership', label: t.nav.leadership },
+                { href: '#business', label: t.nav.business },
+                { href: '#value', label: t.nav.value },
+                { href: '#markets', label: t.nav.markets },
+                { href: '#stats', label: t.nav.stats },
+                { href: '#insights', label: t.nav.insights },
+                { href: '#faq', label: t.nav.faq },
+                { href: '#why-us', label: t.nav.whyUs },
+                { href: '#contact', label: t.nav.contact },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
+                  className="hover:text-[#004C80] transition-colors py-1 border-b-2 border-transparent hover:border-[#004C80] tracking-wider"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Language Switcher & Action CTA */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => onLanguageChange(isFa ? 'en' : 'fa')}
+                className="px-3 py-1.5 border border-[#D5DFE8] hover:border-[#004C80] text-xs font-mono text-[#0A1C2E] rounded-[1px] transition-all bg-[#F4F7FA] hover:bg-white flex items-center gap-1.5 font-bold cursor-pointer"
+                title={isFa ? 'Switch to English' : 'تغییر به زبان فارسی'}
+                aria-label="Toggle language"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#004C80]" />
+                <span>{t.nav.langName}</span>
+              </button>
+
+              <a
+                href="#contact"
+                onClick={(e) => handleAnchorClick(e, '#contact')}
+                className="bg-[#004C80] hover:bg-[#003860] text-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all shadow-sm hover:shadow-md flex items-center gap-2 cursor-pointer"
+              >
+                <span>{t.nav.ctaBtn}</span>
+                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+              </a>
+            </div>
+
+          </div>
         </div>
       </header>
 
-      {/* ------------------ HERO SECTION (EDITORIAL INDUSTRIAL) ------------------ */}
-      <section id="home" className="relative py-16 lg:py-24 border-b border-[#D5DFE8] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ------------------ HERO SECTION ------------------ */}
+      <section id="home" className="relative bg-[#0A1C2E] text-white border-b border-[#1E293B] overflow-hidden pt-12 sm:pt-16 pb-20">
+        
+        {/* Subtle Geometric Grid & Architecture */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
+          {/* Top Operational Pill */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 bg-[#132A42] border border-[#1E3A5F] text-sky-400 font-mono text-xs font-bold uppercase tracking-widest rounded-[1px] mb-8">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>{t.hero.badge}</span>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* LEFT COLUMN */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Left Narrative Column */}
+            <div className="lg:col-span-7 space-y-8">
               
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
-                <span className="w-1.5 h-1.5 bg-[#004C80]" />
-                <span>{t.hero.badge}</span>
+              <div className="space-y-3">
+                <div className="font-mono text-xs sm:text-sm text-sky-400 uppercase tracking-widest font-semibold">
+                  {t.hero.tagline}
+                </div>
+                {/* THE ONLY H1 ON THE PAGE FOR PROPER SEO HIERARCHY */}
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white uppercase font-sans">
+                  {t.hero.title}
+                </h1>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0A1C2E] leading-[1.1] tracking-tight uppercase font-sans">
-                {isFa ? (
-                  <>پیوند تجارت جهانی<br /><span className="text-[#004C80]">با تامین مالی جهانی</span></>
-                ) : (
-                  <>Connecting Global Trade<br /><span className="text-[#004C80]">with Global Finance</span></>
-                )}
-              </h2>
-
-              <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
-                <p className="font-semibold text-[#0A1C2E]">
-                  {t.hero.introParagraph1}
-                </p>
-                <p className="text-[#5C667A]">
-                  {t.hero.introParagraph2}
-                </p>
+              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-sans">
+                <p>{t.hero.introParagraph1}</p>
+                <p className="text-slate-300 font-normal">{t.hero.introParagraph2}</p>
               </div>
 
-              {/* Intersection Tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {t.hero.intersectionTags.map((tag, idx) => (
-                  <span 
-                    key={idx} 
-                    className="px-2.5 py-1 bg-[#F4F7FA] border border-[#D5DFE8] text-[11px] font-mono font-semibold text-[#0A1C2E] rounded-[1px]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* CTAs */}
-              <div className="pt-2 flex flex-wrap gap-4 items-center font-mono">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4 pt-2">
                 <a
                   href="#contact"
                   onClick={(e) => handleAnchorClick(e, '#contact')}
-                  className="bg-[#004C80] hover:bg-[#003A63] text-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#004C80] shadow-sm"
+                  className="bg-sky-500 hover:bg-sky-400 text-[#0A1C2E] px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all flex items-center gap-2.5 cursor-pointer shadow-lg hover:shadow-sky-500/20"
                 >
                   <span>{t.hero.primaryCta}</span>
-                  <ArrowRight className="w-4 h-4 rtl:rotate-180 text-white" />
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </a>
 
                 <a
                   href="#business"
                   onClick={(e) => handleAnchorClick(e, '#business')}
-                  className="bg-[#F4F7FA] hover:bg-[#E2E8F0] text-[#0A1C2E] px-7 py-3.5 text-xs font-bold uppercase tracking-widest border border-[#D5DFE8] transition-all inline-flex items-center rounded-[1px]"
+                  className="border border-[#334155] hover:border-sky-400 hover:bg-[#132A42] text-slate-200 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all flex items-center gap-2.5 cursor-pointer"
                 >
                   <span>{t.hero.secondaryCta}</span>
+                  <ChevronRight className="w-4 h-4 rtl:rotate-180" />
                 </a>
+              </div>
+
+              {/* Core Intersection Tags */}
+              <div className="pt-6 border-t border-[#1E293B]">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">
+                  {isFa ? 'حوزه‌های کلیدی تقاطع تجاری و مالی:' : 'Core Commercial & Financial Intersections:'}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {t.hero.intersectionTags.map((tag, idx) => (
+                    <span 
+                      key={idx}
+                      className="px-3 py-1 bg-[#132A42]/80 border border-[#1E293B] text-slate-300 text-xs font-mono rounded-[1px]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
 
             </div>
 
-            {/* RIGHT COLUMN: Large Editorial Photography */}
+            {/* Right Hero Image Card */}
             <div className="lg:col-span-5">
-              <div className="relative border border-[#D5DFE8] bg-[#F4F7FA] p-2 shadow-lg">
-                <div className="relative h-96 sm:h-[450px] w-full overflow-hidden bg-slate-100">
+              <div className="relative bg-[#071320] border border-[#1E293B] p-2 rounded-[1px] shadow-2xl group overflow-hidden">
+                <div className="relative h-80 sm:h-96 w-full overflow-hidden border border-[#1E293B]">
                   <img 
-                    src={bulkVesselImg} 
-                    alt="Bulk Carrier Vessel on High Seas"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover filter brightness-95 contrast-105"
+                    src={cargoPortImg} 
+                    alt={isFa ? 'ترمینال بندری کانتینری و مبادلات کالایی بین‌المللی رفاه صنعت پردیس' : 'RSP International Maritime Cargo Port Terminal and Trade Logistics'}
+                    className="w-full h-full object-cover filter brightness-90 contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
-
-                  {/* Micro Metadata Overlay */}
-                  <div className="absolute top-4 left-4 bg-white/95 border border-[#D5DFE8] px-3 py-1.5 text-[10px] font-mono text-[#0A1C2E]">
-                    <span className="text-[#004C80] font-bold">RSP / MARITIME-01</span> • BULK LOGISTICS & CARGO
-                  </div>
-
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-[#D5DFE8] p-4 text-xs font-mono">
-                    <div className="flex items-center justify-between text-[#0A1C2E] font-bold mb-1">
-                      <span className="text-[#004C80]">TRADE • FINANCE • INVESTMENT</span>
-                      <span>REF: 2026-HQ</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#071320] via-transparent to-transparent opacity-80" />
+                  
+                  {/* Telemetry overlay badge */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-[#0A1C2E]/90 backdrop-blur-md border border-[#1E293B] p-3.5 rounded-[1px] space-y-1">
+                    <div className="flex items-center justify-between text-[10px] font-mono text-sky-400">
+                      <span>TERMINAL: HUB-01 ACTIVE</span>
+                      <span className="text-emerald-400 font-bold">24/7 DISPATCH</span>
                     </div>
-                    <p className="text-[11px] text-[#5C667A] font-sans">
-                      {isFa 
-                        ? 'تسهیل تجارت فرامرزی، ساختاردهی تامین مالی تجاری و پیوند کسب‌وکارها در بازارهای جهانی' 
-                        : 'Facilitating cross-border trade, structuring trade finance, and connecting global commercial partners.'}
-                    </p>
+                    <div className="text-xs font-sans text-white font-bold">
+                      {isFa ? 'هماهنگی جامع بازرگانی فیزیکی و تسویه اعتبارات اسنادی' : 'Integrated Physical Sourcing & Structured Trade Settlement'}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -277,82 +298,131 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 01 LEADERSHIP & GOVERNANCE SECTION ------------------ */}
-      <section id="leadership" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+      {/* ------------------ 01 CORPORATE OVERVIEW / ABOUT RSP ------------------ */}
+      <section id="about" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold">01</span>
-                <span>/ {isFa ? 'مدیریت ارشد و هیأت مدیره' : 'LEADERSHIP & GOVERNANCE'}</span>
+                <span>/ {t.company.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
-                {isFa ? 'معرفی مدیرعامل و هیأت مدیره' : 'Executive Leadership & Board of Directors'}
+                {t.company.title}
               </h2>
             </div>
             <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
-              {isFa 
-                ? 'هدایت راهبردی گروه رفاه صنعت پردیس با تکیه بر دهه‌ها تجربه تخصصی در مدیریت تجارت بین‌الملل، تامین مالی ساختاریافته و حاکمیت نهادی.' 
-                : 'Guiding RSP with decades of expertise across international trade execution, structured finance, and institutional governance.'}
+              {t.company.subtitle}
             </p>
           </div>
 
-          {/* Leadership Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                id: 'm1',
-                badgeNum: '01',
-                nameFa: 'سید فضل الدین جمالیان زاده',
-                nameEn: 'Seyyed Fazloddin Jamalianzadeh',
-                roleFa: 'مدیرعامل و نائب رئیس هیأت مدیره',
-                roleEn: 'Managing Director & Vice Chairman of the Board',
-                bioFa: 'بیش از ۲۵ سال سابقه مدیریت ارشد در میزهای تجارت کالایی بین‌المللی و ساختاردهی ابزارهای اعتباری و مالی در خاورمیانه و آسیا.',
-                bioEn: '25+ years directing international commodity trading desks and cross-border trade finance structures in Middle Eastern & Asian markets.',
-                image: '/images/executive-1.jpg',
-                isCeo: true,
-              },
-              {
-                id: 'm2',
-                badgeNum: '02',
-                nameFa: 'حسین تک روستا',
-                nameEn: 'Hossein Takroosta',
-                roleFa: 'عضو هیأت مدیره',
-                roleEn: 'Member of the Board of Directors',
-                bioFa: 'متخصص بازرگانی کالاهای اساسی، زنجیره تامین فولاد و فلزات، و قراردادهای بین‌المللی حمل‌ونقل دریایی.',
-                bioEn: 'Expert in bulk industrial commodities, steel supply chains, and international maritime logistics contracts.',
-                image: '/images/executive-2.jpg',
-                isCeo: false,
-              },
-              {
-                id: 'm3',
-                badgeNum: '03',
-                nameFa: 'سید مسعود کاظمی',
-                nameEn: 'Seyyed Masoud Kazemi',
-                roleFa: 'عضو هیأت مدیره',
-                roleEn: 'Member of the Board of Directors',
-                bioFa: 'با سابقه مدیریت بانکداری شرکتی و تخصصی در اعتبارات اسنادی (L/C)، SBLC و مکانیزم‌های تسویه ارزی چندگانه.',
-                bioEn: 'Former senior trade banker specializing in L/C, SBLC, structured supply chain credit, and Multi-FX settlement mechanisms.',
-                image: '/images/executive-3.jpg',
-                isCeo: false,
-              },
-            ].map((member) => (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mb-16">
+            
+            {/* Overview Narrative */}
+            <div className="lg:col-span-6 space-y-6 flex flex-col justify-between">
+              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-4">
+                <div className="flex items-center gap-2 font-mono text-xs font-bold text-[#004C80] uppercase">
+                  <Building2 className="w-4 h-4" />
+                  <span>{isFa ? 'معرفی جامع گروه رفاه صنعت پردیس' : 'Refah Sanat Pardis Institutional Overview'}</span>
+                </div>
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed">
+                  {t.company.aboutText1}
+                </p>
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed">
+                  {t.company.aboutText2}
+                </p>
+              </div>
+
+              {/* 4 Pillars Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {t.company.intersectionItems.map((item, idx) => (
+                  <div key={idx} className="p-5 bg-white border border-[#D5DFE8] hover:border-[#004C80] transition-colors rounded-[1px] space-y-2 group">
+                    <div className="font-mono text-xs font-bold text-[#004C80]">
+                      0{idx + 1} //
+                    </div>
+                    <h3 className="text-sm sm:text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#5C667A] leading-relaxed font-sans">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Maritime Vessel Feature Image */}
+            <div className="lg:col-span-6 h-full flex flex-col">
+              <div className="relative bg-white border border-[#D5DFE8] p-2 rounded-[1px] shadow-lg group overflow-hidden h-full flex flex-col">
+                <div className="relative w-full h-full min-h-[360px] flex-1 overflow-hidden border border-[#D5DFE8]">
+                  <img 
+                    src={bulkVesselImg} 
+                    alt={isFa ? 'کشتی باربری فله‌بر بین‌المللی در آب‌های آزاد' : 'Bulk Carrier Maritime Vessel in International Waters'}
+                    className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                    <Anchor className="w-3.5 h-3.5 text-[#004C80]" />
+                    <span>MARITIME LOGISTICS DESK</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 02 LEADERSHIP & GOVERNANCE SECTION ------------------ */}
+      <section id="leadership" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">02</span>
+                <span>/ {t.leadership.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.leadership.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.leadership.subtitle}
+            </p>
+          </div>
+
+          {/* Leadership Cards Grid - Real 3 Board Members with Clean Neutral Monogram Avatars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {t.leadership.members.map((member) => (
               <div 
                 key={member.id}
                 className={`bg-[#F4F7FA] border transition-all duration-300 flex flex-col justify-between group rounded-[1px] overflow-hidden ${
-                  member.isCeo ? 'border-[#004C80]' : 'border-[#D5DFE8] hover:border-[#004C80]'
+                  member.isCeo ? 'border-[#004C80] shadow-sm' : 'border-[#D5DFE8] hover:border-[#004C80]'
                 }`}
               >
                 <div>
-                  {/* Executive Photo Container */}
-                  <div className="relative h-64 w-full bg-slate-100 overflow-hidden border-b border-[#D5DFE8]">
-                    <img 
-                      src={member.image} 
-                      alt={isFa ? member.nameFa : member.nameEn}
-                      className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-all duration-500 ease-out"
-                      loading="lazy"
-                    />
+                  {/* Architectural Monogram Avatar Placeholder */}
+                  <div className="relative h-60 w-full bg-[#0A1C2E] overflow-hidden border-b border-[#D5DFE8] flex flex-col items-center justify-center text-white select-none">
+                    
+                    {/* Geometric Grid Background */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-30" />
+                    
+                    {/* Monogram Badge */}
+                    <div className="relative z-10 flex flex-col items-center gap-2">
+                      <div className="w-20 h-20 rounded-[1px] bg-[#132A42] border border-sky-400/40 flex items-center justify-center text-2xl font-mono font-extrabold text-sky-400 shadow-inner group-hover:scale-105 group-hover:border-sky-400 transition-all">
+                        {isFa ? member.initialsFa : member.monogram}
+                      </div>
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
+                        {member.isCeo ? 'MANAGING DIRECTOR' : `BOARD MEMBER ${member.badgeNum}`}
+                      </div>
+                    </div>
+
                     <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
                       <ShieldCheck className="w-3.5 h-3.5 text-[#004C80]" />
                       <span>{member.isCeo ? 'MANAGING DIRECTOR' : `MEMBER ${member.badgeNum}`}</span>
@@ -360,609 +430,656 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   </div>
 
                   {/* Member Details */}
-                  <div className="p-5 space-y-2">
+                  <div className="p-6 space-y-2">
                     <div className="text-[11px] font-mono font-bold text-[#004C80] uppercase tracking-wider">
-                      {isFa ? member.roleFa : member.roleEn}
+                      {member.role}
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
-                      {isFa ? member.nameFa : member.nameEn}
+                    <h3 className="text-lg sm:text-xl font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
+                      {member.name}
                     </h3>
-                    <p className="text-xs text-[#5C667A] leading-relaxed font-sans pt-2 border-t border-[#D5DFE8]">
-                      {isFa ? member.bioFa : member.bioEn}
+                    <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans pt-3 border-t border-[#D5DFE8]">
+                      {member.bio}
                     </p>
                   </div>
                 </div>
 
-                {/* Card Footer */}
-                <div className="px-5 py-3 bg-[#E2E8F0] border-t border-[#D5DFE8] flex items-center justify-between text-[10px] font-mono text-[#5C667A]">
-                  <span className="flex items-center gap-1 font-bold text-[#004C80]">
-                    <Award className="w-3.5 h-3.5" />
-                    <span>RSP EXECUTIVE BOARD</span>
-                  </span>
-                  <span className="text-[#0A1C2E] font-bold">VERIFIED</span>
+                <div className="p-6 pt-0">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase pt-2 flex items-center justify-between border-t border-[#D5DFE8]/60">
+                    <span>SECURITY: VERIFIED</span>
+                    <span className="text-[#004C80] font-bold">RSP GOVERNANCE</span>
+                  </div>
                 </div>
+
               </div>
             ))}
-          </div>
-
-          {/* Corporate Governance Bar in Deep Midnight Navy #0A1C2E */}
-          <div className="p-5 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300 shadow-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
-              <span className="font-sans text-slate-200">
-                {isFa 
-                  ? 'راهبری شرکتی و هیأت مدیره رفاه صنعت پردیس متعهد به انضباط مالی، شفافیت معامله‌ها و ارتقای حاکمیت نهادی است.' 
-                  : 'Refah Sanat Pardis corporate governance adheres strictly to transactional transparency, counterparty rigor, and institutional discipline.'}
-              </span>
-            </div>
-            <span className="text-white font-bold shrink-0 font-mono bg-[#132A42] px-3 py-1 border border-[#1E293B] rounded-[1px]">
-              ISO 9001 / ISO 28000 GOVERNANCE COMPLIANT
-            </span>
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ 02 OUR BUSINESS ------------------ */}
-      <section id="business" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
+      {/* ------------------ 03 OUR BUSINESS ------------------ */}
+      <section id="business" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1E293B] gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-white">02</span>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">03</span>
                 <span>/ {t.business.badge}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white uppercase font-sans">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
                 {t.business.title}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-[#94A3B8] max-w-md">
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
               {t.business.subtitle}
             </p>
           </div>
 
-          {/* 3 Major Business Pillars */}
-          <div className="space-y-12">
-            
-            {/* Pillar 1: International Commodity Trading */}
-            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
-                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>02.01</span>
-                  <span>// COMMODITY DESK</span>
-                </div>
-                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
-                  PHYSICAL TRADE & LOGISTICS
-                </span>
-              </div>
+          {/* Division Tabs */}
+          <div className="flex flex-wrap gap-2 mb-10 border-b border-[#D5DFE8] pb-4">
+            {[
+              { id: 'commodity', label: t.business.commodityTrading.title, icon: Layers },
+              { id: 'finance', label: t.business.tradeFinance.title, icon: Coins },
+              { id: 'partnerships', label: t.business.partnerships.title, icon: Handshake },
+            ].map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`px-5 py-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all flex items-center gap-2 cursor-pointer ${
+                    isActive 
+                      ? 'bg-[#004C80] text-white shadow-sm' 
+                      : 'bg-white text-[#5C667A] hover:text-[#0A1C2E] border border-[#D5DFE8]'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-7 space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
-                    {t.business.commodityTrading.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {t.business.commodityTrading.desc}
-                  </p>
+          {/* Division 1: Commodity Trading */}
+          {activeTab === 'commodity' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
+              <div className="lg:col-span-7 bg-white p-8 border border-[#D5DFE8] rounded-[1px] space-y-6 flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div>
+                    <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">DIVISION 01 // PHYSICAL TRADING</span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
+                      {t.business.commodityTrading.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                      {t.business.commodityTrading.desc}
+                    </p>
+                  </div>
 
-                  {/* 6 Commodity items */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     {t.business.commodityTrading.items.map((item, idx) => (
-                      <div 
-                        key={idx}
-                        className="p-3 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
-                      >
-                        <span className="w-1.5 h-1.5 bg-sky-400 shrink-0" />
+                      <div key={idx} className="p-3.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs sm:text-sm font-medium text-[#0A1C2E] flex items-center gap-2.5 rounded-[1px]">
+                        <CheckCircle2 className="w-4 h-4 text-[#004C80] shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Visual Imagery Duo: Golden Grains & Silo Hub */}
-                <div className="lg:col-span-5 grid grid-cols-2 gap-3">
-                  <div className="border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
-                    <div className="relative h-40 overflow-hidden rounded-[1px]">
-                      <img 
-                        src={foodGrainsImg} 
-                        alt="Agro & Food Grains Trade"
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover filter brightness-95 contrast-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-sky-300 font-bold">
-                        {isFa ? 'تجارت غلات و امنیت غذایی' : 'AGRI-GRAINS TRADE'}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
-                    <div className="relative h-40 overflow-hidden rounded-[1px]">
-                      <img 
-                        src={grainSiloImg} 
-                        alt="Grain Silo Elevator Infrastructure"
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover filter brightness-95 contrast-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-sky-300 font-bold">
-                        {isFa ? 'سیلوهای ذخیره‌سازی' : 'SILO INFRASTRUCTURE'}
-                      </div>
-                    </div>
-                  </div>
+                <div className="p-4 bg-[#0A1C2E] text-slate-300 text-xs font-mono rounded-[1px] leading-relaxed">
+                  {t.business.commodityTrading.footnote}
                 </div>
               </div>
 
-              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-[#94A3B8] leading-relaxed rounded-[1px]">
-                {t.business.commodityTrading.footnote}
+              <div className="lg:col-span-5 h-full">
+                <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
+                  <img 
+                    src={foodGrainsImg} 
+                    alt={isFa ? 'تجارت فیزیکی غلات و نهاده‌های دامی و کشاورزی' : 'Agricultural Commodity and Food Grains Physical Trading'}
+                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
+          )}
 
-            {/* Pillar 2: Trade & Supply Chain Finance */}
-            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
-                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>02.02</span>
-                  <span>// LIQUIDITY & STRUCTURING</span>
-                </div>
-                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
-                  CAPITAL & RISK STRUCTURING
-                </span>
-              </div>
+          {/* Division 2: Trade & Supply Chain Finance */}
+          {activeTab === 'finance' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
+              <div className="lg:col-span-7 bg-white p-8 border border-[#D5DFE8] rounded-[1px] space-y-6 flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div>
+                    <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">DIVISION 02 // STRUCTURED LIQUIDITY</span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
+                      {t.business.tradeFinance.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                      {t.business.tradeFinance.desc}
+                    </p>
+                  </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-7 space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
-                    {t.business.tradeFinance.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {t.business.tradeFinance.desc}
-                  </p>
-
-                  {/* 7 Solutions */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     {t.business.tradeFinance.solutions.map((sol, idx) => (
-                      <div 
-                        key={idx}
-                        className="p-3 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
-                      >
-                        <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0" />
+                      <div key={idx} className="p-3.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs sm:text-sm font-medium text-[#0A1C2E] flex items-center gap-2.5 rounded-[1px]">
+                        <Coins className="w-4 h-4 text-[#004C80] shrink-0" />
                         <span>{sol}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Visual Imagery: Container Terminal at Night (24/7 Operations) */}
-                <div className="lg:col-span-5 border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
-                  <div className="relative h-48 sm:h-56 overflow-hidden rounded-[1px]">
-                    <img 
-                      src={containerNightImg} 
-                      alt="Night Port Logistics and Capital Settlement"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover filter brightness-95 contrast-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/90 via-transparent to-transparent" />
-                    <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-emerald-400 font-bold">
-                      24/7 GLOBAL TRADE CLEARING
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3 text-xs font-mono text-white">
-                      <span className="text-emerald-400 font-bold">// DOCUMENTARY SETTLEMENT</span>
-                      <p className="text-[11px] text-slate-300 font-sans mt-0.5">
-                        {isFa ? 'تأمین مالی جریان کالا و صدور اعتبارات اسنادی بدون توقف' : 'Non-stop trade credit & capital structuring for high-volume corridors.'}
-                      </p>
-                    </div>
-                  </div>
+                <div className="p-4 bg-[#0A1C2E] text-slate-300 text-xs font-mono rounded-[1px] leading-relaxed">
+                  {t.business.tradeFinance.footnote}
                 </div>
               </div>
 
-              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-emerald-400/90 leading-relaxed rounded-[1px]">
-                {t.business.tradeFinance.footnote}
+              <div className="lg:col-span-5 h-full">
+                <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
+                  <img 
+                    src={containerNightImg} 
+                    alt={isFa ? 'ترمینال شبانه کانتینری و تسویه اعتبارات اسنادی بانکی' : '24/7 Night Container Terminal and Structured Trade Finance Settlement'}
+                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
+          )}
 
-            {/* Pillar 3: Global Partnerships & Investment */}
-            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
-                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
-                  <span>02.03</span>
-                  <span>// INSTITUTIONAL ECOSYSTEM</span>
-                </div>
-                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
-                  CO-INVESTMENT & JVs
-                </span>
-              </div>
+          {/* Division 3: Partnerships & Investment */}
+          {activeTab === 'partnerships' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
+              <div className="lg:col-span-7 bg-white p-8 border border-[#D5DFE8] rounded-[1px] space-y-6 flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div>
+                    <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">DIVISION 03 // INSTITUTIONAL ECOSYSTEM</span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
+                      {t.business.partnerships.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                      {t.business.partnerships.desc}
+                    </p>
+                  </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-7 space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
-                    {t.business.partnerships.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {t.business.partnerships.desc}
-                  </p>
-
-                  {/* Connectors Banner */}
-                  <div className="p-4 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px]">
-                    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm font-bold text-white">
-                      {t.business.partnerships.connectors.map((connector, idx) => (
-                        <React.Fragment key={idx}>
-                          <span className="px-3 py-1.5 bg-[#132A42] border border-[#1E293B] text-sky-300 rounded-[1px]">
-                            {connector}
-                          </span>
-                          {idx < t.business.partnerships.connectors.length - 1 && (
-                            <span className="text-slate-500 font-normal">|</span>
-                          )}
-                        </React.Fragment>
-                      ))}
-                    </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                    {t.business.partnerships.connectors.map((conn, idx) => (
+                      <div key={idx} className="p-4 bg-[#F4F7FA] border border-[#D5DFE8] text-center rounded-[1px] font-bold text-xs sm:text-sm text-[#004C80]">
+                        {conn}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Visual Imagery: Multimodal Global Transport Hub */}
-                <div className="lg:col-span-5 border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
-                  <div className="relative h-48 sm:h-56 overflow-hidden rounded-[1px]">
-                    <img 
-                      src={multimodalImg} 
-                      alt="Multimodal Global Freight Logistics Hub"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover filter brightness-95 contrast-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/90 via-transparent to-transparent" />
-                    <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-sky-400 font-bold">
-                      MULTIMODAL LOGISTICS NETWORK
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3 text-xs font-mono text-white">
-                      <span className="text-sky-400 font-bold">// INTEGRATED FREIGHT CORRIDORS</span>
-                      <p className="text-[11px] text-slate-300 font-sans mt-0.5">
-                        {isFa ? 'پیوند مسیرهای دریایی، ترانزیت ریلی، هوایی و حمل زمینی' : 'Linking maritime shipping, freight rail networks, and air corridors.'}
-                      </p>
-                    </div>
-                  </div>
+                <div className="p-4 bg-[#0A1C2E] text-slate-300 text-xs font-mono rounded-[1px] leading-relaxed">
+                  {t.business.partnerships.footnote}
                 </div>
               </div>
 
-              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-[#94A3B8] leading-relaxed rounded-[1px]">
-                {t.business.partnerships.footnote}
+              <div className="lg:col-span-5 h-full">
+                <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
+                  <img 
+                    src={agriGrainImg} 
+                    alt={isFa ? 'ترمینال سیلوهای بندری و مبادلات غلات بین‌الملل' : 'Port Grain Silo Elevator Terminal and Trade Finance Corridor'}
+                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
-
-          </div>
+          )}
 
         </div>
       </section>
 
-      {/* ------------------ 03 HOW WE CREATE VALUE ------------------ */}
+      {/* ------------------ 04 VALUE CREATION LIFECYCLE ------------------ */}
       <section id="value" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-3xl mb-16 space-y-4">
-            <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
-              <span className="text-3xl sm:text-5xl font-extrabold">03</span>
-              <span>/ {t.valueCreation.badge}</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
-              {t.valueCreation.title}
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#334155] leading-relaxed">
-              {t.valueCreation.leadText}
-            </p>
-          </div>
-
-          {/* 5 Lifecycle Pillars */}
-          {(() => {
-            const phaseImages = [
-              grainSiloImg,
-              railLogisticsImg,
-              portDuskImg,
-              containerNightImg,
-              bulkVesselImg
-            ];
-            return (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
-                {t.valueCreation.lifecycleSteps.map((step, idx) => (
-                  <div 
-                    key={idx}
-                    className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-all duration-300 rounded-[1px] space-y-3 flex flex-col justify-between group shadow-sm hover:shadow"
-                  >
-                    <div>
-                      {/* Image header */}
-                      <div className="relative h-28 w-full overflow-hidden border border-[#D5DFE8] mb-3 bg-slate-200 rounded-[1px]">
-                        <img 
-                          src={phaseImages[idx]} 
-                          alt={step.title}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-95"
-                        />
-                        <div className="absolute top-1.5 left-1.5 bg-[#0A1C2E]/90 text-white font-mono text-[9px] font-bold px-1.5 py-0.5 rounded-[1px]">
-                          PHASE 0{idx + 1}
-                        </div>
-                      </div>
-
-                      <div className="text-xl font-mono font-extrabold text-[#004C80] mb-1">
-                        {step.step}
-                      </div>
-                      <h3 className="text-sm font-bold text-[#0A1C2E] font-sans mb-1.5 leading-snug">
-                        {step.title}
-                      </h3>
-                      <p className="text-[11px] text-[#5C667A] leading-relaxed">
-                        {step.desc}
-                      </p>
-                    </div>
-                    <div className="pt-2.5 border-t border-[#D5DFE8] text-[9px] font-mono font-bold text-[#004C80] uppercase flex items-center justify-between">
-                      <span>RSP VERIFIED</span>
-                      <ArrowUpRight className="w-3 h-3 text-[#004C80]" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
-
-          {/* Lifecycle Explanation Banner */}
-          <div className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] flex items-center gap-4">
-            <div className="w-2 h-10 bg-[#004C80] shrink-0" />
-            <p className="text-xs sm:text-sm text-[#0A1C2E] font-medium leading-relaxed font-sans">
-              {t.valueCreation.lifecycleExplanation}
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ------------------ 04 OUR MARKETS ------------------ */}
-      <section id="markets" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold">04</span>
+                <span>/ {t.valueCreation.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.valueCreation.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.valueCreation.subtitle}
+            </p>
+          </div>
+
+          <p className="text-sm sm:text-base text-[#5C667A] max-w-3xl mb-12 leading-relaxed font-sans">
+            {t.valueCreation.leadText}
+          </p>
+
+          {/* 5-Phase Horizontal / Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-12">
+            {t.valueCreation.lifecycleSteps.map((step, idx) => (
+              <div 
+                key={idx}
+                className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-all rounded-[1px] space-y-3 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-[11px] font-mono font-bold text-[#004C80] uppercase tracking-wider pb-2 border-b border-[#D5DFE8]">
+                    {step.step}
+                  </div>
+                  <h3 className="text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors mt-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-[#5C667A] leading-relaxed font-sans mt-2">
+                    {step.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                  <span>EXEC: VALIDATED</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#004C80] rtl:rotate-180" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dual Imagery Showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px]">
+              <img 
+                src={grainSiloImg} 
+                alt={isFa ? 'سیلوی نگهداری و بارگیری غلات و کالاهای کشاورزی' : 'Industrial Grain Silo and Bulk Storage Facility'}
+                className="w-full h-64 object-cover filter contrast-105"
+                width={1280}
+                height={714}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px]">
+              <img 
+                src={portDuskImg} 
+                alt={isFa ? 'بندر کانتینری و محوطه باربری ترانزیتی در هنگام غروب' : 'Container Port Cargo Terminal at Dusk'}
+                className="w-full h-64 object-cover filter contrast-105"
+                width={1280}
+                height={714}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          <div className="p-5 bg-[#0A1C2E] text-white rounded-[1px] font-sans text-xs sm:text-sm leading-relaxed border border-[#1E293B]">
+            <span className="font-mono text-sky-400 font-bold uppercase mr-2">{isFa ? 'جمع‌بندی ارزش افزوده:' : 'Value Integration:'}</span>
+            {t.valueCreation.lifecycleExplanation}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 05 STRATEGIC MARKETS & INTERACTIVE MAP ------------------ */}
+      <section id="markets" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">05</span>
                 <span>/ {t.markets.badge}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
                 {t.markets.title}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md">
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
               {t.markets.subtitle}
             </p>
           </div>
 
-          <div className="mb-8">
-            <p className="text-sm sm:text-base text-[#334155] leading-relaxed max-w-3xl">
-              {t.markets.leadText}
+          {/* Region Selector Pills */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8">
+            {t.markets.regions.map((reg) => {
+              const isSelected = activeRegion === reg.id;
+              return (
+                <button
+                  key={reg.id}
+                  onClick={() => setActiveRegion(reg.id)}
+                  className={`p-3 text-left rtl:text-right rounded-[1px] transition-all font-mono text-xs cursor-pointer border ${
+                    isSelected
+                      ? 'bg-[#004C80] text-white border-[#004C80] shadow-sm'
+                      : 'bg-white text-[#0A1C2E] hover:border-[#004C80] border-[#D5DFE8]'
+                  }`}
+                >
+                  <div className={`text-[10px] font-bold uppercase ${isSelected ? 'text-sky-300' : 'text-[#004C80]'}`}>
+                    {reg.code}
+                  </div>
+                  <div className="font-bold font-sans mt-0.5 truncate">
+                    {reg.name}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Interactive Animated SVG Radar & Hub Details Card */}
+          <div className="mb-12">
+            <MarketsAnimatedCard
+              currentLang={currentLang}
+              selectedRegion={selectedRegionObj}
+              closingText={t.markets.closingText}
+              onInquire={onInquire}
+            />
+          </div>
+
+          {/* Multimodal Transport Image Feature */}
+          <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-sm">
+            <img 
+              src={multimodalImg} 
+              alt={isFa ? 'کریدورهای ترانزیت ترکیبی ریلی، جاده‌ای و دریایی' : 'Multimodal Freight Transport Hub and Cross-Border Corridors'}
+              className="w-full h-72 object-cover filter contrast-105"
+              width={1280}
+              height={714}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 06 OPERATIONAL TRACK RECORD & METRICS ------------------ */}
+      <section id="stats" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1E293B] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold text-white">06</span>
+                <span>/ {t.stats.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white uppercase font-sans">
+                {t.stats.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-slate-400 max-w-md leading-relaxed">
+              {t.stats.subtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Region Selector & Corridor Infrastructure Panel */}
-            <div className="lg:col-span-5 space-y-4">
-              
-              {/* Region List Buttons */}
-              <div className="space-y-2 font-mono">
-                {t.markets.regions.map((reg) => (
-                  <button
-                    key={reg.id}
-                    onClick={() => setActiveRegion(reg.id)}
-                    className={`w-full p-3.5 text-left rtl:text-right transition-all flex items-center justify-between border cursor-pointer rounded-[1px] ${
-                      activeRegion === reg.id
-                        ? 'bg-white text-[#0A1C2E] border-[#004C80] shadow-sm font-bold ring-1 ring-[#004C80]/20'
-                        : 'bg-[#F4F7FA] text-[#5C667A] border-[#D5DFE8] hover:bg-white'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-bold text-[#004C80]">[{reg.code}]</span>
-                      <span className="text-sm font-sans">{reg.name}</span>
-                    </div>
-                    <ChevronRight className={`w-4 h-4 rtl:rotate-180 ${activeRegion === reg.id ? 'text-[#004C80]' : 'text-[#5C667A]'}`} />
-                  </button>
-                ))}
+          {/* 4 Concrete Institutional Metrics */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.stats.items.map((stat, idx) => (
+              <div 
+                key={idx}
+                className="p-8 bg-[#071320] border border-[#1E293B] hover:border-sky-400/60 transition-all rounded-[1px] space-y-4 group relative overflow-hidden"
+              >
+                <div className="text-4xl sm:text-5xl font-mono font-extrabold text-sky-400 tracking-tight group-hover:scale-105 transition-transform">
+                  {stat.value}
+                </div>
+                <div className="space-y-1 pt-2 border-t border-[#1E293B]">
+                  <h3 className="text-base sm:text-lg font-bold text-white font-sans">
+                    {stat.label}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-sans leading-relaxed">
+                    {stat.sublabel}
+                  </p>
+                </div>
+                <div className="text-[9px] font-mono text-slate-500 uppercase tracking-widest pt-2">
+                  VERIFIED AUDIT METRIC
+                </div>
               </div>
+            ))}
+          </div>
 
-              {/* Corridor Infrastructure & Global Clearing Panel */}
-              <div className="bg-white border border-[#D5DFE8] p-5 rounded-[1px] space-y-4 shadow-sm">
-                
-                <div className="flex items-center justify-between pb-3 border-b border-[#D5DFE8]">
-                  <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase tracking-wider">
-                    <ShieldCheck className="w-4 h-4 text-[#004C80]" />
-                    <span>{isFa ? 'استانداردها و زیرساخت تسویه' : 'CLEARING & SOURCING INFRASTRUCTURE'}</span>
-                  </div>
-                  <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200 rounded-[1px] font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>ACTIVE</span>
+        </div>
+      </section>
+
+      {/* ------------------ 07 CERTIFICATIONS & COMPLIANCE STRIP ------------------ */}
+      <section id="certifications" className="py-20 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">07</span>
+                <span>/ {t.certifications.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.certifications.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.certifications.subtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.certifications.items.map((cert, idx) => (
+              <div 
+                key={idx}
+                className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-colors rounded-[1px] space-y-3 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-1 bg-[#004C80] text-white font-mono text-xs font-bold rounded-[1px]">
+                    {cert.code}
                   </span>
+                  <Award className="w-5 h-5 text-[#004C80]" />
+                </div>
+                <h3 className="text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
+                  {cert.title}
+                </h3>
+                <p className="text-xs text-[#5C667A] leading-relaxed font-sans">
+                  {cert.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 08 MARKET INTELLIGENCE & TRADE NOTES ------------------ */}
+      <section id="insights" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">08</span>
+                <span>/ {t.insights.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.insights.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.insights.subtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {t.insights.items.map((item) => (
+              <div 
+                key={item.id}
+                className="p-8 bg-white border border-[#D5DFE8] hover:border-[#004C80] transition-all rounded-[1px] flex flex-col justify-between group shadow-sm"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs font-mono text-[#5C667A]">
+                    <span className="px-2.5 py-0.5 bg-[#004C80]/10 text-[#004C80] font-bold rounded-[1px]">
+                      {item.category}
+                    </span>
+                    <span>{item.date}</span>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors leading-snug">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans">
+                    {item.summary}
+                  </p>
                 </div>
 
-                {/* Key Metrics */}
-                <div className="grid grid-cols-3 gap-2 text-center font-mono">
-                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
-                    <div className="text-base font-extrabold text-[#004C80]">6</div>
-                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'قطب تجاری' : 'GLOBAL HUBS'}</div>
-                  </div>
-                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
-                    <div className="text-base font-extrabold text-[#0A1C2E]">100%</div>
-                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'بازرسی SGS' : 'SGS AUDIT'}</div>
-                  </div>
-                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
-                    <div className="text-base font-extrabold text-[#004C80]">24/7</div>
-                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'پایش کریدور' : 'MONITORING'}</div>
-                  </div>
-                </div>
-
-                {/* Structured Features List */}
-                <div className="space-y-2 text-xs text-[#334155] font-sans pt-1">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
-                    <span>{isFa ? 'تسویه چندارزی با درهم (AED)، دلار، یورو، یوآن و روپیه' : 'Multicurrency settlement (AED, USD, EUR, CNY, INR)'}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
-                    <span>{isFa ? 'ساختاردهی اعتبارات اسنادی دیداری و مدت‌دار (LC / CAD / SBLC)' : 'Documentary letters of credit & trade finance (LC / CAD / SBLC)'}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
-                    <span>{isFa ? 'پوشش لجستیک دریایی و چارترینگ تحت اینکوترمز ۲۰۲۰' : 'Maritime logistics, vessel chartering & Incoterms 2020'}</span>
-                  </div>
-                </div>
-
-                {/* Quick Corridor Action */}
-                <div className="pt-2 border-t border-[#D5DFE8]">
+                <div className="pt-6 mt-6 border-t border-[#D5DFE8] flex items-center justify-between">
+                  <span className="text-xs font-mono text-slate-400">
+                    {item.readTime}
+                  </span>
+                  
                   <button
-                    onClick={() => onInquire(`Corridor Sourcing Inquiry: ${selectedRegionObj.name}`)}
-                    className="w-full py-2.5 bg-[#004C80] hover:bg-[#003A63] text-white font-mono font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 rounded-[1px] cursor-pointer"
+                    onClick={() => {
+                      if (openInsightModal) {
+                        openInsightModal(item);
+                      } else {
+                        onInquire(`Insight Inquiry: ${item.title}`);
+                      }
+                    }}
+                    className="text-xs font-mono font-bold text-[#004C80] hover:text-[#003860] flex items-center gap-1.5 cursor-pointer uppercase"
                   >
-                    <span>{isFa ? 'استعلام ظرفیت کریدور و قیمت‌گذاری' : 'Request Corridor Allocation'}</span>
+                    <span>{t.insights.readMore}</span>
                     <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
                   </button>
                 </div>
-
               </div>
-
-            </div>
-
-            {/* World Network Animated Interactive Radar & Corridor Card */}
-            <div className="lg:col-span-7">
-              <MarketsAnimatedCard
-                currentLang={currentLang}
-                selectedRegion={selectedRegionObj}
-                closingText={t.markets.closingText}
-                onInquire={onInquire}
-              />
-            </div>
-
+            ))}
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ 05 WHY RSP (5 INSTITUTIONAL PRINCIPLES) ------------------ */}
-      <section id="why-rsp" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+      {/* ------------------ 09 FREQUENTLY ASKED QUESTIONS (FAQ) ------------------ */}
+      <section id="faq" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            <div className="lg:col-span-4 space-y-4">
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-[#004C80]">05</span>
-                <span>/ {t.whyUs.badge}</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">09</span>
+                <span>/ {t.faq.badge}</span>
               </div>
-
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase leading-tight font-sans">
-                {t.whyUs.title}
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.faq.title}
               </h2>
-
-              <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed pt-2 font-mono">
-                {t.whyUs.subtitle}
-              </p>
             </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.faq.subtitle}
+            </p>
+          </div>
 
-            <div className="lg:col-span-8 divide-y divide-[#D5DFE8] border-t border-b border-[#D5DFE8]">
-              {t.whyUs.principles.map((item, idx) => (
-                <div key={item.id} className="py-6 flex items-start gap-6">
-                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-[#004C80] shrink-0">
-                    0{idx + 1}
-                  </span>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans">
-                        {item.title}
-                      </h3>
-                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] rounded-[1px]">
-                        {item.tag}
+          <div className="max-w-4xl mx-auto space-y-4">
+            {t.faq.items.map((faq) => {
+              const isOpen = activeFaqId === faq.id;
+              return (
+                <div 
+                  key={faq.id}
+                  className={`border transition-all rounded-[1px] overflow-hidden ${
+                    isOpen ? 'border-[#004C80] bg-[#F4F7FA]' : 'border-[#D5DFE8] bg-white hover:border-[#004C80]'
+                  }`}
+                >
+                  <button
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full p-6 text-left rtl:text-right flex items-center justify-between gap-4 cursor-pointer"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-mono uppercase font-bold text-[#004C80]">
+                        [{faq.category}]
                       </span>
+                      <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans">
+                        {faq.question}
+                      </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    <span className={`p-2 rounded-[1px] transition-transform ${isOpen ? 'rotate-180 text-[#004C80]' : 'text-slate-400'}`}>
+                      <ChevronDown className="w-5 h-5" />
+                    </span>
+                  </button>
 
+                  {isOpen && (
+                    <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans border-t border-[#D5DFE8] space-y-3">
+                      <p>{faq.answer}</p>
+                      <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-[#004C80]">
+                        <span>REF: FAQ-DOC-{faq.id.toUpperCase()}</span>
+                        <button
+                          onClick={() => onInquire(`FAQ Follow-up: ${faq.question}`)}
+                          className="hover:underline cursor-pointer font-bold"
+                        >
+                          {isFa ? 'درخواست جزئیات بیشتر ←' : 'Request Further Information →'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ 06 OUR VISION & MISSION ------------------ */}
-      <section id="vision-mission" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
+      {/* ------------------ 10 VISION & MISSION ------------------ */}
+      <section id="vision" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
-              <span>06 / {t.visionMission.badge}</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">10</span>
+                <span>/ {t.visionMission.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {isFa ? 'چشم‌انداز راهبردی و ماموریت عملیاتی' : 'Strategic Vision & Operating Mission'}
+              </h2>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
-              {isFa ? 'چشم‌انداز و ماموریت راهبردی' : 'Vision & Mission'}
-            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Vision Card in Deep Midnight Navy */}
-            <div className="bg-[#0A1C2E] text-white border border-[#1E293B] rounded-[1px] shadow-sm flex flex-col justify-between overflow-hidden">
-              <div className="relative h-44 w-full overflow-hidden border-b border-[#1E293B]">
-                <img 
-                  src={multimodalImg} 
-                  alt="Vision - Global Multimodal Network"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover filter brightness-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E] via-transparent to-transparent" />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-sky-400 font-bold">
-                  // STRATEGIC HORIZON
-                </div>
-              </div>
-
-              <div className="p-8 space-y-4 flex-1">
-                <div className="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest">
-                  // {t.visionMission.visionTitle}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold font-sans leading-snug">
+            <div className="lg:col-span-6 space-y-6">
+              
+              {/* Vision Card */}
+              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3">
+                <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">PURPOSE 01 // STRATEGIC HORIZON</span>
+                <h3 className="text-xl font-bold text-[#0A1C2E] font-sans">
                   {t.visionMission.visionTitle}
                 </h3>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans">
                   {t.visionMission.visionText}
                 </p>
               </div>
-              <div className="p-8 pt-4 border-t border-[#1E293B] text-xs font-mono text-[#94A3B8]">
-                REFAH SANAT PARDIS • STRATEGIC HORIZON
-              </div>
-            </div>
 
-            {/* Mission Card in White */}
-            <div className="bg-white text-[#0A1C2E] border border-[#D5DFE8] rounded-[1px] shadow-sm flex flex-col justify-between overflow-hidden">
-              <div className="relative h-44 w-full overflow-hidden border-b border-[#D5DFE8]">
-                <img 
-                  src={cargoPortImg} 
-                  alt="Mission - Trade Execution Rigor"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover filter brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
-                <div className="absolute top-3 left-3 bg-white/95 border border-[#D5DFE8] px-2.5 py-1 text-[10px] font-mono text-[#004C80] font-bold">
-                  // OPERATIONAL EXCELLENCE
-                </div>
-              </div>
-
-              <div className="p-8 space-y-4 flex-1">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-widest">
-                  // {t.visionMission.missionTitle}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold font-sans leading-snug">
+              {/* Mission Card */}
+              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3">
+                <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">PURPOSE 02 // OPERATIONAL EXECUTION</span>
+                <h3 className="text-xl font-bold text-[#0A1C2E] font-sans">
                   {t.visionMission.missionTitle}
                 </h3>
-                <p className="text-sm sm:text-base text-[#334155] leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans">
                   {t.visionMission.missionText}
                 </p>
               </div>
-              <div className="p-8 pt-4 border-t border-[#D5DFE8] text-xs font-mono text-[#5C667A]">
-                DISCIPLINED EXECUTION • COMPLIANCE RIGOR
+
+            </div>
+
+            {/* Rail Logistics Infrastructure Image */}
+            <div className="lg:col-span-6">
+              <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden">
+                <img 
+                  src={railLogisticsImg} 
+                  alt={isFa ? 'ترانزیت باری ریلی و زیرساخت‌های اتصال تجاری' : 'Overland Freight Rail Infrastructure and Logistics Terminal'}
+                  className="w-full h-80 sm:h-96 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  width={1280}
+                  height={714}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
 
@@ -971,166 +1088,252 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ CLOSING PARTNERSHIP STATEMENT & CTA ------------------ */}
-      <section id="partnership" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      {/* ------------------ 11 WHY REFАН SANAT PARDIS ------------------ */}
+      <section id="why-us" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#132A42] text-sky-400 text-xs font-mono font-bold uppercase tracking-widest rounded-[1px] border border-[#1E293B]">
-            <span>{t.finalCta.category}</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">11</span>
+                <span>/ {t.whyUs.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.whyUs.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.whyUs.subtitle}
+            </p>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase max-w-4xl mx-auto font-sans">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {t.whyUs.principles.map((p) => (
+              <div 
+                key={p.id}
+                className="p-8 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-all rounded-[1px] space-y-4 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-[#004C80] tracking-wider">
+                    {p.tag}
+                  </span>
+                  <CheckCircle2 className="w-5 h-5 text-[#004C80]" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
+                  {p.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans">
+                  {p.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 12 FINAL CTA BANNER (DE-DUPLICATED HEADLINE) ------------------ */}
+      <section className="py-20 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#132A42] border border-[#1E3A5F] text-sky-400 font-mono text-xs font-bold uppercase rounded-[1px]">
+            {t.finalCta.category}
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold uppercase font-sans text-white max-w-3xl mx-auto leading-tight">
             {t.finalCta.tagline}
           </h2>
-
-          <p className="text-base sm:text-xl text-sky-300 font-mono font-bold max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-sans">
             {t.finalCta.invitation}
           </p>
-
-          <div className="pt-4 font-mono flex flex-wrap items-center justify-center gap-4">
+          <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
               href="#contact"
               onClick={(e) => handleAnchorClick(e, '#contact')}
-              className="bg-white hover:bg-slate-100 text-[#0A1C2E] px-8 py-4 text-xs font-extrabold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] shadow-md border border-white hover:border-slate-200"
+              className="bg-sky-500 hover:bg-sky-400 text-[#0A1C2E] px-8 py-3.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all flex items-center gap-2 cursor-pointer shadow-lg"
             >
               <span>{t.finalCta.primaryCta}</span>
-              <ArrowRight className="w-4 h-4 rtl:rotate-180 text-[#004C80]" />
+              <ArrowRight className="w-4 h-4 rtl:rotate-180" />
             </a>
-
             <a
               href="#business"
               onClick={(e) => handleAnchorClick(e, '#business')}
-              className="bg-[#132A42] hover:bg-[#1E3A5F] text-white px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center rounded-[1px] border border-[#1E293B]"
+              className="border border-[#334155] hover:border-sky-400 text-white px-8 py-3.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider rounded-[1px] transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>{t.finalCta.secondaryCta}</span>
             </a>
           </div>
-
         </div>
       </section>
 
-      {/* ------------------ 07 CONTACT (COMMERCIAL INQUIRY PORTAL) ------------------ */}
-      <section id="contact" className="py-20 bg-[#F4F7FA] text-[#0A1C2E] border-t border-[#D5DFE8]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ------------------ 13 STATIC CONTACT DESK (NO FORM) ------------------ */}
+      <section id="contact" className="py-24 bg-[#F4F7FA] text-[#0A1C2E]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="space-y-8">
-            <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
-              <span className="text-3xl font-extrabold">07</span>
-              <span>/ {t.contact.badge}</span>
-            </div>
-
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#D5DFE8]">
-              <div>
-                <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
-                  {t.contact.title}
-                </h2>
-                <p className="text-xs sm:text-sm font-mono text-[#004C80] font-bold mt-1">
-                  REFAH SANAT PARDIS • INTERNATIONAL COMMERCIAL DESK
-                </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
+            <div>
+              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
+                <span className="text-3xl font-extrabold">13</span>
+                <span>/ {t.contact.badge}</span>
               </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+                {t.contact.title}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md leading-relaxed">
+              {t.contact.subtitle}
+            </p>
+          </div>
 
-              <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed max-w-md">
-                {t.contact.subtitle}
+          {/* Clean Institutional Contact Desk */}
+          <div className="max-w-4xl mx-auto bg-white border border-[#D5DFE8] p-8 sm:p-12 rounded-[1px] shadow-sm space-y-8">
+            
+            <div className="space-y-2 border-b border-[#D5DFE8] pb-6">
+              <span className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-wider">
+                CENTRAL HEADQUARTERS & GLOBAL DESK
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] font-sans">
+                {t.contact.officeTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5C667A] font-sans">
+                {t.contact.officeDesc}
               </p>
             </div>
 
-            {/* Direct Contact Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Direct Coordinates Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
-              {/* Headquarters Address */}
-              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
-                    <MapPin className="w-4 h-4 shrink-0" />
-                    <span>{t.contact.officeTitle}</span>
-                  </div>
-                  <p className="text-xs text-[#5C667A] leading-relaxed">
-                    {t.contact.officeDesc}
-                  </p>
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <MapPin className="w-4 h-4" />
+                  <span>{isFa ? 'نشانی دفتر مرکزی' : 'Headquarters Address'}</span>
                 </div>
-                <p className="text-xs font-sans font-bold text-[#0A1C2E] pt-3 border-t border-[#D5DFE8]">
+                <p className="text-sm font-semibold text-[#0A1C2E] font-sans">
                   {t.contact.address}
                 </p>
               </div>
 
-              {/* Email Desk */}
-              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
-                    <Mail className="w-4 h-4 shrink-0" />
-                    <span>EMAIL DESK</span>
-                  </div>
-                  <p className="text-xs text-[#5C667A] font-sans">
-                    {isFa ? 'پاسخگویی مستقیم به استعلام‌های کالایی و بانکی' : 'Direct response for commodity and banking inquiries'}
-                  </p>
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <Clock className="w-4 h-4" />
+                  <span>{isFa ? 'ساعات کاری میز بازرگانی' : 'Desk Operating Hours'}</span>
                 </div>
-                <div className="pt-3 border-t border-[#D5DFE8]">
-                  <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.email}</p>
-                </div>
+                <p className="text-sm font-semibold text-[#0A1C2E] font-sans">
+                  {t.contact.hours}
+                </p>
               </div>
 
-              {/* Direct Trading Line */}
-              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
-                    <Phone className="w-4 h-4 shrink-0" />
-                    <span>DIRECT TRADING LINE</span>
-                  </div>
-                  <p className="text-xs text-[#5C667A] font-sans">
-                    {t.contact.hours}
-                  </p>
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <Mail className="w-4 h-4" />
+                  <span>{isFa ? 'پست الکترونیک رسمی' : 'Corporate Email'}</span>
                 </div>
-                <div className="pt-3 border-t border-[#D5DFE8]">
-                  <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.phone}</p>
+                <a 
+                  href={`mailto:${t.contact.email}`}
+                  className="text-base font-bold text-[#004C80] hover:underline font-mono"
+                >
+                  {t.contact.email}
+                </a>
+              </div>
+
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <Phone className="w-4 h-4" />
+                  <span>{isFa ? 'تلفن تماس مستقیم' : 'Direct Telephone'}</span>
                 </div>
+                <a 
+                  href={`tel:+982188004450`}
+                  className="text-base font-bold text-[#004C80] hover:underline font-mono"
+                  dir="ltr"
+                >
+                  {t.contact.phone}
+                </a>
               </div>
 
             </div>
 
-            {/* Compliance Banner */}
-            <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono shadow-sm">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-                <span className="text-white font-bold text-xs">ISO 28000 & ISO 9001 GOVERNANCE CERTIFIED</span>
+            {/* Compliance & Integrity Banner */}
+            <div className="p-5 bg-[#0A1C2E] text-white rounded-[1px] border border-[#1E293B] space-y-1.5">
+              <div className="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase">
+                <ShieldCheck className="w-4 h-4" />
+                <span>{t.contact.complianceTitle}</span>
               </div>
-              <span className="text-sky-400 font-mono text-xs">REFAH SANAT PARDIS • COMMERCIAL DESK</span>
+              <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                {t.contact.complianceText}
+              </p>
             </div>
+
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ INSTITUTIONAL FOOTER ------------------ */}
-      <footer className="bg-[#0A1C2E] text-[#94A3B8] py-12 border-t border-[#1E293B] font-mono text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ------------------ FOOTER ------------------ */}
+      <footer className="bg-[#0A1C2E] text-slate-400 border-t border-[#1E293B] py-16 text-xs font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[#1E293B]">
-            <div className="md:col-span-6 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 bg-white border border-white flex items-center justify-center p-1 shrink-0 rounded-[1px]">
-                  <Logo className="w-full h-full text-[#004C80]" />
-                </div>
-                <span className="font-bold text-white text-sm tracking-widest uppercase">
-                  {isFa ? 'رفاه صنعت پردیس' : 'REFAH SANAT PARDIS'}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <div className="md:col-span-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <Logo size="md" />
+                <span className="text-lg font-bold text-white uppercase font-sans">
+                  {t.brand}
                 </span>
               </div>
-              <p className="text-xs text-[#94A3B8] leading-relaxed max-w-md font-sans">
+              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed">
                 {t.footer.description}
               </p>
+              <div className="font-mono text-[10px] text-sky-400">
+                REGISTRATION: TEHRAN • CLEARING: MULTI-CURRENCY
+              </div>
             </div>
 
-            <div className="md:col-span-6 flex flex-col md:items-end justify-between space-y-3">
-              <div className="flex items-center gap-6">
-                <button onClick={openTerms} className="hover:text-white transition-colors cursor-pointer">
-                  &gt; {t.footer.termsTitle}
-                </button>
-                <button onClick={openPrivacy} className="hover:text-white transition-colors cursor-pointer">
-                  &gt; {t.footer.privacyTitle}
-                </button>
+            <div className="md:col-span-3 space-y-3 font-mono">
+              <div className="text-white font-bold uppercase tracking-wider text-xs">
+                {t.footer.quickLinksTitle}
               </div>
-              <div className="text-[11px] text-[#94A3B8]">
-                © {new Date().getFullYear()} REFAH SANAT PARDIS TRADING CO. // INSTITUTIONAL EDITION
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#about" onClick={(e) => handleAnchorClick(e, '#about')} className="hover:text-white transition-colors">{t.nav.about}</a></li>
+                <li><a href="#leadership" onClick={(e) => handleAnchorClick(e, '#leadership')} className="hover:text-white transition-colors">{t.nav.leadership}</a></li>
+                <li><a href="#business" onClick={(e) => handleAnchorClick(e, '#business')} className="hover:text-white transition-colors">{t.nav.business}</a></li>
+                <li><a href="#markets" onClick={(e) => handleAnchorClick(e, '#markets')} className="hover:text-white transition-colors">{t.nav.markets}</a></li>
+                <li><a href="#stats" onClick={(e) => handleAnchorClick(e, '#stats')} className="hover:text-white transition-colors">{t.nav.stats}</a></li>
+                <li><a href="#insights" onClick={(e) => handleAnchorClick(e, '#insights')} className="hover:text-white transition-colors">{t.nav.insights}</a></li>
+                <li><a href="#faq" onClick={(e) => handleAnchorClick(e, '#faq')} className="hover:text-white transition-colors">{t.nav.faq}</a></li>
+              </ul>
+            </div>
+
+            <div className="md:col-span-3 space-y-3 font-mono">
+              <div className="text-white font-bold uppercase tracking-wider text-xs">
+                {t.footer.positioningTitle}
               </div>
+              <div className="text-slate-400 space-y-2 text-xs">
+                <p>• {isFa ? 'تجارت فیزیکی کالا و فولاد' : 'Physical Commodity & Steel Trading'}</p>
+                <p>• {isFa ? 'اعتبارات اسنادی و تامین مالی (L/C)' : 'Documentary Credits & Trade Finance'}</p>
+                <p>• {isFa ? 'ترانزیت و لجستیک چندوجهی' : 'Multimodal Freight Transit'}</p>
+                <p>• {isFa ? 'مشارکت‌های نهادی و سرمایه‌گذاری' : 'Institutional Investment Networks'}</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="pt-8 border-t border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-500">
+            <div>
+              © {new Date().getFullYear()} {t.footer.rights}
+            </div>
+
+            <div className="flex items-center gap-6">
+              <button 
+                onClick={openTerms}
+                className="hover:text-slate-300 transition-colors cursor-pointer"
+              >
+                {t.footer.termsTitle}
+              </button>
+              <button 
+                onClick={openPrivacy}
+                className="hover:text-slate-300 transition-colors cursor-pointer"
+              >
+                {t.footer.privacyTitle}
+              </button>
             </div>
           </div>
 

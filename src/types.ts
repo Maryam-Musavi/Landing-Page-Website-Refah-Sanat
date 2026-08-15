@@ -17,6 +17,9 @@ export interface TranslationContent {
     business: string;
     value: string;
     markets: string;
+    stats: string;
+    insights: string;
+    faq: string;
     whyUs: string;
     visionMission: string;
     contact: string;
@@ -44,16 +47,30 @@ export interface TranslationContent {
       desc: string;
     }[];
   };
+  stats: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    items: {
+      value: string;
+      label: string;
+      sublabel: string;
+    }[];
+  };
   leadership: {
     badge: string;
     title: string;
     subtitle: string;
     members: {
       id: string;
+      badgeNum: string;
       name: string;
       role: string;
       bio: string;
+      monogram: string;
+      initialsFa: string;
       image: string;
+      isCeo?: boolean;
     }[];
   };
   business: {
@@ -101,8 +118,46 @@ export interface TranslationContent {
       name: string;
       desc: string;
       code: string;
+      coords: { x: number; y: number };
+      city: string;
+      cityFa: string;
     }[];
     closingText: string;
+  };
+  certifications: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    items: {
+      code: string;
+      title: string;
+      desc: string;
+    }[];
+  };
+  insights: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    readMore: string;
+    items: {
+      id: string;
+      date: string;
+      category: string;
+      title: string;
+      summary: string;
+      readTime: string;
+    }[];
+  };
+  faq: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    items: {
+      id: string;
+      question: string;
+      answer: string;
+      category: string;
+    }[];
   };
   whyUs: {
     badge: string;
@@ -134,28 +189,14 @@ export interface TranslationContent {
     badge: string;
     title: string;
     subtitle: string;
-    formTitle: string;
-    nameLabel: string;
-    namePlaceholder: string;
-    companyLabel: string;
-    companyPlaceholder: string;
-    emailLabel: string;
-    emailPlaceholder: string;
-    phoneLabel: string;
-    phonePlaceholder: string;
-    inquiryTypeLabel: string;
-    messageLabel: string;
-    messagePlaceholder: string;
-    submitBtn: string;
-    submittingBtn: string;
-    successMessage: string;
-    referenceCode: string;
     officeTitle: string;
     officeDesc: string;
     address: string;
     email: string;
     phone: string;
     hours: string;
+    complianceTitle: string;
+    complianceText: string;
   };
   footer: {
     description: string;

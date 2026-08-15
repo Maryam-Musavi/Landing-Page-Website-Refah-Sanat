@@ -13,13 +13,18 @@ export default function App() {
   const isFaRoute = location.pathname.startsWith('/fa');
   const currentLang: Language = isFaRoute ? 'fa' : 'en';
 
-  // Modal State for Legal Notices
+  // Modal State for Legal Notices and Insights
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
+  const [modalType, setModalType] = useState<'legal' | 'insight'>('legal');
   const [legalContent, setLegalContent] = useState<{ title: string; body: string } | null>(null);
-
-  // Pre-filled Note for Contact Form
-  const [prefilledNotes, setPrefilledNotes] = useState('');
+  const [insightContent, setInsightContent] = useState<{
+    date: string;
+    category: string;
+    title: string;
+    summary: string;
+    readTime: string;
+  } | null>(null);
 
   // Set html lang and dir immediately upon route change
   useLayoutEffect(() => {
@@ -124,7 +129,17 @@ export default function App() {
 
   const handleOpenLegal = (title: string, body: string) => {
     setLegalContent({ title, body });
+    setInsightContent(null);
+    setModalType('legal');
     setModalTitle(title);
+    setModalOpen(true);
+  };
+
+  const handleOpenInsight = (insight: { date: string; category: string; title: string; summary: string; readTime: string }) => {
+    setInsightContent(insight);
+    setLegalContent(null);
+    setModalType('insight');
+    setModalTitle(insight.title);
     setModalOpen(true);
   };
 
@@ -147,9 +162,6 @@ export default function App() {
   };
 
   const scrollToContact = (contextNote?: string) => {
-    if (contextNote) {
-      setPrefilledNotes(contextNote);
-    }
     const element = document.getElementById('contact');
     if (element) {
       const offset = 80;
@@ -174,16 +186,18 @@ export default function App() {
         onInquire={(ctx) => scrollToContact(ctx)}
         openTerms={openTermsModal}
         openPrivacy={openPrivacyModal}
+        openInsightModal={handleOpenInsight}
       />
 
-      {/* Shared Legal Dialog Modal */}
+      {/* Shared Dialog Modal (Legal + Insight Briefings) */}
       <DetailModal
         currentLang={currentLang}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         title={modalTitle}
-        type="legal"
+        type={modalType}
         legalContent={legalContent}
+        insightContent={insightContent}
         onInquire={(ctx) => scrollToContact(`Inquiry regarding: ${ctx}`)}
       />
     </div>
