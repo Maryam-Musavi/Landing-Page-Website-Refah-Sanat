@@ -25,6 +25,7 @@ import {
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Logo } from './Logo';
+import { MarketsAnimatedCard } from './MarketsAnimatedCard';
 
 interface EditorialIndustrialMainProps {
   currentLang: Language;
@@ -48,15 +49,15 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
   // Form State
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
+    fullName: '',
+    companyName: '',
     email: '',
     phone: '',
-    inquiryType: 'Commodity Purchase / Sale',
+    inquiryType: 'commodity_trading',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
   const [refCode, setRefCode] = useState('');
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -64,8 +65,8 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setRefCode(`RSP-EDI-${Math.floor(100000 + Math.random() * 900000)}`);
+      setFormSuccess(true);
+      setRefCode(`RSP-TRD-${Math.floor(100000 + Math.random() * 900000)}`);
     }, 1200);
   };
 
@@ -136,18 +137,16 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
           </a>
 
-          {/* CENTER / RIGHT: Navigation Links with Active Indicator */}
+          {/* CENTER / RIGHT: Streamlined Essential Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-[#5C667A]">
             {[
-              { id: 'home', label: isFa ? 'صفحه اصلی' : 'HOME' },
               { id: 'company', label: isFa ? 'درباره ما' : 'COMPANY' },
-              { id: 'leadership', label: isFa ? 'مدیریت و هیأت مدیره' : 'LEADERSHIP' },
-              { id: 'capabilities', label: isFa ? 'قابلیت‌ها' : 'CAPABILITIES' },
-              { id: 'industries', label: isFa ? 'صنایع' : 'INDUSTRIES' },
+              { id: 'leadership', label: isFa ? 'هیأت مدیره' : 'LEADERSHIP' },
+              { id: 'business', label: isFa ? 'حوزه‌های کسب‌وکار' : 'OUR BUSINESS' },
+              { id: 'value', label: isFa ? 'خلق ارزش' : 'VALUE CREATION' },
               { id: 'markets', label: isFa ? 'بازارها' : 'MARKETS' },
-              { id: 'why-rsp', label: isFa ? 'رویکرد' : 'APPROACH' },
-              { id: 'partnership', label: isFa ? 'شراکت' : 'PARTNERSHIP' },
-              { id: 'contact', label: isFa ? 'تماس' : 'CONTACT' },
+              { id: 'why-rsp', label: isFa ? 'چرا RSP' : 'WHY RSP' },
+              { id: 'contact', label: isFa ? 'ارتباط با ما' : 'CONTACT' },
             ].map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -156,7 +155,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   href={`#${link.id}`}
                   onClick={(e) => handleAnchorClick(e, `#${link.id}`)}
                   className={`relative py-1 transition-colors hover:text-[#0A1C2E] ${
-                    isActive ? 'text-[#0A1C2E]' : 'text-[#5C667A]'
+                    isActive ? 'text-[#004C80] font-extrabold' : 'text-[#5C667A]'
                   }`}
                 >
                   <span>{link.label}</span>
@@ -192,7 +191,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </header>
 
       {/* ------------------ HERO SECTION (EDITORIAL INDUSTRIAL) ------------------ */}
-      <section id="home" className="relative py-20 lg:py-28 border-b border-[#D5DFE8] bg-white">
+      <section id="home" className="relative py-16 lg:py-24 border-b border-[#D5DFE8] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -200,43 +199,57 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             {/* LEFT COLUMN */}
             <div className="lg:col-span-7 space-y-6">
               
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
                 <span className="w-1.5 h-1.5 bg-[#004C80]" />
-                <span>RSP / INTERNATIONAL TRADE & FINANCIAL SOLUTIONS</span>
+                <span>{t.hero.badge}</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0A1C2E] leading-[1.1] tracking-tight uppercase font-sans">
                 {isFa ? (
-                  <>اتصال تجارت جهانی<br /><span className="text-[#004C80]">با تامین مالی بین‌المللی</span></>
+                  <>پیوند تجارت جهانی<br /><span className="text-[#004C80]">با تامین مالی جهانی</span></>
                 ) : (
                   <>Connecting Global Trade<br /><span className="text-[#004C80]">with Global Finance</span></>
                 )}
               </h1>
 
-              <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed max-w-2xl">
-                {isFa 
-                  ? 'شرکت رفاه صنعت پردیس به عنوان یک گروه بازرگانی و تامین مالی بین‌المللی، زمینه‌ساز تسهیل تبادلات تجاری، گشایش اعتبارات اسنادی و تامین پایدار کالاهای اساسی و صنعتی در کریدورهای جهانی است.'
-                  : 'Refah Sanat Pardis operates as a premier international trading and financial solutions holding, facilitating cross-border physical commodity streams, trade credit facilities, and industrial supply chain stability.'
-                }
-              </p>
+              <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
+                <p className="font-semibold text-[#0A1C2E]">
+                  {t.hero.introParagraph1}
+                </p>
+                <p className="text-[#5C667A]">
+                  {t.hero.introParagraph2}
+                </p>
+              </div>
+
+              {/* Intersection Tags */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {t.hero.intersectionTags.map((tag, idx) => (
+                  <span 
+                    key={idx} 
+                    className="px-2.5 py-1 bg-[#F4F7FA] border border-[#D5DFE8] text-[11px] font-mono font-semibold text-[#0A1C2E] rounded-[1px]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
               {/* CTAs */}
               <div className="pt-2 flex flex-wrap gap-4 items-center font-mono">
                 <a
-                  href="#capabilities"
-                  onClick={(e) => handleAnchorClick(e, '#capabilities')}
-                  className="bg-[#004C80] hover:bg-[#003A63] text-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#004C80]"
+                  href="#contact"
+                  onClick={(e) => handleAnchorClick(e, '#contact')}
+                  className="bg-[#004C80] hover:bg-[#003A63] text-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] border border-[#004C80] shadow-sm"
                 >
-                  <span>{isFa ? 'بررسی قابلیت‌ها' : 'EXPLORE CAPABILITIES'}</span>
+                  <span>{t.hero.primaryCta}</span>
                   <ArrowRight className="w-4 h-4 rtl:rotate-180 text-white" />
                 </a>
 
                 <a
-                  href="#contact"
-                  onClick={(e) => handleAnchorClick(e, '#contact')}
+                  href="#business"
+                  onClick={(e) => handleAnchorClick(e, '#business')}
                   className="bg-[#F4F7FA] hover:bg-[#E2E8F0] text-[#0A1C2E] px-7 py-3.5 text-xs font-bold uppercase tracking-widest border border-[#D5DFE8] transition-all inline-flex items-center rounded-[1px]"
                 >
-                  <span>{isFa ? 'درخواست تجاری' : 'COMMERCIAL INQUIRY'}</span>
+                  <span>{t.hero.secondaryCta}</span>
                 </a>
               </div>
 
@@ -261,7 +274,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             {/* RIGHT COLUMN: Large Editorial Photography */}
             <div className="lg:col-span-5">
               <div className="relative border border-[#D5DFE8] bg-[#F4F7FA] p-2 shadow-lg">
-                <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-slate-100">
+                <div className="relative h-96 sm:h-[450px] w-full overflow-hidden bg-slate-100">
                   <img 
                     src="/images/hero-port.jpg" 
                     alt="Maritime Container Terminal"
@@ -276,13 +289,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
                   <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-[#D5DFE8] p-4 text-xs font-mono">
                     <div className="flex items-center justify-between text-[#0A1C2E] font-bold mb-1">
-                      <span className="text-[#004C80]">GLOBAL MARKETS</span>
-                      <span>TRADE / FINANCE</span>
+                      <span className="text-[#004C80]">TRADE • FINANCE • INVESTMENT</span>
+                      <span>REF: 2026-HQ</span>
                     </div>
                     <p className="text-[11px] text-[#5C667A] font-sans">
                       {isFa 
-                        ? 'تامین مستقیم نهاده‌های انرژی، فلزات و محصولات پتروشیمی با اعتبارات اسنادی' 
-                        : 'Structured physical commodity trade backed by LC issuance & multilateral clearing.'}
+                        ? 'تسهیل تجارت فرامرزی، ساختاردهی تامین مالی تجاری و پیوند کسب‌وکارها در بازارهای جهانی' 
+                        : 'Facilitating cross-border trade, structuring trade finance, and connecting global commercial partners.'}
                     </p>
                   </div>
                 </div>
@@ -304,56 +317,41 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="lg:col-span-5 space-y-4">
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest">
                 <span className="text-3xl sm:text-5xl font-extrabold text-[#004C80]">01</span>
-                <span>/ {isFa ? 'درباره رفاه صنعت پردیس' : 'WHO WE ARE'}</span>
+                <span>/ {t.company.badge}</span>
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
-                {isFa 
-                  ? 'ایجاد ارتباطات تجاری پایدار میان بازارها، صنایع و اکوسیستم‌های مالی بین‌المللی.'
-                  : 'Building commercial connections across markets, industries, and financial ecosystems.'
-                }
+                {t.company.title}
               </h2>
+
+              <p className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-wider">
+                {t.company.subtitle}
+              </p>
             </div>
 
             {/* RIGHT COLUMN: Detailed Description & Capabilities Divider List */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
                 <p className="font-semibold text-[#0A1C2E]">
-                  {isFa 
-                    ? 'گروه بازرگانی رفاه صنعت پردیس با تکیه بر بیش از یک دهه تجربه مستمر در بازارهای بین‌المللی، به عنوان بازوی اجرایی و تجاری شرکت‌های تولیدی و صنعتی فعالیت می‌نماید.'
-                    : 'Refah Sanat Pardis serves as an integrated commercial desk and trade finance partner for major industrial enterprises, international buyers, and global commodity producers.'
-                  }
+                  {t.company.aboutText1}
                 </p>
                 <p>
-                  {isFa
-                    ? 'تمرکز ما بر گشایش اعتبارات، مدیریت ریسک نوسانات قیمت، تامین مواد اولیه فلزی و پتروشیمی و برقراری زنجیره‌های تامین منعطف در حوزه خاورمیانه، آسیا و اروپا است.'
-                    : 'Our operational scope bridges physical sourcing, custom trade credit structuring, risk hedging, and logistics management across Middle Eastern, Asian, and European trade corridors.'
-                  }
+                  {t.company.aboutText2}
                 </p>
               </div>
 
-              {/* Horizontal Capabilities Row with Thin Vertical Dividers */}
-              <div className="pt-6 border-t border-[#D5DFE8] grid grid-cols-2 sm:grid-cols-5 gap-4 font-mono text-xs text-[#0A1C2E] font-bold uppercase tracking-wider">
-                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#004C80] mb-1">01.01</div>
-                  <span>TRADE</span>
-                </div>
-                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#004C80] mb-1">01.02</div>
-                  <span>FINANCE</span>
-                </div>
-                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#004C80] mb-1">01.03</div>
-                  <span>COMMODITIES</span>
-                </div>
-                <div className="pr-2 border-r border-[#D5DFE8] rtl:border-l rtl:border-r-0">
-                  <div className="text-[10px] text-[#004C80] mb-1">01.04</div>
-                  <span>SUPPLY CHAIN</span>
-                </div>
-                <div>
-                  <div className="text-[10px] text-[#004C80] mb-1">01.05</div>
-                  <span>INVESTMENT</span>
-                </div>
+              {/* 4 Intersection Pillars */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#D5DFE8]">
+                {t.company.intersectionItems.map((item, idx) => (
+                  <div key={idx} className="p-4 bg-white border border-[#D5DFE8] rounded-[1px] space-y-1.5 shadow-sm">
+                    <div className="text-xs font-bold text-[#004C80] font-mono uppercase">
+                      01.0{idx + 1} // {item.title}
+                    </div>
+                    <p className="text-xs text-[#5C667A] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
 
             </div>
@@ -414,10 +412,10 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               {
                 id: 'm3',
                 badgeNum: '03',
-                nameFa: 'مریم‌سادات حسینی',
-                nameEn: 'Maryam Sadat Hosseini',
-                roleFa: 'مدیر ارشد مالی و متخصص تامین مالی تجارت',
-                roleEn: 'Chief Financial Officer & Trade Finance Specialist',
+                nameFa: 'سید مسعود کاظمی',
+                nameEn: 'Seyyed Masoud Kazemi',
+                roleFa: 'عضو هیأت مدیره',
+                roleEn: 'Member of the Board of Directors',
                 bioFa: 'با سابقه مدیریت بانکداری شرکتی و تخصصی در اعتبارات اسنادی (L/C)، SBLC و مکانیزم‌های تسویه ارزی چندگانه.',
                 bioEn: 'Former senior trade banker specializing in L/C, SBLC, structured supply chain credit, and Multi-FX settlement mechanisms.',
                 image: '/images/executive-3.jpg',
@@ -489,247 +487,209 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 03 CAPABILITIES (STRUCTURED HORIZONTAL ROWS IN DEEP NAVY #0A1C2E) ------------------ */}
-      <section id="capabilities" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
+      {/* ------------------ 03 OUR BUSINESS ------------------ */}
+      <section id="business" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1E293B] gap-4">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold text-white">03</span>
-                <span>/ {isFa ? 'قابلیت‌های بازرگانی و مالی' : 'CAPABILITIES'}</span>
+                <span>/ {t.business.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-white uppercase font-sans">
-                {isFa ? 'خدمات ساختاریافته تجارت و تامین مالی' : 'Structured Trading & Financial Services'}
+                {t.business.title}
               </h2>
             </div>
             <p className="text-xs sm:text-sm font-mono text-[#94A3B8] max-w-md">
-              {isFa ? 'راهکارهای تجاری یکپارچه برای زنجیره‌های تامین بین‌المللی' : 'Integrated solution sets powering cross-border commercial execution'}
+              {t.business.subtitle}
             </p>
           </div>
 
-          {/* Horizontal Rows Capabilities List */}
-          <div className="divide-y divide-[#1E293B] border-t border-b border-[#1E293B]">
-            {[
-              {
-                num: '01',
-                titleEn: 'INTERNATIONAL TRADING',
-                titleFa: 'تجارت و بازرگانی بین‌المللی',
-                descEn: 'Cross-border sourcing, procurement, and physical commercial transactions for industrial commodities.',
-                descFa: 'تامین، خرید و مبادلات تجاری فرامری کالاها و نهاده‌های خام صنعتی در بازارهای هدف.',
-              },
-              {
-                num: '02',
-                titleEn: 'TRADE FINANCE',
-                titleFa: 'تامین مالی تجارت و اعتبار',
-                descEn: 'Structured financial solutions, LC facilities, credit instruments, and treasury risk mitigation.',
-                descFa: 'ارائه ابزارهای اعتباری، گشایش اعتبارات اسنادی (LC) و مدیریت ریسک‌های تسویه ارزی.',
-              },
-              {
-                num: '03',
-                titleEn: 'COMMODITY MARKETS',
-                titleFa: 'بازارهای کالایی و نهاده‌ها',
-                descEn: 'Direct access to physical energy, petrochemicals, fertilizers, steel, and agricultural flows.',
-                descFa: 'دسترسی مستقیم به محموله‌های انرژی، فرآورده‌های نفتی، پتروشیمی، فلزات و نهاده‌های کشاورزی.',
-              },
-              {
-                num: '04',
-                titleEn: 'SUPPLY CHAIN & LOGISTICS',
-                titleFa: 'زنجیره تامین و لوجستیک دریایی',
-                descEn: 'Connecting commercial physical flows with ocean freight, tank terminals, and port logistics.',
-                descFa: 'اتصال جریان‌های فیزیکی کالا با حمل‌ونقل فله، مخازن بندرگاهی و ترخیص تخصصی گمرکی.',
-              },
-              {
-                num: '05',
-                titleEn: 'STRATEGIC INVESTMENT',
-                titleFa: 'سرمایه‌گذاری‌های راهبردی',
-                descEn: 'Co-investment in industrial infrastructure, port facilities, and long-term commodity joint ventures.',
-                descFa: 'مشارکت و سرمایه‌گذاری راهبردی در زیرساخت‌های صنعتی، ترمینال‌های بندری و پروژه‌های مشترک.',
-              },
-            ].map((cap) => (
-              <div 
-                key={cap.num}
-                onClick={() => onInquire(`Inquiry: ${cap.titleEn}`)}
-                className="group py-8 px-4 sm:px-6 transition-all duration-300 hover:bg-[#132A42] cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-2 border-transparent hover:border-sky-400"
-              >
-                <div className="flex items-start md:items-center gap-6">
-                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-sky-400 shrink-0">
-                    {cap.num}
-                  </span>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors font-sans mb-1">
-                      {isFa ? cap.titleFa : cap.titleEn}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] max-w-2xl leading-relaxed">
-                      {isFa ? cap.descFa : cap.descEn}
-                    </p>
+          {/* 3 Major Business Pillars */}
+          <div className="space-y-12">
+            
+            {/* Pillar 1: International Commodity Trading */}
+            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
+                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
+                  <span>03.01</span>
+                  <span>// COMMODITY DESK</span>
+                </div>
+                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
+                  PHYSICAL TRADE & LOGISTICS
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
+                  {t.business.commodityTrading.title}
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  {t.business.commodityTrading.desc}
+                </p>
+
+                {/* 6 Commodity items */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {t.business.commodityTrading.items.map((item, idx) => (
+                    <div 
+                      key={idx}
+                      className="p-3.5 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
+                    >
+                      <span className="w-1.5 h-1.5 bg-sky-400 shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-[#94A3B8] leading-relaxed rounded-[1px]">
+                {t.business.commodityTrading.footnote}
+              </div>
+            </div>
+
+            {/* Pillar 2: Trade & Supply Chain Finance */}
+            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
+                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
+                  <span>03.02</span>
+                  <span>// LIQUIDITY & STRUCTURING</span>
+                </div>
+                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
+                  CAPITAL & RISK STRUCTURING
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
+                  {t.business.tradeFinance.title}
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  {t.business.tradeFinance.desc}
+                </p>
+
+                {/* 7 Solutions */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {t.business.tradeFinance.solutions.map((sol, idx) => (
+                    <div 
+                      key={idx}
+                      className="p-3.5 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
+                    >
+                      <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0" />
+                      <span>{sol}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-emerald-400/90 leading-relaxed rounded-[1px]">
+                {t.business.tradeFinance.footnote}
+              </div>
+            </div>
+
+            {/* Pillar 3: Global Partnerships & Investment */}
+            <div className="bg-[#132A42] border border-[#1E293B] p-6 sm:p-8 rounded-[1px] space-y-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#1E293B]">
+                <div className="flex items-center gap-3 font-mono text-xs font-bold text-sky-400 uppercase">
+                  <span>03.03</span>
+                  <span>// INSTITUTIONAL ECOSYSTEM</span>
+                </div>
+                <span className="text-xs font-mono text-[#94A3B8] bg-[#0A1C2E] px-3 py-1 border border-[#1E293B] rounded-[1px]">
+                  CO-INVESTMENT & JVs
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
+                  {t.business.partnerships.title}
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-4">
+                  {t.business.partnerships.desc}
+                </p>
+
+                {/* Connectors Banner */}
+                <div className="p-4 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px] mb-6">
+                  <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm font-bold text-white">
+                    {t.business.partnerships.connectors.map((connector, idx) => (
+                      <React.Fragment key={idx}>
+                        <span className="px-3 py-1.5 bg-[#132A42] border border-[#1E293B] text-sky-300 rounded-[1px]">
+                          {connector}
+                        </span>
+                        {idx < t.business.partnerships.connectors.length - 1 && (
+                          <span className="text-slate-500 font-normal">|</span>
+                        )}
+                      </React.Fragment>
+                    ))}
                   </div>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#94A3B8] group-hover:text-white shrink-0">
-                  <span>{isFa ? 'مشاهده شرایط' : 'SPECIFICATIONS'}</span>
-                  <ArrowUpRight className="w-4 h-4 text-sky-400 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <div className="p-4 bg-[#0A1C2E]/70 border border-[#1E293B] text-xs font-mono text-[#94A3B8] leading-relaxed rounded-[1px]">
+                {t.business.partnerships.footnote}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 04 HOW WE CREATE VALUE ------------------ */}
+      <section id="value" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-3xl mb-16 space-y-4">
+            <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
+              <span className="text-3xl sm:text-5xl font-extrabold">04</span>
+              <span>/ {t.valueCreation.badge}</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+              {t.valueCreation.title}
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#334155] leading-relaxed">
+              {t.valueCreation.leadText}
+            </p>
+          </div>
+
+          {/* 5 Lifecycle Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+            {t.valueCreation.lifecycleSteps.map((step, idx) => (
+              <div 
+                key={idx}
+                className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-colors rounded-[1px] space-y-3 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-2xl font-mono font-extrabold text-[#004C80] mb-2">
+                    {step.step}
+                  </div>
+                  <h3 className="text-base font-bold text-[#0A1C2E] font-sans mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-[#5C667A] leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#D5DFE8] text-[10px] font-mono font-bold text-[#004C80] uppercase">
+                  PHASE 0{idx + 1}
                 </div>
               </div>
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* ------------------ 04 INDUSTRIES (ASYMMETRICAL VISUAL COMPOSITIONS) ------------------ */}
-      <section id="industries" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#D5DFE8] gap-4">
-            <div>
-              <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
-                <span className="text-3xl font-extrabold text-[#004C80]">04</span>
-                <span>/ {isFa ? 'صنایع و بخش‌های تجاری' : 'INDUSTRIES'}</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
-                {isFa ? 'سبد کالاهای کلیدی و پوشش صنایع' : 'Key Industry Verticals'}
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md">
-              {isFa ? 'پوشش تخصصی زنجیره‌های تامین در ۶ بخش کلیدی اقتصاد جهانی' : 'Strategic coverage across high-volume industrial sectors'}
+          {/* Lifecycle Explanation Banner */}
+          <div className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] flex items-center gap-4">
+            <div className="w-2 h-10 bg-[#004C80] shrink-0" />
+            <p className="text-xs sm:text-sm text-[#0A1C2E] font-medium leading-relaxed font-sans">
+              {t.valueCreation.lifecycleExplanation}
             </p>
           </div>
 
-          {/* Asymmetrical Editorial Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            
-            {/* Card 1: Energy & Hydrocarbons (Large Featured) */}
-            <div className="md:col-span-8 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
-              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
-                <img 
-                  src="/images/commodity-steel.jpg" 
-                  alt="Energy & Refined Products"
-                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
-                  SEC 01 // ENERGY
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-2709 / HS-2710</div>
-                <h3 className="text-xl font-bold text-[#0A1C2E] mb-2">
-                  {isFa ? 'انرژی و فرآورده‌های هیدروکربوری' : 'ENERGY & HYDROCARBONS'}
-                </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed max-w-xl">
-                  {isFa 
-                    ? 'تجارت نفت خام، فرآورده‌های پالایشی، نفت‌گاز، مازوت و میعانات گازی با تسویه‌های چندارزی.'
-                    : 'Crude oil, refined petroleum products, gasoil, fuel oil, and condensates supported by ocean chartering.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: Metals & Minerals */}
-            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
-              <div className="relative h-72 sm:h-96 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
-                <img 
-                  src="/images/commodity-petrochemical.jpg" 
-                  alt="Metals & Steel"
-                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
-                  SEC 02 // METALS
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-7208 / STEEL</div>
-                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
-                  {isFa ? 'فلزات و سنگ‌های معدنی' : 'METALS & MINERALS'}
-                </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed">
-                  {isFa 
-                    ? 'شمش فولادی، میلگرد، کاتد مس، کنسانتره‌های سنگ آهن و مقاطع ساختمانی.'
-                    : 'Steel billets, rebar, copper cathodes, iron ore concentrates, and structural steel.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Petrochemicals */}
-            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
-                <img 
-                  src="/images/commodity-fertilizers.jpg" 
-                  alt="Petrochemicals"
-                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
-                  SEC 03 // PETROCHEM
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-3901 / POLYMERS</div>
-                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
-                  {isFa ? 'محصولات پتروشیمی' : 'PETROCHEMICALS'}
-                </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed">
-                  {isFa 
-                    ? 'پلیمرها، متانول، آروماتیک‌ها و فرآورده‌های تخصصی پتروشیمی.'
-                    : 'Polymers, methanol, aromatics, and chemical feedstocks.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: Urea & Fertilizers */}
-            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
-                <img 
-                  src="/images/commodity-agriculture.jpg" 
-                  alt="Fertilizers"
-                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
-                  SEC 04 // FERTILIZERS
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-3102 / UREA 46%</div>
-                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2">
-                  {isFa ? 'کودهای شیمیایی و اوره' : 'UREA & FERTILIZERS'}
-                </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed">
-                  {isFa 
-                    ? 'اوره گرانول ۴۶٪، گوگرد پالایشگاهی و کودهای ترکیبی فسفاته.'
-                    : 'Granular urea 46%, lump sulfur, and compound phosphate fertilizers.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 5: Agriculture & Food */}
-            <div className="md:col-span-4 bg-[#F4F7FA] border border-[#D5DFE8] p-3 flex flex-col justify-between group rounded-[1px]">
-              <div className="relative h-64 w-full overflow-hidden mb-4 bg-slate-100 rounded-[1px]">
-                <img 
-                  src={agriGrainImg} 
-                  alt="Food & Agricultural Commodity Trading"
-                  className="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 bg-[#0A1C2E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-[1px]">
-                  SEC 05 // FOOD & AGRI
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="text-xs font-mono font-bold text-[#004C80] uppercase mb-1">HS-1001 / GRAIN & SEEDS</div>
-                <h3 className="text-lg font-bold text-[#0A1C2E] mb-2 font-sans">
-                  {isFa ? 'بازرگانی در حوزه صنایع غذایی' : 'FOOD & AGRICULTURAL PRODUCTS'}
-                </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed">
-                  {isFa 
-                    ? 'تجارت بین‌المللی کالاهای کشاورزی، غلات، دانه‌های روغنی و برنج اساسی.'
-                    : 'International trade in agricultural commodities, grain streams, oilseeds, and essential staple rice.'}
-                </p>
-              </div>
-            </div>
-
-          </div>
-
         </div>
       </section>
 
-      {/* ------------------ 05 GLOBAL MARKETS (SOPHISTICATED MAP & ROUTE NETWORK) ------------------ */}
+      {/* ------------------ 05 OUR MARKETS ------------------ */}
       <section id="markets" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -737,14 +697,20 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div>
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold">05</span>
-                <span>/ {isFa ? 'شبکه کریدورهای بین‌المللی' : 'GLOBAL MARKETS'}</span>
+                <span>/ {t.markets.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase">
-                {isFa ? 'حضور راهبردی در بازارهای هدف' : 'Global Reach & Trade Networks'}
+                {t.markets.title}
               </h2>
             </div>
             <p className="text-xs sm:text-sm font-mono text-[#5C667A] max-w-md">
-              {isFa ? 'اتصال خریداران، فروشندگان و نهادهای مالی در ۶ منطقه جغرافیایی' : 'Connecting buyers, suppliers, and financial institutions across regions'}
+              {t.markets.subtitle}
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <p className="text-sm sm:text-base text-[#334155] leading-relaxed max-w-3xl">
+              {t.markets.leadText}
             </p>
           </div>
 
@@ -771,35 +737,14 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               ))}
             </div>
 
-            {/* World Network Information Card in Deep Midnight Navy #0A1C2E */}
-            <div className="lg:col-span-7 bg-[#0A1C2E] text-white border border-[#1E293B] p-8 space-y-6 rounded-[1px] shadow-sm">
-              <div className="flex items-center justify-between pb-4 border-b border-[#1E293B] font-mono text-xs">
-                <span className="text-sky-400 font-bold">CORRIDOR SPECIFICATIONS // {selectedRegionObj.code}</span>
-                <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>STATUS: ACTIVE</span>
-                </span>
-              </div>
-
-              <h3 className="text-2xl font-bold text-white font-sans">
-                {selectedRegionObj.name}
-              </h3>
-
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                {selectedRegionObj.desc}
-              </p>
-
-              <div className="pt-4 border-t border-[#1E293B] grid grid-cols-2 gap-4 font-mono text-xs">
-                <div className="p-3 bg-[#132A42] border border-[#1E293B] rounded-[1px]">
-                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">SETTLEMENT INSTRUMENTS</div>
-                  <div className="text-white font-bold">LC / CAD / SBLC</div>
-                </div>
-
-                <div className="p-3 bg-[#132A42] border border-[#1E293B] rounded-[1px]">
-                  <div className="text-[10px] text-[#94A3B8] uppercase mb-1">CLEARING CURRENCIES</div>
-                  <div className="text-sky-400 font-bold">USD / EUR / AED / CNY</div>
-                </div>
-              </div>
+            {/* World Network Animated Interactive Radar & Corridor Card */}
+            <div className="lg:col-span-7">
+              <MarketsAnimatedCard
+                currentLang={currentLang}
+                selectedRegion={selectedRegionObj}
+                closingText={t.markets.closingText}
+                onInquire={onInquire}
+              />
             </div>
 
           </div>
@@ -807,7 +752,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 06 WHY RSP (STRUCTURED NUMBERED LIST) ------------------ */}
+      {/* ------------------ 06 WHY RSP (5 INSTITUTIONAL PRINCIPLES) ------------------ */}
       <section id="why-rsp" className="py-24 bg-white text-[#0A1C2E] border-b border-[#D5DFE8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -816,68 +761,35 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             <div className="lg:col-span-4 space-y-4">
               <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#0A1C2E] uppercase tracking-widest mb-2">
                 <span className="text-3xl font-extrabold text-[#004C80]">06</span>
-                <span>/ {isFa ? 'مزیت‌های رقابتی' : 'WHY RSP'}</span>
+                <span>/ {t.whyUs.badge}</span>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] uppercase leading-none font-sans">
-                WHY<br />REFAH<br />SANAT<br /><span className="text-[#004C80]">PARDIS</span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase leading-tight font-sans">
+                {t.whyUs.title}
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed pt-4 font-mono">
-                {isFa 
-                  ? 'اصول کلیدی حاکم بر کلیه قراردادهای تجاری و تعهدات اعتباری گروه' 
-                  : 'Institutional principles driving contract execution & risk management.'}
+              <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed pt-2 font-mono">
+                {t.whyUs.subtitle}
               </p>
             </div>
 
             <div className="lg:col-span-8 divide-y divide-[#D5DFE8] border-t border-b border-[#D5DFE8]">
-              {[
-                {
-                  num: '01',
-                  titleEn: 'RELIABILITY & COMPLIANCE',
-                  titleFa: 'اعتمادپذیری و انطباق قانونی',
-                  descEn: 'Uncompromising adherence to international commercial contracts and strict ISO 28000 compliance protocols.',
-                  descFa: 'تعهد کامل به مفاد قراردادهای بین‌المللی و اجرای استانداردهای حاکمیتی ISO 28000.',
-                },
-                {
-                  num: '02',
-                  titleEn: 'COMMERCIAL EXPERTISE',
-                  titleFa: 'تخصص عمیق در بازرگانی فیزیکی',
-                  descEn: 'Deep domain knowledge in physical sourcing, quality inspection, and custom logistics management.',
-                  descFa: 'تسلط تخصصی بر زنجیره تامین فیزیکی کالا، بازرسی کیفی استاندارد و راهبری لوجستیک.',
-                },
-                {
-                  num: '03',
-                  titleEn: 'FINANCIAL CAPABILITY',
-                  titleFa: 'توانمندی در تامین مالی اعتباری',
-                  descEn: 'Robust financial desk facilitating multi-currency clearing, credit facilities, and treasury risk hedging.',
-                  descFa: 'توان ساختاریافته در گشایش اعتبارات اسنادی، ابزارهای اعتباری و پوشش ریسک‌های تسویه ارزی.',
-                },
-                {
-                  num: '04',
-                  titleEn: 'INTERNATIONAL NETWORK',
-                  titleFa: 'شبکه گسترده کریدورهای بین‌المللی',
-                  descEn: 'Established commercial presence and trusted partnerships across key global trade hubs.',
-                  descFa: 'ارتباطات مستمر و شبکه قوی تجاری در مرکزهای اصلی دادوستد کالا در خاورمیانه، آسیا و اروپا.',
-                },
-                {
-                  num: '05',
-                  titleEn: 'LONG-TERM RELATIONSHIPS',
-                  titleFa: 'شراکت‌های پایدار تجاری',
-                  descEn: 'Focusing on strategic, long-term commercial co-operation rather than isolated transactional trades.',
-                  descFa: 'تمرکز بر ایجاد ارزش افزوده متقابل و توسعه تعاملات بلندمدت با شرکای تجاری.',
-                },
-              ].map((item) => (
-                <div key={item.num} className="py-6 flex items-start gap-6">
-                  <span className="font-mono text-2xl font-extrabold text-[#004C80] shrink-0">
-                    {item.num}
+              {t.whyUs.principles.map((item, idx) => (
+                <div key={item.id} className="py-6 flex items-start gap-6">
+                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-[#004C80] shrink-0">
+                    0{idx + 1}
                   </span>
-                  <div>
-                    <h3 className="text-base font-bold text-[#0A1C2E] mb-1 font-sans">
-                      {isFa ? item.titleFa : item.titleEn}
-                    </h3>
-                    <p className="text-xs text-[#5C667A] leading-relaxed">
-                      {isFa ? item.descFa : item.descEn}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans">
+                        {item.title}
+                      </h3>
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#F4F7FA] border border-[#D5DFE8] text-[#004C80] rounded-[1px]">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed">
+                      {item.desc}
                     </p>
                   </div>
                 </div>
@@ -889,98 +801,304 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
         </div>
       </section>
 
-      {/* ------------------ 07 PARTNERSHIP CTA (FULL-WIDTH STATEMENT IN DEEP NAVY #0A1C2E) ------------------ */}
+      {/* ------------------ 07 OUR VISION & MISSION ------------------ */}
+      <section id="vision-mission" className="py-24 bg-[#F4F7FA] text-[#0A1C2E] border-b border-[#D5DFE8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#D5DFE8] text-[#004C80] text-xs font-mono font-bold uppercase tracking-widest rounded-[1px]">
+              <span>07 / {t.visionMission.badge}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0A1C2E] uppercase font-sans">
+              {isFa ? 'چشم‌انداز و ماموریت راهبردی' : 'Vision & Mission'}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Vision Card in Deep Midnight Navy */}
+            <div className="p-8 bg-[#0A1C2E] text-white border border-[#1E293B] rounded-[1px] space-y-4 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest">
+                  // {t.visionMission.visionTitle}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold font-sans leading-snug">
+                  {t.visionMission.visionTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+                  {t.visionMission.visionText}
+                </p>
+              </div>
+              <div className="pt-6 border-t border-[#1E293B] text-xs font-mono text-[#94A3B8]">
+                REFAH SANAT PARDIS • STRATEGIC HORIZON
+              </div>
+            </div>
+
+            {/* Mission Card in White */}
+            <div className="p-8 bg-white text-[#0A1C2E] border border-[#D5DFE8] rounded-[1px] space-y-4 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-widest">
+                  // {t.visionMission.missionTitle}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold font-sans leading-snug">
+                  {t.visionMission.missionTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-[#334155] leading-relaxed font-sans">
+                  {t.visionMission.missionText}
+                </p>
+              </div>
+              <div className="pt-6 border-t border-[#D5DFE8] text-xs font-mono text-[#5C667A]">
+                DISCIPLINED EXECUTION • COMPLIANCE RIGOR
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ------------------ 08 CLOSING PARTNERSHIP STATEMENT & CTA ------------------ */}
       <section id="partnership" className="py-24 bg-[#0A1C2E] text-white border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#132A42] text-sky-400 text-xs font-mono font-bold uppercase tracking-widest rounded-[1px] border border-[#1E293B]">
-            <span>07 / PARTNERSHIP</span>
+            <span>{t.finalCta.category}</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase max-w-4xl mx-auto font-sans">
-            {isFa 
-              ? 'توسعه ارتباطات پایدار تجاری و تعاملات ساختاریافته' 
-              : 'BUILDING LONG-TERM COMMERCIAL RELATIONSHIPS'}
+            {t.finalCta.tagline}
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            {isFa 
-              ? 'گروه رفاه صنعت پردیس پذیرای توسعه تعاملات تجاری با خریداران، تامین‌کنندگان، نهادهای مالی و شرکای راهبردی در سراسر بازارهای جهانی است.' 
-              : 'We welcome collaboration with trusted buyers, sellers, suppliers, financial institutions, and strategic partners across global markets.'}
+          <p className="text-base sm:text-xl text-sky-300 font-mono font-bold max-w-2xl mx-auto">
+            {t.finalCta.invitation}
           </p>
 
-          <div className="pt-4 font-mono">
+          <div className="pt-4 font-mono flex flex-wrap items-center justify-center gap-4">
             <a
               href="#contact"
               onClick={(e) => handleAnchorClick(e, '#contact')}
               className="bg-white hover:bg-slate-100 text-[#0A1C2E] px-8 py-4 text-xs font-extrabold uppercase tracking-widest transition-all inline-flex items-center gap-2 rounded-[1px] shadow-md border border-white hover:border-slate-200"
             >
-              <span>{isFa ? 'شروع گفتگو و ارسال درخواست' : 'START A CONVERSATION'}</span>
+              <span>{t.finalCta.primaryCta}</span>
               <ArrowRight className="w-4 h-4 rtl:rotate-180 text-[#004C80]" />
+            </a>
+
+            <a
+              href="#business"
+              onClick={(e) => handleAnchorClick(e, '#business')}
+              className="bg-[#132A42] hover:bg-[#1E3A5F] text-white px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all inline-flex items-center rounded-[1px] border border-[#1E293B]"
+            >
+              <span>{t.finalCta.secondaryCta}</span>
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* ------------------ 08 CONTACT (INSTITUTIONAL INQUIRY PORTAL) ------------------ */}
+      {/* ------------------ 09 CONTACT (COMMERCIAL INQUIRY PORTAL) ------------------ */}
       <section id="contact" className="py-20 bg-[#F4F7FA] text-[#0A1C2E] border-t border-[#D5DFE8]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="space-y-8">
             <div className="flex items-center gap-3 font-mono text-xs font-bold text-[#004C80] uppercase tracking-widest">
-              <span className="text-3xl font-extrabold">08</span>
-              <span>/ {isFa ? 'درگاه ارتباط تجاری' : 'CONTACT'}</span>
+              <span className="text-3xl font-extrabold">09</span>
+              <span>/ {t.contact.badge}</span>
             </div>
 
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#D5DFE8]">
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
-                {isFa ? (
-                  <>برقراری تعامل <span className="text-[#004C80]">تجاری</span></>
-                ) : (
-                  <>Let's Build the <span className="text-[#004C80]">Next Commercial Connection</span></>
-                )}
-              </h2>
+              <div>
+                <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0A1C2E] leading-tight font-sans">
+                  {t.contact.title}
+                </h2>
+                <p className="text-xs sm:text-sm font-mono text-[#004C80] font-bold mt-1">
+                  REFAH SANAT PARDIS • INTERNATIONAL COMMERCIAL DESK
+                </p>
+              </div>
 
               <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed max-w-md">
-                {isFa 
-                  ? 'جهت ارتباط با مدیریت بازرگانی، استعلام شرایط گشایش اعتبار یا پیشنهاد شراکت راهبردی از طریق راه‌های ارتباطی زیر با ما در تماس باشید.'
-                  : 'Get in touch with our commercial desk for physical commodity procurement, LC facilities, or strategic joint ventures.'}
+                {t.contact.subtitle}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs text-[#5C667A]">
-              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
-                <div className="flex items-center gap-2 text-[#004C80] font-bold">
-                  <MapPin className="w-4 h-4 shrink-0" />
-                  <span>{isFa ? 'نشانی مرکزی' : 'HEADQUARTERS'}</span>
-                </div>
-                <p className="text-[#0A1C2E] text-xs font-sans leading-relaxed">{t.contact.address}</p>
+            {/* Contact Grid: Form + Office Info */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* Left 7 cols: Interactive Form */}
+              <div className="lg:col-span-7 bg-white p-6 sm:p-8 border border-[#D5DFE8] rounded-[1px] shadow-sm">
+                <h3 className="text-lg font-bold text-[#0A1C2E] mb-6 pb-3 border-b border-[#D5DFE8] font-sans">
+                  {t.contact.formTitle}
+                </h3>
+
+                {formSuccess ? (
+                  <div className="p-6 bg-[#0A1C2E] text-white rounded-[1px] space-y-4 text-center">
+                    <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 flex items-center justify-center rounded-full mx-auto">
+                      <ShieldCheck className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-lg font-bold font-sans text-white">
+                      {isFa ? 'درخواست تجاری با موفقیت ثبت شد' : 'Commercial Inquiry Received'}
+                    </h4>
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                      {t.contact.successMessage}
+                    </p>
+                    <div className="p-3 bg-[#132A42] border border-[#1E293B] font-mono text-xs text-sky-300">
+                      {t.contact.referenceCode}: RSP-TRD-{Math.floor(100000 + Math.random() * 900000)}
+                    </div>
+                    <button
+                      onClick={() => setFormSuccess(false)}
+                      className="text-xs font-mono underline text-slate-400 hover:text-white cursor-pointer pt-2"
+                    >
+                      {isFa ? 'ثبت درخواست جدید' : 'Submit another inquiry'}
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                          {t.contact.nameLabel} *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          placeholder={t.contact.namePlaceholder}
+                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                          {t.contact.companyLabel} *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.companyName}
+                          onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                          placeholder={t.contact.companyPlaceholder}
+                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                          {t.contact.emailLabel} *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder={t.contact.emailPlaceholder}
+                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                          {t.contact.phoneLabel}
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder={t.contact.phonePlaceholder}
+                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                        {t.contact.inquiryTypeLabel}
+                      </label>
+                      <select
+                        value={formData.inquiryType}
+                        onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
+                        className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                      >
+                        <option value="commodity_trading">{isFa ? 'تجارت بین‌المللی کالایی' : 'International Commodity Trading'}</option>
+                        <option value="trade_finance">{isFa ? 'تامین مالی تجارت و زنجیره تامین' : 'Trade & Supply Chain Finance'}</option>
+                        <option value="strategic_partnership">{isFa ? 'مشارکت‌های جهانی و سرمایه‌گذاری' : 'Global Partnerships & Investment'}</option>
+                        <option value="other">{isFa ? 'سایر موارد تجاری' : 'Other Commercial Inquiries'}</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
+                        {t.contact.messageLabel} *
+                      </label>
+                      <textarea
+                        rows={4}
+                        required
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder={t.contact.messagePlaceholder}
+                        className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 bg-[#004C80] hover:bg-[#003A63] text-white font-mono font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 rounded-[1px] disabled:opacity-50 cursor-pointer"
+                    >
+                      {isSubmitting ? (
+                        <span>{t.contact.submittingBtn}</span>
+                      ) : (
+                        <>
+                          <span>{t.contact.submitBtn}</span>
+                          <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
               </div>
 
-              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
-                <div className="flex items-center gap-2 text-[#004C80] font-bold">
-                  <Mail className="w-4 h-4 shrink-0" />
-                  <span>{isFa ? 'پست الکترونیک' : 'EMAIL DESK'}</span>
+              {/* Right 5 cols: Direct Desk Coordinates */}
+              <div className="lg:col-span-5 space-y-4">
+                
+                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm">
+                  <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                    <MapPin className="w-4 h-4 shrink-0" />
+                    <span>{t.contact.officeTitle}</span>
+                  </div>
+                  <p className="text-xs text-[#5C667A] leading-relaxed">
+                    {t.contact.officeDesc}
+                  </p>
+                  <p className="text-xs font-sans font-bold text-[#0A1C2E] pt-2 border-t border-[#D5DFE8]">
+                    {t.contact.address}
+                  </p>
                 </div>
-                <p className="text-[#0A1C2E] text-xs font-mono font-bold">{t.contact.email}</p>
+
+                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs">
+                  <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
+                    <Mail className="w-4 h-4 shrink-0" />
+                    <span>EMAIL DESK</span>
+                  </div>
+                  <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.email}</p>
+                </div>
+
+                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs">
+                  <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
+                    <Phone className="w-4 h-4 shrink-0" />
+                    <span>DIRECT TRADING LINE</span>
+                  </div>
+                  <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.phone}</p>
+                  <p className="text-[11px] text-[#5C667A]">{t.contact.hours}</p>
+                </div>
+
+                <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex items-center gap-3 text-xs font-mono shadow-sm">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <span className="text-white font-bold text-[11px]">ISO 28000 & ISO 9001 GOVERNANCE CERTIFIED</span>
+                </div>
+
               </div>
 
-              <div className="p-6 bg-white border border-[#D5DFE8] hover:border-[#0A1C2E] transition-colors rounded-[1px] space-y-2.5 shadow-sm">
-                <div className="flex items-center gap-2 text-[#004C80] font-bold">
-                  <Phone className="w-4 h-4 shrink-0" />
-                  <span>{isFa ? 'تلفن تماس' : 'DIRECT LINE'}</span>
-                </div>
-                <p className="text-[#0A1C2E] text-xs font-mono font-bold">{t.contact.phone}</p>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono shadow-sm">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="text-white font-bold">ISO 28000 SECURITY & GOVERNANCE COMPLIANT</span>
-              </div>
-              <span className="text-[10px] text-sky-400 font-bold tracking-wider">REFAH SANAT PARDIS TRADING DESK</span>
             </div>
           </div>
 
