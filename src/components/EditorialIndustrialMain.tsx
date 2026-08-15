@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import agriGrainImg from '../assets/images/agri_grain_trading_1786647224734.jpg';
+import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.jpg';
+import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.jpg';
+import containerNightImg from '../assets/images/container_terminal_night_1786809233281.jpg';
+import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.jpg';
+import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.jpg';
+import multimodalImg from '../assets/images/multimodal_transport_1786809273515.jpg';
+import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.jpg';
+import railLogisticsImg from '../assets/images/rail_logistics_infra_1786809312499.jpg';
 import { 
   Globe, 
   ArrowRight, 
@@ -20,7 +27,8 @@ import {
   Phone,
   Clock,
   Activity,
-  ArrowUpRight
+  ArrowUpRight,
+  Maximize2
 } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
@@ -237,15 +245,16 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               <div className="relative border border-[#D5DFE8] bg-[#F4F7FA] p-2 shadow-lg">
                 <div className="relative h-96 sm:h-[450px] w-full overflow-hidden bg-slate-100">
                   <img 
-                    src="/images/hero-port.jpg" 
-                    alt="Maritime Container Terminal"
-                    className="w-full h-full object-cover filter brightness-90 contrast-110 saturate-75"
+                    src={bulkVesselImg} 
+                    alt="Bulk Carrier Vessel on High Seas"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover filter brightness-95 contrast-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
 
                   {/* Micro Metadata Overlay */}
                   <div className="absolute top-4 left-4 bg-white/95 border border-[#D5DFE8] px-3 py-1.5 text-[10px] font-mono text-[#0A1C2E]">
-                    <span className="text-[#004C80] font-bold">RSP / TRD-01</span> • MARITIME LOGISTICS
+                    <span className="text-[#004C80] font-bold">RSP / MARITIME-01</span> • BULK LOGISTICS & CARGO
                   </div>
 
                   <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-[#D5DFE8] p-4 text-xs font-mono">
@@ -428,25 +437,60 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </span>
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
-                  {t.business.commodityTrading.title}
-                </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                  {t.business.commodityTrading.desc}
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-7 space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                    {t.business.commodityTrading.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {t.business.commodityTrading.desc}
+                  </p>
 
-                {/* 6 Commodity items */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {t.business.commodityTrading.items.map((item, idx) => (
-                    <div 
-                      key={idx}
-                      className="p-3.5 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
-                    >
-                      <span className="w-1.5 h-1.5 bg-sky-400 shrink-0" />
-                      <span>{item}</span>
+                  {/* 6 Commodity items */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {t.business.commodityTrading.items.map((item, idx) => (
+                      <div 
+                        key={idx}
+                        className="p-3 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
+                      >
+                        <span className="w-1.5 h-1.5 bg-sky-400 shrink-0" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Visual Imagery Duo: Golden Grains & Silo Hub */}
+                <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+                  <div className="border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
+                    <div className="relative h-40 overflow-hidden rounded-[1px]">
+                      <img 
+                        src={foodGrainsImg} 
+                        alt="Agro & Food Grains Trade"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover filter brightness-95 contrast-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-sky-300 font-bold">
+                        {isFa ? 'تجارت غلات و امنیت غذایی' : 'AGRI-GRAINS TRADE'}
+                      </div>
                     </div>
-                  ))}
+                  </div>
+
+                  <div className="border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
+                    <div className="relative h-40 overflow-hidden rounded-[1px]">
+                      <img 
+                        src={grainSiloImg} 
+                        alt="Grain Silo Elevator Infrastructure"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover filter brightness-95 contrast-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-sky-300 font-bold">
+                        {isFa ? 'سیلوهای ذخیره‌سازی' : 'SILO INFRASTRUCTURE'}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -467,25 +511,49 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </span>
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
-                  {t.business.tradeFinance.title}
-                </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                  {t.business.tradeFinance.desc}
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-7 space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                    {t.business.tradeFinance.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {t.business.tradeFinance.desc}
+                  </p>
 
-                {/* 7 Solutions */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {t.business.tradeFinance.solutions.map((sol, idx) => (
-                    <div 
-                      key={idx}
-                      className="p-3.5 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
-                    >
-                      <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0" />
-                      <span>{sol}</span>
+                  {/* 7 Solutions */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {t.business.tradeFinance.solutions.map((sol, idx) => (
+                      <div 
+                        key={idx}
+                        className="p-3 bg-[#0A1C2E] border border-[#1E293B] text-xs font-medium text-slate-200 flex items-center gap-2.5 rounded-[1px]"
+                      >
+                        <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0" />
+                        <span>{sol}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Visual Imagery: Container Terminal at Night (24/7 Operations) */}
+                <div className="lg:col-span-5 border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
+                  <div className="relative h-48 sm:h-56 overflow-hidden rounded-[1px]">
+                    <img 
+                      src={containerNightImg} 
+                      alt="Night Port Logistics and Capital Settlement"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover filter brightness-95 contrast-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/90 via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-emerald-400 font-bold">
+                      24/7 GLOBAL TRADE CLEARING
                     </div>
-                  ))}
+                    <div className="absolute bottom-3 left-3 right-3 text-xs font-mono text-white">
+                      <span className="text-emerald-400 font-bold">// DOCUMENTARY SETTLEMENT</span>
+                      <p className="text-[11px] text-slate-300 font-sans mt-0.5">
+                        {isFa ? 'تأمین مالی جریان کالا و صدور اعتبارات اسنادی بدون توقف' : 'Non-stop trade credit & capital structuring for high-volume corridors.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -506,27 +574,51 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </span>
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans mb-3">
-                  {t.business.partnerships.title}
-                </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-4">
-                  {t.business.partnerships.desc}
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-7 space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                    {t.business.partnerships.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {t.business.partnerships.desc}
+                  </p>
 
-                {/* Connectors Banner */}
-                <div className="p-4 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px] mb-6">
-                  <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm font-bold text-white">
-                    {t.business.partnerships.connectors.map((connector, idx) => (
-                      <React.Fragment key={idx}>
-                        <span className="px-3 py-1.5 bg-[#132A42] border border-[#1E293B] text-sky-300 rounded-[1px]">
-                          {connector}
-                        </span>
-                        {idx < t.business.partnerships.connectors.length - 1 && (
-                          <span className="text-slate-500 font-normal">|</span>
-                        )}
-                      </React.Fragment>
-                    ))}
+                  {/* Connectors Banner */}
+                  <div className="p-4 bg-[#0A1C2E] border border-[#1E293B] rounded-[1px]">
+                    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm font-bold text-white">
+                      {t.business.partnerships.connectors.map((connector, idx) => (
+                        <React.Fragment key={idx}>
+                          <span className="px-3 py-1.5 bg-[#132A42] border border-[#1E293B] text-sky-300 rounded-[1px]">
+                            {connector}
+                          </span>
+                          {idx < t.business.partnerships.connectors.length - 1 && (
+                            <span className="text-slate-500 font-normal">|</span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual Imagery: Multimodal Global Transport Hub */}
+                <div className="lg:col-span-5 border border-[#1E293B] bg-[#0A1C2E] p-1.5 rounded-[1px]">
+                  <div className="relative h-48 sm:h-56 overflow-hidden rounded-[1px]">
+                    <img 
+                      src={multimodalImg} 
+                      alt="Multimodal Global Freight Logistics Hub"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover filter brightness-95 contrast-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E]/90 via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-sky-400 font-bold">
+                      MULTIMODAL LOGISTICS NETWORK
+                    </div>
+                    <div className="absolute bottom-3 left-3 right-3 text-xs font-mono text-white">
+                      <span className="text-sky-400 font-bold">// INTEGRATED FREIGHT CORRIDORS</span>
+                      <p className="text-[11px] text-slate-300 font-sans mt-0.5">
+                        {isFa ? 'پیوند مسیرهای دریایی، ترانزیت ریلی، هوایی و حمل زمینی' : 'Linking maritime shipping, freight rail networks, and air corridors.'}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -561,29 +653,54 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           </div>
 
           {/* 5 Lifecycle Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
-            {t.valueCreation.lifecycleSteps.map((step, idx) => (
-              <div 
-                key={idx}
-                className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-colors rounded-[1px] space-y-3 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="text-2xl font-mono font-extrabold text-[#004C80] mb-2">
-                    {step.step}
+          {(() => {
+            const phaseImages = [
+              grainSiloImg,
+              railLogisticsImg,
+              portDuskImg,
+              containerNightImg,
+              bulkVesselImg
+            ];
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+                {t.valueCreation.lifecycleSteps.map((step, idx) => (
+                  <div 
+                    key={idx}
+                    className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] hover:border-[#004C80] transition-all duration-300 rounded-[1px] space-y-3 flex flex-col justify-between group shadow-sm hover:shadow"
+                  >
+                    <div>
+                      {/* Image header */}
+                      <div className="relative h-28 w-full overflow-hidden border border-[#D5DFE8] mb-3 bg-slate-200 rounded-[1px]">
+                        <img 
+                          src={phaseImages[idx]} 
+                          alt={step.title}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-95"
+                        />
+                        <div className="absolute top-1.5 left-1.5 bg-[#0A1C2E]/90 text-white font-mono text-[9px] font-bold px-1.5 py-0.5 rounded-[1px]">
+                          PHASE 0{idx + 1}
+                        </div>
+                      </div>
+
+                      <div className="text-xl font-mono font-extrabold text-[#004C80] mb-1">
+                        {step.step}
+                      </div>
+                      <h3 className="text-sm font-bold text-[#0A1C2E] font-sans mb-1.5 leading-snug">
+                        {step.title}
+                      </h3>
+                      <p className="text-[11px] text-[#5C667A] leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                    <div className="pt-2.5 border-t border-[#D5DFE8] text-[9px] font-mono font-bold text-[#004C80] uppercase flex items-center justify-between">
+                      <span>RSP VERIFIED</span>
+                      <ArrowUpRight className="w-3 h-3 text-[#004C80]" />
+                    </div>
                   </div>
-                  <h3 className="text-base font-bold text-[#0A1C2E] font-sans mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-[#5C667A] leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-[#D5DFE8] text-[10px] font-mono font-bold text-[#004C80] uppercase">
-                  PHASE 0{idx + 1}
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            );
+          })()}
 
           {/* Lifecycle Explanation Banner */}
           <div className="p-6 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] flex items-center gap-4">
@@ -788,8 +905,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* Vision Card in Deep Midnight Navy */}
-            <div className="p-8 bg-[#0A1C2E] text-white border border-[#1E293B] rounded-[1px] space-y-4 shadow-sm flex flex-col justify-between">
-              <div className="space-y-4">
+            <div className="bg-[#0A1C2E] text-white border border-[#1E293B] rounded-[1px] shadow-sm flex flex-col justify-between overflow-hidden">
+              <div className="relative h-44 w-full overflow-hidden border-b border-[#1E293B]">
+                <img 
+                  src={multimodalImg} 
+                  alt="Vision - Global Multimodal Network"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover filter brightness-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1C2E] via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 bg-[#0A1C2E]/90 border border-[#1E293B] px-2.5 py-1 text-[10px] font-mono text-sky-400 font-bold">
+                  // STRATEGIC HORIZON
+                </div>
+              </div>
+
+              <div className="p-8 space-y-4 flex-1">
                 <div className="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest">
                   // {t.visionMission.visionTitle}
                 </div>
@@ -800,14 +930,27 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   {t.visionMission.visionText}
                 </p>
               </div>
-              <div className="pt-6 border-t border-[#1E293B] text-xs font-mono text-[#94A3B8]">
+              <div className="p-8 pt-4 border-t border-[#1E293B] text-xs font-mono text-[#94A3B8]">
                 REFAH SANAT PARDIS • STRATEGIC HORIZON
               </div>
             </div>
 
             {/* Mission Card in White */}
-            <div className="p-8 bg-white text-[#0A1C2E] border border-[#D5DFE8] rounded-[1px] space-y-4 shadow-sm flex flex-col justify-between">
-              <div className="space-y-4">
+            <div className="bg-white text-[#0A1C2E] border border-[#D5DFE8] rounded-[1px] shadow-sm flex flex-col justify-between overflow-hidden">
+              <div className="relative h-44 w-full overflow-hidden border-b border-[#D5DFE8]">
+                <img 
+                  src={cargoPortImg} 
+                  alt="Mission - Trade Execution Rigor"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover filter brightness-95"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 bg-white/95 border border-[#D5DFE8] px-2.5 py-1 text-[10px] font-mono text-[#004C80] font-bold">
+                  // OPERATIONAL EXCELLENCE
+                </div>
+              </div>
+
+              <div className="p-8 space-y-4 flex-1">
                 <div className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-widest">
                   // {t.visionMission.missionTitle}
                 </div>
@@ -818,7 +961,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   {t.visionMission.missionText}
                 </p>
               </div>
-              <div className="pt-6 border-t border-[#D5DFE8] text-xs font-mono text-[#5C667A]">
+              <div className="p-8 pt-4 border-t border-[#D5DFE8] text-xs font-mono text-[#5C667A]">
                 DISCIPLINED EXECUTION • COMPLIANCE RIGOR
               </div>
             </div>
