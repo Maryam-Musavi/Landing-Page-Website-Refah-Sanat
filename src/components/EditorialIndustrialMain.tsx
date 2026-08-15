@@ -693,25 +693,89 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Region Selector */}
-            <div className="lg:col-span-5 space-y-2 font-mono">
-              {t.markets.regions.map((reg) => (
-                <button
-                  key={reg.id}
-                  onClick={() => setActiveRegion(reg.id)}
-                  className={`w-full p-4 text-left rtl:text-right transition-all flex items-center justify-between border cursor-pointer rounded-[1px] ${
-                    activeRegion === reg.id
-                      ? 'bg-white text-[#0A1C2E] border-[#004C80] shadow-sm font-bold'
-                      : 'bg-[#F4F7FA] text-[#5C667A] border-[#D5DFE8] hover:bg-white'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-[#004C80]">[{reg.code}]</span>
-                    <span className="text-sm font-sans">{reg.name}</span>
+            {/* Region Selector & Corridor Infrastructure Panel */}
+            <div className="lg:col-span-5 space-y-4">
+              
+              {/* Region List Buttons */}
+              <div className="space-y-2 font-mono">
+                {t.markets.regions.map((reg) => (
+                  <button
+                    key={reg.id}
+                    onClick={() => setActiveRegion(reg.id)}
+                    className={`w-full p-3.5 text-left rtl:text-right transition-all flex items-center justify-between border cursor-pointer rounded-[1px] ${
+                      activeRegion === reg.id
+                        ? 'bg-white text-[#0A1C2E] border-[#004C80] shadow-sm font-bold ring-1 ring-[#004C80]/20'
+                        : 'bg-[#F4F7FA] text-[#5C667A] border-[#D5DFE8] hover:bg-white'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-bold text-[#004C80]">[{reg.code}]</span>
+                      <span className="text-sm font-sans">{reg.name}</span>
+                    </div>
+                    <ChevronRight className={`w-4 h-4 rtl:rotate-180 ${activeRegion === reg.id ? 'text-[#004C80]' : 'text-[#5C667A]'}`} />
+                  </button>
+                ))}
+              </div>
+
+              {/* Corridor Infrastructure & Global Clearing Panel */}
+              <div className="bg-white border border-[#D5DFE8] p-5 rounded-[1px] space-y-4 shadow-sm">
+                
+                <div className="flex items-center justify-between pb-3 border-b border-[#D5DFE8]">
+                  <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase tracking-wider">
+                    <ShieldCheck className="w-4 h-4 text-[#004C80]" />
+                    <span>{isFa ? 'استانداردها و زیرساخت تسویه' : 'CLEARING & SOURCING INFRASTRUCTURE'}</span>
                   </div>
-                  <ChevronRight className={`w-4 h-4 rtl:rotate-180 ${activeRegion === reg.id ? 'text-[#004C80]' : 'text-[#5C667A]'}`} />
-                </button>
-              ))}
+                  <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200 rounded-[1px] font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>ACTIVE</span>
+                  </span>
+                </div>
+
+                {/* Key Metrics */}
+                <div className="grid grid-cols-3 gap-2 text-center font-mono">
+                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
+                    <div className="text-base font-extrabold text-[#004C80]">6</div>
+                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'قطب تجاری' : 'GLOBAL HUBS'}</div>
+                  </div>
+                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
+                    <div className="text-base font-extrabold text-[#0A1C2E]">100%</div>
+                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'بازرسی SGS' : 'SGS AUDIT'}</div>
+                  </div>
+                  <div className="p-2.5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px]">
+                    <div className="text-base font-extrabold text-[#004C80]">24/7</div>
+                    <div className="text-[10px] text-[#5C667A] uppercase mt-0.5">{isFa ? 'پایش کریدور' : 'MONITORING'}</div>
+                  </div>
+                </div>
+
+                {/* Structured Features List */}
+                <div className="space-y-2 text-xs text-[#334155] font-sans pt-1">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
+                    <span>{isFa ? 'تسویه چندارزی با درهم (AED)، دلار، یورو، یوآن و روپیه' : 'Multicurrency settlement (AED, USD, EUR, CNY, INR)'}</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
+                    <span>{isFa ? 'ساختاردهی اعتبارات اسنادی دیداری و مدت‌دار (LC / CAD / SBLC)' : 'Documentary letters of credit & trade finance (LC / CAD / SBLC)'}</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#004C80] shrink-0 mt-0.5" />
+                    <span>{isFa ? 'پوشش لجستیک دریایی و چارترینگ تحت اینکوترمز ۲۰۲۰' : 'Maritime logistics, vessel chartering & Incoterms 2020'}</span>
+                  </div>
+                </div>
+
+                {/* Quick Corridor Action */}
+                <div className="pt-2 border-t border-[#D5DFE8]">
+                  <button
+                    onClick={() => onInquire(`Corridor Sourcing Inquiry: ${selectedRegionObj.name}`)}
+                    className="w-full py-2.5 bg-[#004C80] hover:bg-[#003A63] text-white font-mono font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 rounded-[1px] cursor-pointer"
+                  >
+                    <span>{isFa ? 'استعلام ظرفیت کریدور و قیمت‌گذاری' : 'Request Corridor Allocation'}</span>
+                    <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+                  </button>
+                </div>
+
+              </div>
+
             </div>
 
             {/* World Network Animated Interactive Radar & Corridor Card */}

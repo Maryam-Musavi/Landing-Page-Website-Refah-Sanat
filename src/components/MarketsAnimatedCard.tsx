@@ -38,16 +38,20 @@ interface RegionMeta {
   liquidityTier: string;
 }
 
+// Center of SVG canvas (500x280) is (250, 140) where TEHRAN is positioned as the central nexus
+const TEHRAN_CENTER = { x: 250, y: 140, name: 'TEHRAN (HQ)', nameFa: 'تهران (مرکز فرماندهی)' };
+
 const REGION_METADATA: Record<string, RegionMeta> = {
   me: {
     hubs: ['Dubai (UAE)', 'Bandar Abbas', 'Salalah Port', 'Jeddah', 'Doha Hub'],
-    cx: 280,
-    cy: 145,
+    cx: 235,
+    cy: 185,
     routes: [
-      { x: 230, y: 95, label: 'EUR' },
-      { x: 340, y: 175, label: 'SA' },
-      { x: 420, y: 160, label: 'EA' },
-      { x: 260, y: 220, label: 'AF' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 105, y: 75, label: 'EUR' },
+      { x: 365, y: 195, label: 'SA' },
+      { x: 435, y: 125, label: 'EA' },
+      { x: 130, y: 215, label: 'AF' },
     ],
     flows: ['Crude & Hydrocarbons', 'Petrochemical Polymers', 'Granular Urea 46%', 'Base Metals'],
     transit: '2-4 Days',
@@ -56,12 +60,13 @@ const REGION_METADATA: Record<string, RegionMeta> = {
   },
   ca: {
     hubs: ['Almaty Hub', 'Tashkent', 'Baku Port', 'Aktau Maritime', 'Ashgabat'],
-    cx: 295,
-    cy: 110,
+    cx: 310,
+    cy: 75,
     routes: [
-      { x: 280, y: 145, label: 'ME' },
-      { x: 230, y: 95, label: 'EUR' },
-      { x: 420, y: 160, label: 'EA' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 235, y: 185, label: 'ME' },
+      { x: 105, y: 75, label: 'EUR' },
+      { x: 435, y: 125, label: 'EA' },
     ],
     flows: ['Sulfur & Fertilizers', 'Industrial Minerals', 'Metals & Billets', 'Grain Corridors'],
     transit: '3-6 Days',
@@ -70,12 +75,13 @@ const REGION_METADATA: Record<string, RegionMeta> = {
   },
   sa: {
     hubs: ['Nhava Sheva (Mumbai)', 'Mundra Port', 'Karachi', 'Chittagong', 'Colombo Hub'],
-    cx: 340,
-    cy: 175,
+    cx: 365,
+    cy: 195,
     routes: [
-      { x: 280, y: 145, label: 'ME' },
-      { x: 420, y: 160, label: 'EA' },
-      { x: 260, y: 220, label: 'AF' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 235, y: 185, label: 'ME' },
+      { x: 435, y: 125, label: 'EA' },
+      { x: 130, y: 215, label: 'AF' },
     ],
     flows: ['Bitumen & Petrochemicals', 'Agricultural Grain', 'Chemical Feedstocks', 'Steel Coils'],
     transit: '4-7 Days',
@@ -84,12 +90,13 @@ const REGION_METADATA: Record<string, RegionMeta> = {
   },
   ea: {
     hubs: ['Shanghai Maritime', 'Ningbo-Zhoushan', 'Singapore Hub', 'Qingdao', 'Busan'],
-    cx: 420,
-    cy: 160,
+    cx: 435,
+    cy: 125,
     routes: [
-      { x: 280, y: 145, label: 'ME' },
-      { x: 340, y: 175, label: 'SA' },
-      { x: 230, y: 95, label: 'EUR' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 235, y: 185, label: 'ME' },
+      { x: 365, y: 195, label: 'SA' },
+      { x: 105, y: 75, label: 'EUR' },
     ],
     flows: ['High-Grade Polymers', 'Methanol & Aromatics', 'Bulk Petrochemicals', 'Industrial Feedstocks'],
     transit: '7-12 Days',
@@ -98,12 +105,13 @@ const REGION_METADATA: Record<string, RegionMeta> = {
   },
   af: {
     hubs: ['Mombasa Port', 'Durban Hub', 'Alexandria', 'Dar es Salaam', 'Djibouti Terminal'],
-    cx: 260,
-    cy: 220,
+    cx: 130,
+    cy: 215,
     routes: [
-      { x: 280, y: 145, label: 'ME' },
-      { x: 340, y: 175, label: 'SA' },
-      { x: 230, y: 95, label: 'EUR' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 235, y: 185, label: 'ME' },
+      { x: 365, y: 195, label: 'SA' },
+      { x: 105, y: 75, label: 'EUR' },
     ],
     flows: ['Granular Urea & Fertilizer', 'Food & Agriculture Rice', 'Rebar & Steel', 'Refined Fuels'],
     transit: '6-10 Days',
@@ -112,12 +120,13 @@ const REGION_METADATA: Record<string, RegionMeta> = {
   },
   eu: {
     hubs: ['Rotterdam Gateway', 'Antwerp Port', 'Genoa', 'Istanbul Port', 'Hamburg Hub'],
-    cx: 230,
-    cy: 95,
+    cx: 105,
+    cy: 75,
     routes: [
-      { x: 280, y: 145, label: 'ME' },
-      { x: 295, y: 110, label: 'CA' },
-      { x: 420, y: 160, label: 'EA' },
+      { x: 250, y: 140, label: 'TEHRAN HQ' },
+      { x: 235, y: 185, label: 'ME' },
+      { x: 310, y: 75, label: 'CA' },
+      { x: 435, y: 125, label: 'EA' },
     ],
     flows: ['Trade Credit Facilities', 'Multilateral SBLC Clearing', 'Specialized Chemistry', 'Industrial Equipment'],
     transit: '5-9 Days',
@@ -182,8 +191,11 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
       <div className="relative z-10 bg-[#071320] border border-[#1E293B] rounded-[1px] p-4 overflow-hidden">
         
         {/* Radar Corner Coordinates */}
-        <div className="absolute top-2 left-3 text-[9px] font-mono text-sky-400/70 tracking-widest pointer-events-none">
-          LAT {meta.cy}°N // LNG {meta.cx}°E
+        <div className="absolute top-2 left-3 text-[9px] font-mono text-sky-400/80 tracking-widest pointer-events-none flex items-center gap-2">
+          <span>LAT 35.6892°N // LNG 51.3890°E</span>
+          <span className="text-amber-400 font-bold bg-amber-400/10 px-1.5 py-0.5 border border-amber-400/30 rounded-[1px]">
+            {isFa ? 'مرکز: تهران (دفتر مرکزی)' : 'CENTER: TEHRAN (HQ)'}
+          </span>
         </div>
         <div className="absolute top-2 right-3 text-[9px] font-mono text-emerald-400/80 font-bold flex items-center gap-1 pointer-events-none">
           <Activity className="w-3 h-3 animate-pulse" />
@@ -193,7 +205,7 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
         {/* SVG Canvas with Animated Trade Routes & Hub Beacons */}
         <svg 
           viewBox="0 0 500 280" 
-          className="w-full h-48 sm:h-60 select-none"
+          className="w-full h-52 sm:h-64 select-none"
         >
           <defs>
             {/* Radar Grid Pattern */}
@@ -203,8 +215,8 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
             
             {/* Linear Gradient for Routes */}
             <linearGradient id="routeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="#0284c7" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
+              <stop offset="40%" stopColor="#38bdf8" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" />
             </linearGradient>
 
@@ -213,56 +225,136 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
               <feGaussianBlur stdDeviation="3" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
+
+            {/* Gold glow filter for Tehran */}
+            <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
           </defs>
 
           {/* Grid Background */}
           <rect width="500" height="280" fill="url(#radarGrid)" />
 
-          {/* Concentric Radar Rings Centered on Active Node */}
+          {/* Crosshair Centered on Tehran (250, 140) */}
+          <line x1="250" y1="20" x2="250" y2="260" stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2 4" opacity="0.4" />
+          <line x1="40" y1="140" x2="460" y2="140" stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2 4" opacity="0.4" />
+
+          {/* Concentric Radar Rings Centered on Tehran (250, 140) */}
           <motion.circle
-            cx={meta.cx}
-            cy={meta.cy}
-            r="35"
+            cx="250"
+            cy="140"
+            r="45"
             fill="none"
             stroke="#0284c7"
             strokeWidth="0.8"
             strokeDasharray="2 4"
-            animate={{ scale: [1, 1.25, 1], opacity: [0.3, 0.7, 0.3] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.6, 0.25] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.circle
-            cx={meta.cx}
-            cy={meta.cy}
-            r="70"
+            cx="250"
+            cy="140"
+            r="90"
             fill="none"
             stroke="#0284c7"
             strokeWidth="0.6"
             strokeDasharray="3 6"
-            animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.4, 0.15] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+            animate={{ scale: [1, 1.12, 1], opacity: [0.15, 0.4, 0.15] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          />
+          <circle
+            cx="250"
+            cy="140"
+            r="135"
+            fill="none"
+            stroke="#0284c7"
+            strokeWidth="0.4"
+            strokeDasharray="4 8"
+            opacity="0.2"
           />
 
-          {/* Radar Sweep Rotating Line */}
+          {/* Radar Sweep Rotating Line Centered on Tehran */}
           <motion.g
             animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            style={{ transformOrigin: `${meta.cx}px ${meta.cy}px` }}
+            transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
+            style={{ transformOrigin: '250px 140px' }}
           >
             <line
-              x1={meta.cx}
-              y1={meta.cy}
-              x2={meta.cx + 90}
-              y2={meta.cy}
+              x1="250"
+              y1="140"
+              x2="250"
+              y2="15"
               stroke="#38bdf8"
               strokeWidth="1.5"
-              strokeOpacity="0.6"
+              strokeOpacity="0.7"
             />
             {/* Sweep gradient sector */}
             <path
-              d={`M ${meta.cx} ${meta.cy} L ${meta.cx + 90} ${meta.cy} A 90 90 0 0 1 ${meta.cx + 80} ${meta.cy + 40} Z`}
+              d="M 250 140 L 250 15 A 125 125 0 0 1 338 52 Z"
               fill="rgba(56, 189, 248, 0.12)"
             />
           </motion.g>
+
+          {/* Dynamic Animated Trade Corridors to Other Hubs */}
+          {meta.routes.map((rt, idx) => {
+            // Cubic bezier curved trade paths
+            const midX = (meta.cx + rt.x) / 2;
+            const midY = Math.min(meta.cy, rt.y) - 20;
+            const pathD = `M ${meta.cx} ${meta.cy} Q ${midX} ${midY} ${rt.x} ${rt.y}`;
+
+            return (
+              <g key={idx}>
+                {/* Path line */}
+                <path
+                  d={pathD}
+                  fill="none"
+                  stroke="url(#routeGlow)"
+                  strokeWidth="1.3"
+                  strokeDasharray="4 4"
+                  className="opacity-75"
+                />
+
+                {/* Animated Glowing Packet Traveling Along the Path */}
+                <motion.circle
+                  r="3"
+                  fill="#38bdf8"
+                  filter="url(#glowEffect)"
+                  animate={{
+                    offsetDistance: ['0%', '100%'],
+                  }}
+                  transition={{
+                    duration: 3.2 + idx * 0.7,
+                    repeat: Infinity,
+                    ease: 'linear',
+                    delay: idx * 0.4,
+                  }}
+                  style={{
+                    offsetPath: `path('${pathD}')`,
+                  }}
+                />
+
+                {/* Terminal Node */}
+                <circle
+                  cx={rt.x}
+                  cy={rt.y}
+                  r="3.5"
+                  fill="#10b981"
+                  opacity="0.8"
+                />
+                <text
+                  x={rt.x}
+                  y={rt.y + (rt.y > 140 ? 12 : -8)}
+                  fill="#94a3b8"
+                  fontSize="7.5"
+                  fontFamily="monospace"
+                  textAnchor="middle"
+                >
+                  {rt.label}
+                </text>
+              </g>
+            );
+          })}
 
           {/* Global World Reference Hubs */}
           {Object.entries(REGION_METADATA).map(([key, rMeta]) => {
@@ -280,13 +372,13 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
                 
                 {/* Text Label */}
                 <text
-                  x={rMeta.cx + (rMeta.cx > 380 ? -10 : 10)}
-                  y={rMeta.cy - 8}
+                  x={rMeta.cx + (rMeta.cx > 250 ? 10 : -10)}
+                  y={rMeta.cy + (rMeta.cy > 140 ? 12 : -6)}
                   fill={isSelected ? '#ffffff' : '#64748b'}
-                  fontSize={isSelected ? '10' : '8'}
+                  fontSize={isSelected ? '9.5' : '8'}
                   fontFamily="monospace"
                   fontWeight={isSelected ? 'bold' : 'normal'}
-                  textAnchor={rMeta.cx > 380 ? 'end' : 'start'}
+                  textAnchor={rMeta.cx > 250 ? 'start' : 'end'}
                 >
                   {rMeta.hubs[0].split(' ')[0]}
                 </text>
@@ -294,67 +386,7 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
             );
           })}
 
-          {/* Dynamic Animated Trade Corridors to Other Hubs */}
-          {meta.routes.map((rt, idx) => {
-            // Cubic bezier curved trade paths
-            const midX = (meta.cx + rt.x) / 2;
-            const midY = Math.min(meta.cy, rt.y) - 25;
-            const pathD = `M ${meta.cx} ${meta.cy} Q ${midX} ${midY} ${rt.x} ${rt.y}`;
-
-            return (
-              <g key={idx}>
-                {/* Path line */}
-                <path
-                  d={pathD}
-                  fill="none"
-                  stroke="url(#routeGlow)"
-                  strokeWidth="1.2"
-                  strokeDasharray="4 4"
-                  className="opacity-70"
-                />
-
-                {/* Animated Glowing Packet Traveling Along the Path */}
-                <motion.circle
-                  r="3"
-                  fill="#38bdf8"
-                  filter="url(#glowEffect)"
-                  animate={{
-                    offsetDistance: ['0%', '100%'],
-                  }}
-                  transition={{
-                    duration: 3 + idx * 0.8,
-                    repeat: Infinity,
-                    ease: 'linear',
-                    delay: idx * 0.5,
-                  }}
-                  style={{
-                    offsetPath: `path('${pathD}')`,
-                  }}
-                />
-
-                {/* Terminal Node */}
-                <circle
-                  cx={rt.x}
-                  cy={rt.y}
-                  r="3.5"
-                  fill="#10b981"
-                  opacity="0.8"
-                />
-                <text
-                  x={rt.x}
-                  y={rt.y + 12}
-                  fill="#94a3b8"
-                  fontSize="7.5"
-                  fontFamily="monospace"
-                  textAnchor="middle"
-                >
-                  {rt.label}
-                </text>
-              </g>
-            );
-          })}
-
-          {/* Active Node Pulse Rings */}
+          {/* Active Selected Node Pulse Rings */}
           <motion.circle
             cx={meta.cx}
             cy={meta.cy}
@@ -375,14 +407,85 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
           <motion.circle
             cx={meta.cx}
             cy={meta.cy}
-            r="4"
-            fill="#ffffff"
+            r="4.5"
+            fill="#38bdf8"
           />
+
+          {/* ======================================================== */}
+          {/* TEHRAN (HQ) - PROMINENT CENTRAL EPICENTER AT (250, 140) */}
+          {/* ======================================================== */}
+          <g>
+            {/* Glowing Amber Pulse Ring for Tehran Center */}
+            <motion.circle
+              cx="250"
+              cy="140"
+              r="14"
+              fill="none"
+              stroke="#f59e0b"
+              strokeWidth="1.8"
+              animate={{
+                r: [7, 28],
+                opacity: [1, 0],
+              }}
+              transition={{
+                duration: 2.2,
+                repeat: Infinity,
+                ease: 'easeOut',
+              }}
+            />
+
+            {/* Central Diamond / Star Reticle for Tehran */}
+            <rect
+              x="244"
+              y="134"
+              width="12"
+              height="12"
+              fill="#f59e0b"
+              filter="url(#goldGlow)"
+              transform="rotate(45 250 140)"
+            />
+            <circle
+              cx="250"
+              cy="140"
+              r="3.5"
+              fill="#ffffff"
+            />
+
+            {/* Tehran Central Label Badge */}
+            <g transform="translate(250, 162)">
+              <rect
+                x="-52"
+                y="-9"
+                width="104"
+                height="17"
+                fill="#0A1C2E"
+                stroke="#f59e0b"
+                strokeWidth="1"
+                rx="1"
+              />
+              <text
+                x="0"
+                y="3"
+                fill="#fbbf24"
+                fontSize="8.5"
+                fontFamily="monospace"
+                fontWeight="bold"
+                textAnchor="middle"
+                letterSpacing="0.5"
+              >
+                ★ TEHRAN (HQ DESK)
+              </text>
+            </g>
+          </g>
         </svg>
 
         {/* Bottom Legend on Radar Screen */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#1E293B] text-[10px] font-mono text-slate-400">
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-[#1E293B] text-[10px] font-mono text-slate-400">
           <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 text-amber-400 font-bold">
+              <span className="w-2 h-2 rounded-[1px] bg-amber-400 inline-block rotate-45" />
+              <span>TEHRAN (CENTRAL NEXUS)</span>
+            </span>
             <span className="flex items-center gap-1.5 text-sky-400">
               <span className="w-2 h-2 rounded-full bg-sky-400 inline-block" />
               <span>PRIMARY CORRIDOR</span>
@@ -392,8 +495,8 @@ export const MarketsAnimatedCard: React.FC<MarketsAnimatedCardProps> = ({
               <span>CLEARING HUB</span>
             </span>
           </div>
-          <span className="text-slate-500 font-sans">
-            {isFa ? 'مسیرهای فعال حمل دریایی و اعتبارات اسنادی' : 'Live maritime freight & LC settlement lanes'}
+          <span className="text-slate-400 font-sans">
+            {isFa ? 'تهران: مرکز هماهنگی و تسویه اعتبارات اسنادی' : 'Tehran: Central Coordination & Trade Finance Desk'}
           </span>
         </div>
 
