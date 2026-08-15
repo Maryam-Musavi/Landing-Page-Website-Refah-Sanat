@@ -47,29 +47,6 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
   const [activeRegion, setActiveRegion] = useState<string>('mideast');
   const [activeSection, setActiveSection] = useState<string>('home');
 
-  // Form State
-  const [formData, setFormData] = useState({
-    fullName: '',
-    companyName: '',
-    email: '',
-    phone: '',
-    inquiryType: 'commodity_trading',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
-  const [refCode, setRefCode] = useState('');
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormSuccess(true);
-      setRefCode(`RSP-TRD-${Math.floor(100000 + Math.random() * 900000)}`);
-    }, 1200);
-  };
-
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
@@ -204,13 +181,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 <span>{t.hero.badge}</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0A1C2E] leading-[1.1] tracking-tight uppercase font-sans">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0A1C2E] leading-[1.1] tracking-tight uppercase font-sans">
                 {isFa ? (
                   <>پیوند تجارت جهانی<br /><span className="text-[#004C80]">با تامین مالی جهانی</span></>
                 ) : (
                   <>Connecting Global Trade<br /><span className="text-[#004C80]">with Global Finance</span></>
                 )}
-              </h1>
+              </h2>
 
               <div className="space-y-4 text-sm sm:text-base text-[#334155] leading-relaxed">
                 <p className="font-semibold text-[#0A1C2E]">
@@ -920,149 +897,12 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               </p>
             </div>
 
-            {/* Contact Grid: Form + Office Info */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Direct Contact Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               
-              {/* Left 7 cols: Interactive Form */}
-              <div className="lg:col-span-7 bg-white p-6 sm:p-8 border border-[#D5DFE8] rounded-[1px] shadow-sm">
-                <h3 className="text-lg font-bold text-[#0A1C2E] mb-6 pb-3 border-b border-[#D5DFE8] font-sans">
-                  {t.contact.formTitle}
-                </h3>
-
-                {formSuccess ? (
-                  <div className="p-6 bg-[#0A1C2E] text-white rounded-[1px] space-y-4 text-center">
-                    <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 flex items-center justify-center rounded-full mx-auto">
-                      <ShieldCheck className="w-6 h-6" />
-                    </div>
-                    <h4 className="text-lg font-bold font-sans text-white">
-                      {isFa ? 'درخواست تجاری با موفقیت ثبت شد' : 'Commercial Inquiry Received'}
-                    </h4>
-                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                      {t.contact.successMessage}
-                    </p>
-                    <div className="p-3 bg-[#132A42] border border-[#1E293B] font-mono text-xs text-sky-300">
-                      {t.contact.referenceCode}: RSP-TRD-{Math.floor(100000 + Math.random() * 900000)}
-                    </div>
-                    <button
-                      onClick={() => setFormSuccess(false)}
-                      className="text-xs font-mono underline text-slate-400 hover:text-white cursor-pointer pt-2"
-                    >
-                      {isFa ? 'ثبت درخواست جدید' : 'Submit another inquiry'}
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                          {t.contact.nameLabel} *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.fullName}
-                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          placeholder={t.contact.namePlaceholder}
-                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                          {t.contact.companyLabel} *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.companyName}
-                          onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                          placeholder={t.contact.companyPlaceholder}
-                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                          {t.contact.emailLabel} *
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder={t.contact.emailPlaceholder}
-                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                          {t.contact.phoneLabel}
-                        </label>
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder={t.contact.phonePlaceholder}
-                          className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                        {t.contact.inquiryTypeLabel}
-                      </label>
-                      <select
-                        value={formData.inquiryType}
-                        onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                      >
-                        <option value="commodity_trading">{isFa ? 'تجارت بین‌المللی کالایی' : 'International Commodity Trading'}</option>
-                        <option value="trade_finance">{isFa ? 'تامین مالی تجارت و زنجیره تامین' : 'Trade & Supply Chain Finance'}</option>
-                        <option value="strategic_partnership">{isFa ? 'مشارکت‌های جهانی و سرمایه‌گذاری' : 'Global Partnerships & Investment'}</option>
-                        <option value="other">{isFa ? 'سایر موارد تجاری' : 'Other Commercial Inquiries'}</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-mono font-bold text-[#0A1C2E] mb-1.5">
-                        {t.contact.messageLabel} *
-                      </label>
-                      <textarea
-                        rows={4}
-                        required
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder={t.contact.messagePlaceholder}
-                        className="w-full px-3.5 py-2.5 bg-[#F4F7FA] border border-[#D5DFE8] text-xs text-[#0A1C2E] focus:outline-none focus:border-[#004C80] rounded-[1px]"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-3.5 bg-[#004C80] hover:bg-[#003A63] text-white font-mono font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 rounded-[1px] disabled:opacity-50 cursor-pointer"
-                    >
-                      {isSubmitting ? (
-                        <span>{t.contact.submittingBtn}</span>
-                      ) : (
-                        <>
-                          <span>{t.contact.submitBtn}</span>
-                          <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                        </>
-                      )}
-                    </button>
-                  </form>
-                )}
-              </div>
-
-              {/* Right 5 cols: Direct Desk Coordinates */}
-              <div className="lg:col-span-5 space-y-4">
-                
-                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm">
+              {/* Headquarters Address */}
+              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm flex flex-col justify-between">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
                     <MapPin className="w-4 h-4 shrink-0" />
                     <span>{t.contact.officeTitle}</span>
@@ -1070,35 +910,53 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   <p className="text-xs text-[#5C667A] leading-relaxed">
                     {t.contact.officeDesc}
                   </p>
-                  <p className="text-xs font-sans font-bold text-[#0A1C2E] pt-2 border-t border-[#D5DFE8]">
-                    {t.contact.address}
-                  </p>
                 </div>
+                <p className="text-xs font-sans font-bold text-[#0A1C2E] pt-3 border-t border-[#D5DFE8]">
+                  {t.contact.address}
+                </p>
+              </div>
 
-                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs">
+              {/* Email Desk */}
+              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs flex flex-col justify-between">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
                     <Mail className="w-4 h-4 shrink-0" />
                     <span>EMAIL DESK</span>
                   </div>
+                  <p className="text-xs text-[#5C667A] font-sans">
+                    {isFa ? 'پاسخگویی مستقیم به استعلام‌های کالایی و بانکی' : 'Direct response for commodity and banking inquiries'}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#D5DFE8]">
                   <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.email}</p>
                 </div>
+              </div>
 
-                <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs">
+              {/* Direct Trading Line */}
+              <div className="p-6 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 shadow-sm font-mono text-xs flex flex-col justify-between">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#004C80] font-bold uppercase">
                     <Phone className="w-4 h-4 shrink-0" />
                     <span>DIRECT TRADING LINE</span>
                   </div>
+                  <p className="text-xs text-[#5C667A] font-sans">
+                    {t.contact.hours}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#D5DFE8]">
                   <p className="text-sm font-bold text-[#0A1C2E]">{t.contact.phone}</p>
-                  <p className="text-[11px] text-[#5C667A]">{t.contact.hours}</p>
                 </div>
-
-                <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex items-center gap-3 text-xs font-mono shadow-sm">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span className="text-white font-bold text-[11px]">ISO 28000 & ISO 9001 GOVERNANCE CERTIFIED</span>
-                </div>
-
               </div>
 
+            </div>
+
+            {/* Compliance Banner */}
+            <div className="p-4 bg-[#0A1C2E] text-slate-300 border border-[#1E293B] rounded-[1px] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono shadow-sm">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                <span className="text-white font-bold text-xs">ISO 28000 & ISO 9001 GOVERNANCE CERTIFIED</span>
+              </div>
+              <span className="text-sky-400 font-mono text-xs">REFAH SANAT PARDIS • COMMERCIAL DESK</span>
             </div>
           </div>
 
