@@ -174,9 +174,9 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </h1>
               </div>
 
-              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-sans">
-                <p>{t.hero.introParagraph1}</p>
-                <p className="text-slate-300 font-normal">{t.hero.introParagraph2}</p>
+              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-sans text-justify">
+                <p className="text-justify">{t.hero.introParagraph1}</p>
+                <p className="text-slate-300 font-normal text-justify">{t.hero.introParagraph2}</p>
               </div>
 
               {/* Action Buttons */}
