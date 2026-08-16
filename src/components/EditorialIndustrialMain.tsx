@@ -329,10 +329,10 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   <Building2 className="w-4 h-4" />
                   <span>{isFa ? 'معرفی جامع گروه رفاه صنعت پردیس' : 'Refah Sanat Pardis Institutional Overview'}</span>
                 </div>
-                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed text-justify">
                   {t.company.aboutText1}
                 </p>
-                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed text-justify">
                   {t.company.aboutText2}
                 </p>
               </div>
@@ -347,7 +347,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     <h3 className="text-sm sm:text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-[#5C667A] leading-relaxed font-sans">
+                    <p className="text-xs text-[#5C667A] leading-relaxed font-sans text-justify">
                       {item.desc}
                     </p>
                   </div>
@@ -440,7 +440,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     <h3 className="text-lg sm:text-xl font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
                       {member.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans pt-3 border-t border-[#D5DFE8]">
+                    <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans pt-3 border-t border-[#D5DFE8] text-justify">
                       {member.bio}
                     </p>
                   </div>
@@ -515,7 +515,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
                       {t.business.commodityTrading.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed text-justify">
                       {t.business.commodityTrading.desc}
                     </p>
                   </div>
@@ -561,7 +561,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
                       {t.business.tradeFinance.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed text-justify">
                       {t.business.tradeFinance.desc}
                     </p>
                   </div>
@@ -607,7 +607,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] mt-1 font-sans">
                       {t.business.partnerships.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#5C667A] mt-2 leading-relaxed text-justify">
                       {t.business.partnerships.desc}
                     </p>
                   </div>
@@ -664,7 +664,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </p>
           </div>
 
-          <p className="text-sm sm:text-base text-[#5C667A] max-w-3xl mb-12 leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#5C667A] max-w-3xl mb-12 leading-relaxed font-sans text-justify">
             {t.valueCreation.leadText}
           </p>
 
@@ -682,14 +682,18 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                   <h3 className="text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors mt-3">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-[#5C667A] leading-relaxed font-sans mt-2">
+                  <p className="text-xs text-[#5C667A] leading-relaxed font-sans mt-2 text-justify">
                     {step.desc}
                   </p>
                 </div>
 
                 <div className="pt-4 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                  <span>EXEC: VALIDATED</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#004C80] rtl:rotate-180" />
+                  <span>{idx === t.valueCreation.lifecycleSteps.length - 1 ? (isFa ? 'نقطه نهایی: تحویل' : 'FINAL: DELIVERED') : 'EXEC: VALIDATED'}</span>
+                  {idx === t.valueCreation.lifecycleSteps.length - 1 ? (
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  ) : (
+                    <ArrowRight className="w-3.5 h-3.5 text-[#004C80] rtl:rotate-180" />
+                  )}
                 </div>
               </div>
             ))}
@@ -780,6 +784,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               selectedRegion={selectedRegionObj}
               closingText={t.markets.closingText}
               onInquire={onInquire}
+              onSelectRegion={setActiveRegion}
             />
           </div>
 
@@ -880,7 +885,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 <h3 className="text-base font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
                   {cert.title}
                 </h3>
-                <p className="text-xs text-[#5C667A] leading-relaxed font-sans">
+                <p className="text-xs text-[#5C667A] leading-relaxed font-sans text-justify">
                   {cert.desc}
                 </p>
               </div>
@@ -916,27 +921,22 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 className="p-8 bg-white border border-[#D5DFE8] hover:border-[#004C80] transition-all rounded-[1px] flex flex-col justify-between group shadow-sm"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono text-[#5C667A]">
+                  <div className="flex items-center text-xs font-mono text-[#5C667A]">
                     <span className="px-2.5 py-0.5 bg-[#004C80]/10 text-[#004C80] font-bold rounded-[1px]">
                       {item.category}
                     </span>
-                    <span>{item.date}</span>
                   </div>
 
                   <h3 className="text-base sm:text-lg font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans text-justify">
                     {item.summary}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-[#D5DFE8] flex items-center justify-between">
-                  <span className="text-xs font-mono text-slate-400">
-                    {item.readTime}
-                  </span>
-                  
+                <div className="pt-6 mt-6 border-t border-[#D5DFE8] flex items-center justify-end">
                   <button
                     onClick={() => {
                       if (openInsightModal) {
@@ -945,7 +945,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                         onInquire(`Insight Inquiry: ${item.title}`);
                       }
                     }}
-                    className="text-xs font-mono font-bold text-[#004C80] hover:text-[#003860] flex items-center gap-1.5 cursor-pointer uppercase"
+                    className="text-xs font-mono font-bold text-[#004C80] hover:text-[#003860] flex items-center gap-1.5 cursor-pointer uppercase group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
                   >
                     <span>{t.insights.readMore}</span>
                     <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
@@ -1043,28 +1043,28 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-6 flex flex-col justify-between gap-6">
               
               {/* Vision Card */}
-              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3">
+              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 flex-1 flex flex-col justify-center">
                 <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">PURPOSE 01 // STRATEGIC HORIZON</span>
                 <h3 className="text-xl font-bold text-[#0A1C2E] font-sans">
                   {t.visionMission.visionTitle}
                 </h3>
-                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans text-justify">
                   {t.visionMission.visionText}
                 </p>
               </div>
 
               {/* Mission Card */}
-              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3">
+              <div className="p-8 bg-white border border-[#D5DFE8] rounded-[1px] space-y-3 flex-1 flex flex-col justify-center">
                 <span className="text-[11px] font-mono font-bold text-[#004C80] uppercase">PURPOSE 02 // OPERATIONAL EXECUTION</span>
                 <h3 className="text-xl font-bold text-[#0A1C2E] font-sans">
                   {t.visionMission.missionTitle}
                 </h3>
-                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-[#5C667A] leading-relaxed font-sans text-justify">
                   {t.visionMission.missionText}
                 </p>
               </div>
@@ -1072,12 +1072,12 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Rail Logistics Infrastructure Image */}
-            <div className="lg:col-span-6">
-              <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden">
+            <div className="lg:col-span-6 h-full">
+              <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
                 <img 
                   src={railLogisticsImg} 
                   alt={isFa ? 'ترانزیت باری ریلی و زیرساخت‌های اتصال تجاری' : 'Overland Freight Rail Infrastructure and Logistics Terminal'}
-                  className="w-full h-80 sm:h-96 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full min-h-[360px] object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out flex-1"
                   width={1280}
                   height={714}
                   loading="lazy"
@@ -1125,7 +1125,7 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 <h3 className="text-lg sm:text-xl font-bold text-[#0A1C2E] font-sans group-hover:text-[#004C80] transition-colors">
                   {p.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-[#5C667A] leading-relaxed font-sans text-justify">
                   {p.desc}
                 </p>
               </div>
@@ -1340,70 +1340,16 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
           </div>
 
-          {/* Comprehensive 4-Column Footer Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 items-start">
+          {/* Two-Column Footer Links Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start max-w-5xl mx-auto">
             
-            {/* Column 1: با ما در ارتباط باشید (Contact & Coordinates) */}
-            <div className="lg:col-span-4 space-y-4">
-              <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
-                <MapPin className="w-3.5 h-3.5 text-sky-400" />
-                <span>{t.footer.contactInfoTitle || (isFa ? 'با ما در ارتباط باشید' : 'Contact Coordinates')}</span>
-              </div>
-
-              <div className="space-y-3.5 text-xs text-slate-300 font-sans">
-                {/* Address */}
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <div className="leading-relaxed">
-                    <span className="text-slate-400 text-[11px] block">{isFa ? 'نشانی:' : 'Address:'}</span>
-                    <span className="font-medium text-slate-200">{t.contact.address}</span>
-                  </div>
-                </div>
-
-                {/* Phones */}
-                <div className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 text-[11px] block">{isFa ? 'تلفن‌های تماس:' : 'Phones:'}</span>
-                    <div className="font-mono font-semibold text-slate-200 flex flex-col gap-1 mt-0.5" dir="ltr">
-                      {t.contact.phones.map((ph, i) => (
-                        <a key={i} href={`tel:${ph.replace(/[^0-9+]/g, '')}`} className="hover:text-sky-400 transition-colors">
-                          {ph}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-2.5">
-                  <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 text-[11px] block">{isFa ? 'ایمیل رسمی:' : 'Email:'}</span>
-                    <a href={`mailto:${t.contact.email}`} className="font-mono text-slate-200 hover:text-sky-400 transition-colors">
-                      {t.contact.email}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Fax */}
-                <div className="flex items-start gap-2.5">
-                  <Printer className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 text-[11px] block">{isFa ? 'فکس:' : 'Fax:'}</span>
-                    <span className="font-mono text-slate-200" dir="ltr">{t.contact.fax}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Column 2: لینک‌های مرتبط (گروه رفاه و سهامداران) */}
-            <div className="lg:col-span-3 space-y-4">
+            {/* Column: لینک‌های مرتبط (گروه رفاه و سهامداران) */}
+            <div className="space-y-4">
               <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
                 <Link2 className="w-3.5 h-3.5 text-sky-400" />
                 <span>{t.footer.relatedLinksTitle}</span>
               </div>
-              <ul className="space-y-2 text-xs">
+              <ul className="space-y-2.5 text-xs">
                 {t.footer.relatedLinks.map((link, idx) => (
                   <li key={idx}>
                     <a
@@ -1425,13 +1371,13 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
               </ul>
             </div>
 
-            {/* Column 3: دسترسی سریع / صنایع معدنی و فولادی همکار */}
-            <div className="lg:col-span-3 space-y-4">
+            {/* Column: دسترسی سریع / صنایع معدنی و فولادی همکار */}
+            <div className="space-y-4">
               <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
                 <Building2 className="w-3.5 h-3.5 text-sky-400" />
                 <span>{t.footer.partnerIndustriesTitle}</span>
               </div>
-              <ul className="space-y-2 text-xs">
+              <ul className="space-y-2.5 text-xs">
                 {t.footer.partnerIndustries.map((partner, idx) => (
                   <li key={idx}>
                     <a
@@ -1450,23 +1396,6 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                     </a>
                   </li>
                 ))}
-              </ul>
-            </div>
-
-            {/* Column 4: ناوبری سامانه */}
-            <div className="lg:col-span-2 space-y-4 font-mono">
-              <div className="text-white font-bold uppercase tracking-wider text-xs flex items-center gap-2 pb-2 border-b border-[#1E293B]">
-                <span>{t.footer.quickLinksTitle}</span>
-              </div>
-              <ul className="space-y-2 text-slate-400 text-xs">
-                <li><a href="#about" onClick={(e) => handleAnchorClick(e, '#about')} className="hover:text-white transition-colors block">{t.nav.about}</a></li>
-                <li><a href="#leadership" onClick={(e) => handleAnchorClick(e, '#leadership')} className="hover:text-white transition-colors block">{t.nav.leadership}</a></li>
-                <li><a href="#business" onClick={(e) => handleAnchorClick(e, '#business')} className="hover:text-white transition-colors block">{t.nav.business}</a></li>
-                <li><a href="#markets" onClick={(e) => handleAnchorClick(e, '#markets')} className="hover:text-white transition-colors block">{t.nav.markets}</a></li>
-                <li><a href="#stats" onClick={(e) => handleAnchorClick(e, '#stats')} className="hover:text-white transition-colors block">{t.nav.stats}</a></li>
-                <li><a href="#insights" onClick={(e) => handleAnchorClick(e, '#insights')} className="hover:text-white transition-colors block">{t.nav.insights}</a></li>
-                <li><a href="#faq" onClick={(e) => handleAnchorClick(e, '#faq')} className="hover:text-white transition-colors block">{t.nav.faq}</a></li>
-                <li><a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')} className="text-sky-400 hover:underline block">{t.nav.contact}</a></li>
               </ul>
             </div>
 
