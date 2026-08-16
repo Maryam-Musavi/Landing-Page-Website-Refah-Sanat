@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.jpg';
 import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.jpg';
 import containerNightImg from '../assets/images/container_terminal_night_1786809233281.jpg';
-import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.jpg';
+import foodGrainsImg from '../assets/images/paddy_rice_exact_1786882422277.jpg';
 import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.jpg';
 import multimodalImg from '../assets/images/multimodal_transport_1786809273515.jpg';
 import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.jpg';
