@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.webp';
-import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.webp';
-import containerNightImg from '../assets/images/container_terminal_night_1786809233281.webp';
-import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.webp';
-import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.webp';
-import multimodalImg from '../assets/images/multimodal_transport_1786809273515.webp';
-import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.webp';
-import railLogisticsImg from '../assets/images/rail_logistics_infra_1786809312499.webp';
-import agriGrainImg from '../assets/images/agri_grain_trading_1786647224734.webp';
+import bulkVesselImg from '../assets/images/bulk_vessel_sea_1786809204898.jpg';
+import cargoPortImg from '../assets/images/cargo_port_terminal_1786809220224.jpg';
+import containerNightImg from '../assets/images/container_terminal_night_1786809233281.jpg';
+import foodGrainsImg from '../assets/images/food_grains_trade_1786809247540.jpg';
+import grainSiloImg from '../assets/images/grain_silo_facility_1786809259998.jpg';
+import multimodalImg from '../assets/images/multimodal_transport_1786809273515.jpg';
+import portDuskImg from '../assets/images/port_containers_dusk_1786809296933.jpg';
+import railLogisticsImg from '../assets/images/rail_logistics_infra_1786809312499.jpg';
+import agriGrainImg from '../assets/images/agri_grain_trading_1786647224734.jpg';
 
 import { 
   Globe, 
@@ -98,28 +98,6 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       
       {/* ------------------ REFINED INSTITUTIONAL NAVIGATION ------------------ */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#D5DFE8] transition-all">
-        
-        {/* Micro Technical Ticker */}
-        <div className="bg-[#0A1C2E] text-[#94A3B8] border-b border-[#1E293B] py-1.5 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[10px] font-mono uppercase tracking-widest gap-2">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-white font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>SYS: ONLINE • REF: RSP-INT-2026</span>
-              </span>
-              <span className="text-slate-600 hidden sm:inline">|</span>
-              <span className="text-slate-300 hidden sm:inline">TEHRAN HQ • GLOBAL TRADE DESK</span>
-              <span className="text-slate-600 hidden md:inline">|</span>
-              <span className="text-slate-400 hidden md:inline">[35.6892° N, 51.3890° E]</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-slate-300">ICC UCP 600 • ISO 9001 • ISO 28000</span>
-              <span className="text-slate-600">|</span>
-              <span className="text-emerald-400 font-bold">CLEARING: ACTIVE</span>
-            </div>
-          </div>
-        </div>
-
         {/* Main Nav Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -140,31 +118,6 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
                 </span>
               </div>
             </a>
-
-            {/* Desktop Navigation Links */}
-            <nav className="hidden xl:flex items-center gap-6 text-xs font-mono font-medium text-[#5C667A]">
-              {[
-                { href: '#about', label: t.nav.about },
-                { href: '#leadership', label: t.nav.leadership },
-                { href: '#business', label: t.nav.business },
-                { href: '#value', label: t.nav.value },
-                { href: '#markets', label: t.nav.markets },
-                { href: '#stats', label: t.nav.stats },
-                { href: '#insights', label: t.nav.insights },
-                { href: '#faq', label: t.nav.faq },
-                { href: '#why-us', label: t.nav.whyUs },
-                { href: '#contact', label: t.nav.contact },
-              ].map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleAnchorClick(e, link.href)}
-                  className="hover:text-[#004C80] transition-colors py-1 border-b-2 border-transparent hover:border-[#004C80] tracking-wider"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
 
             {/* Language Switcher & Action CTA */}
             <div className="flex items-center gap-3">
@@ -537,15 +490,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
               <div className="lg:col-span-5 h-full">
                 <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
-                  <img 
-                    src={foodGrainsImg} 
-                    alt={isFa ? 'تجارت فیزیکی غلات و نهاده‌های دامی و کشاورزی' : 'Agricultural Commodity and Food Grains Physical Trading'}
-                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    width={1280}
-                    height={714}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div className="relative w-full h-full min-h-[280px] flex-1 overflow-hidden">
+                    <img 
+                      src={foodGrainsImg} 
+                      alt={isFa ? 'تجارت فیزیکی غلات و نهاده‌های دامی و کشاورزی' : 'Agricultural Commodity and Food Grains Physical Trading'}
+                      className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      width={1280}
+                      height={714}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                      <Coins className="w-3.5 h-3.5 text-[#004C80]" />
+                      <span>{isFa ? 'تأمین فیزیکی غلات و دانه‌های روغنی' : 'PHYSICAL COMMODITIES DESK'}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -583,15 +542,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
               <div className="lg:col-span-5 h-full">
                 <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
-                  <img 
-                    src={containerNightImg} 
-                    alt={isFa ? 'ترمینال شبانه کانتینری و تسویه اعتبارات اسنادی بانکی' : '24/7 Night Container Terminal and Structured Trade Finance Settlement'}
-                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    width={1280}
-                    height={714}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div className="relative w-full h-full min-h-[280px] flex-1 overflow-hidden">
+                    <img 
+                      src={containerNightImg} 
+                      alt={isFa ? 'ترمینال شبانه کانتینری و تسویه اعتبارات اسنادی بانکی' : '24/7 Night Container Terminal and Structured Trade Finance Settlement'}
+                      className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      width={1280}
+                      height={714}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#004C80]" />
+                      <span>{isFa ? 'تسویه اعتبارات و لجستیک شبانه‌روزی' : 'STRUCTURED TRADE SETTLEMENT'}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -628,15 +593,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
               <div className="lg:col-span-5 h-full">
                 <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
-                  <img 
-                    src={agriGrainImg} 
-                    alt={isFa ? 'ترمینال سیلوهای بندری و مبادلات غلات بین‌الملل' : 'Port Grain Silo Elevator Terminal and Trade Finance Corridor'}
-                    className="w-full h-full min-h-[280px] flex-1 object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    width={1280}
-                    height={714}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div className="relative w-full h-full min-h-[280px] flex-1 overflow-hidden">
+                    <img 
+                      src={grainSiloImg} 
+                      alt={isFa ? 'زیرساخت سیلوهای غلات و تأسیسات ذخیره‌سازی استراتژیک رفاه صنعت پردیس' : 'RSP Strategic Grain Silo Elevators and Bulk Commodity Infrastructure'}
+                      className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      width={1280}
+                      height={714}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                      <Building2 className="w-3.5 h-3.5 text-[#004C80]" />
+                      <span>{isFa ? 'زیرساخت سیلو و ذخیره‌سازی' : 'SILO STORAGE INFRASTRUCTURE'}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -701,27 +672,39 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
 
           {/* Dual Imagery Showcase */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px]">
-              <img 
-                src={grainSiloImg} 
-                alt={isFa ? 'سیلوی نگهداری و بارگیری غلات و کالاهای کشاورزی' : 'Industrial Grain Silo and Bulk Storage Facility'}
-                className="w-full h-64 object-cover filter contrast-105"
-                width={1280}
-                height={714}
-                loading="lazy"
-                decoding="async"
-              />
+            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px] group overflow-hidden">
+              <div className="relative w-full h-64 overflow-hidden border border-[#D5DFE8]">
+                <img 
+                  src={grainSiloImg} 
+                  alt={isFa ? 'سیلوی نگهداری و بارگیری غلات و کالاهای کشاورزی' : 'Industrial Grain Silo and Bulk Storage Facility'}
+                  className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  width={1280}
+                  height={714}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                  <Building2 className="w-3.5 h-3.5 text-[#004C80]" />
+                  <span>{isFa ? 'زیرساخت سیلوهای غلات' : 'BULK GRAIN STORAGE'}</span>
+                </div>
+              </div>
             </div>
-            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px]">
-              <img 
-                src={portDuskImg} 
-                alt={isFa ? 'بندر کانتینری و محوطه باربری ترانزیتی در هنگام غروب' : 'Container Port Cargo Terminal at Dusk'}
-                className="w-full h-64 object-cover filter contrast-105"
-                width={1280}
-                height={714}
-                loading="lazy"
-                decoding="async"
-              />
+            <div className="bg-[#F4F7FA] p-2 border border-[#D5DFE8] rounded-[1px] group overflow-hidden">
+              <div className="relative w-full h-64 overflow-hidden border border-[#D5DFE8]">
+                <img 
+                  src={portDuskImg} 
+                  alt={isFa ? 'بندر کانتینری و محوطه باربری ترانزیتی در هنگام غروب' : 'Container Port Cargo Terminal at Dusk'}
+                  className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  width={1280}
+                  height={714}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                  <Anchor className="w-3.5 h-3.5 text-[#004C80]" />
+                  <span>{isFa ? 'ترمینال ترانزیت کانتینری' : 'CONTAINER TERMINAL AT DUSK'}</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -789,16 +772,22 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           </div>
 
           {/* Multimodal Transport Image Feature */}
-          <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-sm">
-            <img 
-              src={multimodalImg} 
-              alt={isFa ? 'کریدورهای ترانزیت ترکیبی ریلی، جاده‌ای و دریایی' : 'Multimodal Freight Transport Hub and Cross-Border Corridors'}
-              className="w-full h-72 object-cover filter contrast-105"
-              width={1280}
-              height={714}
-              loading="lazy"
-              decoding="async"
-            />
+          <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-sm group overflow-hidden">
+            <div className="relative w-full h-72 sm:h-80 overflow-hidden border border-[#D5DFE8]">
+              <img 
+                src={multimodalImg} 
+                alt={isFa ? 'کریدورهای ترانزیت ترکیبی ریلی، جاده‌ای و دریایی' : 'Multimodal Freight Transport Hub and Cross-Border Corridors'}
+                className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                width={1280}
+                height={714}
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                <Globe className="w-3.5 h-3.5 text-[#004C80]" />
+                <span>{isFa ? 'هاب ترانزیت ترکیبی (هوایی، دریایی، ریلی)' : 'MULTIMODAL FREIGHT HUB & CORRIDORS'}</span>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -1074,15 +1063,21 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             {/* Rail Logistics Infrastructure Image */}
             <div className="lg:col-span-6 h-full">
               <div className="bg-white p-2 border border-[#D5DFE8] rounded-[1px] shadow-md group overflow-hidden h-full flex flex-col">
-                <img 
-                  src={railLogisticsImg} 
-                  alt={isFa ? 'ترانزیت باری ریلی و زیرساخت‌های اتصال تجاری' : 'Overland Freight Rail Infrastructure and Logistics Terminal'}
-                  className="w-full h-full min-h-[360px] object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out flex-1"
-                  width={1280}
-                  height={714}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div className="relative w-full h-full min-h-[360px] flex-1 overflow-hidden border border-[#D5DFE8]">
+                  <img 
+                    src={railLogisticsImg} 
+                    alt={isFa ? 'ترانزیت باری ریلی و زیرساخت‌های اتصال تجاری' : 'Overland Freight Rail Infrastructure and Logistics Terminal'}
+                    className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    width={1280}
+                    height={714}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 bg-white/95 border border-[#D5DFE8] text-[#004C80] font-mono text-[10px] font-bold px-2.5 py-1 rounded-[1px] flex items-center gap-1.5 shadow-sm">
+                    <Layers className="w-3.5 h-3.5 text-[#004C80]" />
+                    <span>{isFa ? 'کریدورهای باری ریلی و بنادر خشک' : 'STRATEGIC OVERLAND RAIL NETWORK'}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
