@@ -36,7 +36,10 @@ import {
   BarChart3,
   Anchor,
   Compass,
-  Briefcase
+  Briefcase,
+  Printer,
+  ExternalLink,
+  Link2
 } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
@@ -1184,11 +1187,11 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
           </div>
 
           {/* Clean Institutional Contact Desk */}
-          <div className="max-w-4xl mx-auto bg-white border border-[#D5DFE8] p-8 sm:p-12 rounded-[1px] shadow-sm space-y-8">
+          <div className="max-w-5xl mx-auto bg-white border border-[#D5DFE8] p-8 sm:p-12 rounded-[1px] shadow-sm space-y-8">
             
             <div className="space-y-2 border-b border-[#D5DFE8] pb-6">
               <span className="text-xs font-mono font-bold text-[#004C80] uppercase tracking-wider">
-                CENTRAL HEADQUARTERS & GLOBAL DESK
+                CENTRAL HEADQUARTERS & GLOBAL TRADE DESK
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-[#0A1C2E] font-sans">
                 {t.contact.officeTitle}
@@ -1199,66 +1202,110 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
             </div>
 
             {/* Direct Coordinates Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               
-              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+              {/* Address */}
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2 lg:col-span-2">
                 <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
-                  <MapPin className="w-4 h-4" />
-                  <span>{isFa ? 'نشانی دفتر مرکزی' : 'Headquarters Address'}</span>
+                  <MapPin className="w-4 h-4 shrink-0" />
+                  <span>{t.contact.addressLabel || (isFa ? 'نشانی دفتر مرکزی' : 'Headquarters Address')}</span>
                 </div>
-                <p className="text-sm font-semibold text-[#0A1C2E] font-sans">
+                <p className="text-sm font-bold text-[#0A1C2E] font-sans leading-relaxed">
                   {t.contact.address}
                 </p>
               </div>
 
+              {/* Portal Website */}
               <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
                 <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
-                  <Clock className="w-4 h-4" />
-                  <span>{isFa ? 'ساعات کاری میز بازرگانی' : 'Desk Operating Hours'}</span>
+                  <Globe className="w-4 h-4 shrink-0" />
+                  <span>{t.contact.websiteLabel || (isFa ? 'پورتال رسمی شرکت' : 'Official Portal')}</span>
                 </div>
-                <p className="text-sm font-semibold text-[#0A1C2E] font-sans">
-                  {t.contact.hours}
+                <a 
+                  href={`https://${t.contact.website}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-base font-bold text-[#004C80] hover:underline font-mono inline-flex items-center gap-1.5"
+                >
+                  <span>{t.contact.website}</span>
+                  <ArrowUpRight className="w-4 h-4 shrink-0 opacity-75" />
+                </a>
+              </div>
+
+              {/* Direct Telephones */}
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <Phone className="w-4 h-4 shrink-0" />
+                  <span>{t.contact.phoneLabel || (isFa ? 'تلفن‌های تماس مستقیم' : 'Direct Telephones')}</span>
+                </div>
+                <div className="flex flex-col gap-1.5 font-mono text-sm font-bold text-[#004C80]">
+                  {t.contact.phones.map((ph, idx) => (
+                    <a 
+                      key={idx}
+                      href={`tel:${ph.replace(/[^0-9+]/g, '')}`}
+                      className="hover:underline flex items-center justify-between"
+                      dir="ltr"
+                    >
+                      <span>{ph}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Central Fax */}
+              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
+                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
+                  <Printer className="w-4 h-4 shrink-0" />
+                  <span>{t.contact.faxLabel || (isFa ? 'شماره فکس' : 'Central Fax')}</span>
+                </div>
+                <p className="text-sm font-bold text-[#0A1C2E] font-mono" dir="ltr">
+                  {t.contact.fax}
                 </p>
               </div>
 
+              {/* Corporate Email */}
               <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
                 <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
-                  <Mail className="w-4 h-4" />
-                  <span>{isFa ? 'پست الکترونیک رسمی' : 'Corporate Email'}</span>
+                  <Mail className="w-4 h-4 shrink-0" />
+                  <span>{t.contact.emailLabel || (isFa ? 'پست الکترونیک رسمی' : 'Corporate Email')}</span>
                 </div>
                 <a 
                   href={`mailto:${t.contact.email}`}
-                  className="text-base font-bold text-[#004C80] hover:underline font-mono"
+                  className="text-sm font-bold text-[#004C80] hover:underline font-mono block break-all"
                 >
                   {t.contact.email}
                 </a>
               </div>
 
-              <div className="p-5 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] space-y-2">
-                <div className="flex items-center gap-2 text-[#004C80] font-mono text-xs font-bold uppercase">
-                  <Phone className="w-4 h-4" />
-                  <span>{isFa ? 'تلفن تماس مستقیم' : 'Direct Telephone'}</span>
-                </div>
-                <a 
-                  href={`tel:+982188004450`}
-                  className="text-base font-bold text-[#004C80] hover:underline font-mono"
-                  dir="ltr"
-                >
-                  {t.contact.phone}
-                </a>
-              </div>
-
             </div>
 
-            {/* Compliance & Integrity Banner */}
-            <div className="p-5 bg-[#0A1C2E] text-white rounded-[1px] border border-[#1E293B] space-y-1.5">
-              <div className="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase">
-                <ShieldCheck className="w-4 h-4" />
-                <span>{t.contact.complianceTitle}</span>
+            {/* Operating Hours & Compliance Notice */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 pt-2">
+              
+              <div className="md:col-span-5 p-4 bg-[#F4F7FA] border border-[#D5DFE8] rounded-[1px] flex items-center gap-3">
+                <Clock className="w-5 h-5 text-[#004C80] shrink-0" />
+                <div>
+                  <div className="text-[11px] font-mono font-bold text-[#004C80] uppercase">
+                    {isFa ? 'ساعات کاری میز بازرگانی' : 'Operating Hours'}
+                  </div>
+                  <div className="text-xs font-semibold text-[#0A1C2E] mt-0.5">
+                    {t.contact.hours}
+                  </div>
+                </div>
               </div>
-              <p className="text-xs text-slate-300 font-sans leading-relaxed">
-                {t.contact.complianceText}
-              </p>
+
+              <div className="md:col-span-7 p-4 bg-[#0A1C2E] text-white rounded-[1px] border border-[#1E293B] flex items-start gap-3">
+                <ShieldCheck className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <div className="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider">
+                    {t.contact.complianceTitle}
+                  </div>
+                  <p className="text-[11px] text-slate-300 font-sans leading-relaxed">
+                    {t.contact.complianceText}
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -1267,55 +1314,165 @@ export const EditorialIndustrialMain: React.FC<EditorialIndustrialMainProps> = (
       </section>
 
       {/* ------------------ FOOTER ------------------ */}
-      <footer className="bg-[#0A1C2E] text-slate-400 border-t border-[#1E293B] py-16 text-xs font-sans">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <footer className="bg-[#0A1C2E] text-slate-400 border-t border-[#1E293B] pt-16 pb-12 text-xs font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-            
-            <div className="md:col-span-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <Logo size="md" />
-                <span className="text-lg font-bold text-white uppercase font-sans">
+          {/* Top Brand Banner */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-10 border-b border-[#1E293B] gap-6">
+            <div className="flex items-center gap-4">
+              <Logo size="lg" />
+              <div>
+                <span className="text-lg sm:text-xl font-extrabold text-white uppercase font-sans tracking-wide block">
                   {t.brand}
                 </span>
+                <span className="text-xs font-mono text-sky-400 tracking-wider">
+                  {t.category}
+                </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed">
-                {t.footer.description}
-              </p>
-              <div className="font-mono text-[10px] text-sky-400">
-                REGISTRATION: TEHRAN • CLEARING: MULTI-CURRENCY
+            </div>
+            <div className="flex flex-wrap items-center gap-4 text-[11px] font-mono text-slate-400">
+              <span className="px-3 py-1.5 bg-[#112233] border border-[#1E293B] rounded-[1px] text-slate-300">
+                TEHRAN HQ: FATEMI WEST • NO. 313
+              </span>
+              <span className="px-3 py-1.5 bg-[#112233] border border-[#1E293B] rounded-[1px] text-sky-400">
+                REFAH-SPC.IR
+              </span>
+            </div>
+          </div>
+
+          {/* Comprehensive 4-Column Footer Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 items-start">
+            
+            {/* Column 1: با ما در ارتباط باشید (Contact & Coordinates) */}
+            <div className="lg:col-span-4 space-y-4">
+              <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
+                <MapPin className="w-3.5 h-3.5 text-sky-400" />
+                <span>{t.footer.contactInfoTitle || (isFa ? 'با ما در ارتباط باشید' : 'Contact Coordinates')}</span>
+              </div>
+
+              <div className="space-y-3.5 text-xs text-slate-300 font-sans">
+                {/* Address */}
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                  <div className="leading-relaxed">
+                    <span className="text-slate-400 text-[11px] block">{isFa ? 'نشانی:' : 'Address:'}</span>
+                    <span className="font-medium text-slate-200">{t.contact.address}</span>
+                  </div>
+                </div>
+
+                {/* Phones */}
+                <div className="flex items-start gap-2.5">
+                  <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 text-[11px] block">{isFa ? 'تلفن‌های تماس:' : 'Phones:'}</span>
+                    <div className="font-mono font-semibold text-slate-200 flex flex-col gap-1 mt-0.5" dir="ltr">
+                      {t.contact.phones.map((ph, i) => (
+                        <a key={i} href={`tel:${ph.replace(/[^0-9+]/g, '')}`} className="hover:text-sky-400 transition-colors">
+                          {ph}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-start gap-2.5">
+                  <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 text-[11px] block">{isFa ? 'ایمیل رسمی:' : 'Email:'}</span>
+                    <a href={`mailto:${t.contact.email}`} className="font-mono text-slate-200 hover:text-sky-400 transition-colors">
+                      {t.contact.email}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Fax */}
+                <div className="flex items-start gap-2.5">
+                  <Printer className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 text-[11px] block">{isFa ? 'فکس:' : 'Fax:'}</span>
+                    <span className="font-mono text-slate-200" dir="ltr">{t.contact.fax}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="md:col-span-3 space-y-3 font-mono">
-              <div className="text-white font-bold uppercase tracking-wider text-xs">
-                {t.footer.quickLinksTitle}
+            {/* Column 2: لینک‌های مرتبط (گروه رفاه و سهامداران) */}
+            <div className="lg:col-span-3 space-y-4">
+              <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
+                <Link2 className="w-3.5 h-3.5 text-sky-400" />
+                <span>{t.footer.relatedLinksTitle}</span>
               </div>
-              <ul className="space-y-2 text-slate-400">
-                <li><a href="#about" onClick={(e) => handleAnchorClick(e, '#about')} className="hover:text-white transition-colors">{t.nav.about}</a></li>
-                <li><a href="#leadership" onClick={(e) => handleAnchorClick(e, '#leadership')} className="hover:text-white transition-colors">{t.nav.leadership}</a></li>
-                <li><a href="#business" onClick={(e) => handleAnchorClick(e, '#business')} className="hover:text-white transition-colors">{t.nav.business}</a></li>
-                <li><a href="#markets" onClick={(e) => handleAnchorClick(e, '#markets')} className="hover:text-white transition-colors">{t.nav.markets}</a></li>
-                <li><a href="#stats" onClick={(e) => handleAnchorClick(e, '#stats')} className="hover:text-white transition-colors">{t.nav.stats}</a></li>
-                <li><a href="#insights" onClick={(e) => handleAnchorClick(e, '#insights')} className="hover:text-white transition-colors">{t.nav.insights}</a></li>
-                <li><a href="#faq" onClick={(e) => handleAnchorClick(e, '#faq')} className="hover:text-white transition-colors">{t.nav.faq}</a></li>
+              <ul className="space-y-2 text-xs">
+                {t.footer.relatedLinks.map((link, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={link.url}
+                      target={link.url.startsWith('http') ? '_blank' : '_self'}
+                      rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="group flex items-center justify-between text-slate-300 hover:text-white transition-colors py-0.5"
+                    >
+                      <span className="flex items-center gap-2 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform truncate">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 opacity-60 group-hover:opacity-100 shrink-0" />
+                        <span className="truncate">{link.name}</span>
+                      </span>
+                      {link.url.startsWith('http') && (
+                        <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-1 rtl:mr-1 rtl:ml-0" />
+                      )}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            <div className="md:col-span-3 space-y-3 font-mono">
-              <div className="text-white font-bold uppercase tracking-wider text-xs">
-                {t.footer.positioningTitle}
+            {/* Column 3: دسترسی سریع / صنایع معدنی و فولادی همکار */}
+            <div className="lg:col-span-3 space-y-4">
+              <div className="text-white font-bold uppercase tracking-wider text-xs font-mono flex items-center gap-2 pb-2 border-b border-[#1E293B]">
+                <Building2 className="w-3.5 h-3.5 text-sky-400" />
+                <span>{t.footer.partnerIndustriesTitle}</span>
               </div>
-              <div className="text-slate-400 space-y-2 text-xs">
-                <p>• {isFa ? 'تجارت فیزیکی کالا و فولاد' : 'Physical Commodity & Steel Trading'}</p>
-                <p>• {isFa ? 'اعتبارات اسنادی و تامین مالی (L/C)' : 'Documentary Credits & Trade Finance'}</p>
-                <p>• {isFa ? 'ترانزیت و لجستیک چندوجهی' : 'Multimodal Freight Transit'}</p>
-                <p>• {isFa ? 'مشارکت‌های نهادی و سرمایه‌گذاری' : 'Institutional Investment Networks'}</p>
+              <ul className="space-y-2 text-xs">
+                {t.footer.partnerIndustries.map((partner, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={partner.url}
+                      target={partner.url.startsWith('http') ? '_blank' : '_self'}
+                      rel={partner.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="group flex items-center justify-between text-slate-300 hover:text-white transition-colors py-0.5"
+                    >
+                      <span className="flex items-center gap-2 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform truncate">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 opacity-60 group-hover:opacity-100 shrink-0" />
+                        <span className="truncate">{partner.name}</span>
+                      </span>
+                      {partner.url.startsWith('http') && (
+                        <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-1 rtl:mr-1 rtl:ml-0" />
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: ناوبری سامانه */}
+            <div className="lg:col-span-2 space-y-4 font-mono">
+              <div className="text-white font-bold uppercase tracking-wider text-xs flex items-center gap-2 pb-2 border-b border-[#1E293B]">
+                <span>{t.footer.quickLinksTitle}</span>
               </div>
+              <ul className="space-y-2 text-slate-400 text-xs">
+                <li><a href="#about" onClick={(e) => handleAnchorClick(e, '#about')} className="hover:text-white transition-colors block">{t.nav.about}</a></li>
+                <li><a href="#leadership" onClick={(e) => handleAnchorClick(e, '#leadership')} className="hover:text-white transition-colors block">{t.nav.leadership}</a></li>
+                <li><a href="#business" onClick={(e) => handleAnchorClick(e, '#business')} className="hover:text-white transition-colors block">{t.nav.business}</a></li>
+                <li><a href="#markets" onClick={(e) => handleAnchorClick(e, '#markets')} className="hover:text-white transition-colors block">{t.nav.markets}</a></li>
+                <li><a href="#stats" onClick={(e) => handleAnchorClick(e, '#stats')} className="hover:text-white transition-colors block">{t.nav.stats}</a></li>
+                <li><a href="#insights" onClick={(e) => handleAnchorClick(e, '#insights')} className="hover:text-white transition-colors block">{t.nav.insights}</a></li>
+                <li><a href="#faq" onClick={(e) => handleAnchorClick(e, '#faq')} className="hover:text-white transition-colors block">{t.nav.faq}</a></li>
+                <li><a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')} className="text-sky-400 hover:underline block">{t.nav.contact}</a></li>
+              </ul>
             </div>
 
           </div>
 
+          {/* Bottom Copyright & Legal Notice */}
           <div className="pt-8 border-t border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-500">
             <div>
               © {new Date().getFullYear()} {t.footer.rights}

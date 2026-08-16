@@ -192,8 +192,15 @@ export interface TranslationContent {
     officeTitle: string;
     officeDesc: string;
     address: string;
+    addressLabel?: string;
     email: string;
-    phone: string;
+    emailLabel?: string;
+    phones: string[];
+    phoneLabel?: string;
+    fax: string;
+    faxLabel?: string;
+    website: string;
+    websiteLabel?: string;
     hours: string;
     complianceTitle: string;
     complianceText: string;
@@ -201,9 +208,20 @@ export interface TranslationContent {
   footer: {
     description: string;
     quickLinksTitle: string;
+    relatedLinksTitle: string;
+    partnerIndustriesTitle: string;
     positioningTitle: string;
+    contactInfoTitle?: string;
     rights: string;
     termsTitle: string;
     privacyTitle: string;
+    relatedLinks: {
+      name: string;
+      url: string;
+    }[];
+    partnerIndustries: {
+      name: string;
+      url: string;
+    }[];
   };
 }
